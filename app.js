@@ -22,7 +22,6 @@ const state = {
   questionsCompletedAt: null, // timestamp when the LAST MATHS QUESTION was answered
                               // (captured separately so duration excludes the two short survey screens)
   lastTip: null, // the previous Maths Tip shown, so we can avoid an immediate repeat
-  lastEncouragement: null, // the previous encouragement message shown, to avoid an immediate repeat
   saving: false,    // true while a save is in flight
   saved: false      // true once a result has been stored (prevents duplicates)
 };
@@ -327,25 +326,6 @@ const STRAND_COLORS = {
   NPV: "#2E6FE0", AS: "#2E9E5B", MD: "#E0653A", FRA: "#E0972E",
   GEO: "#8B5CF6", MEA: "#1FA3A3", POS: "#4B4FE0", STA: "#E0498A"
 };
-
-const ENCOURAGEMENTS = [
-  "Keep going.", "You're making good progress.", "Take your time.",
-  "Nearly there.", "One question at a time.", "Keep thinking.",
-  "Every question helps us learn."
-];
-
-function pickEncouragement() {
-  let choice = ENCOURAGEMENTS[Math.floor(Math.random() * ENCOURAGEMENTS.length)];
-  if (ENCOURAGEMENTS.length > 1) {
-    let attempts = 0;
-    while (choice === state.lastEncouragement && attempts < 8) {
-      choice = ENCOURAGEMENTS[Math.floor(Math.random() * ENCOURAGEMENTS.length)];
-      attempts++;
-    }
-  }
-  state.lastEncouragement = choice;
-  return choice;
-}
 
 /* ---------- Illustration renderer ----------
    Small, static SVGs. Used only where a picture aids understanding. */
@@ -827,6 +807,17 @@ function startCheck() {
 }
 
 /* ---------- Render a question ---------- */
+function toggleHint() {
+  const box = $("tip-box");
+  const btn = $("hint-toggle-btn");
+  const nowHidden = !box.hidden; // toggle
+  box.hidden = nowHidden;
+  btn.setAttribute("aria-expanded", nowHidden ? "false" : "true");
+  btn.innerHTML = nowHidden
+    ? '<span aria-hidden="true">💡</span> View Hint'
+    : '<span aria-hidden="true">💡</span> Hide Hint';
+}
+
 function renderQuestion() {
   const q = state.order[state.index];
   const total = state.order.length;
@@ -834,7 +825,6 @@ function renderQuestion() {
 
   $("progress-count").textContent = `Question ${num} of ${total}`;
   $("progress-fill").style.width = `${(num / total) * 100}%`;
-  $("encourage-text").textContent = (num % 6 === 0 && num < total) ? pickEncouragement() : "";
 
   $("q-illus").innerHTML = renderIllustration(q.illustration);
   $("q-text").textContent = q.text;
@@ -844,6 +834,12 @@ function renderQuestion() {
   $("tip-label").textContent = meta.label;
   $("tip-text").textContent = tip.text;
   $("tip-box").style.borderLeftColor = STRAND_COLORS[q.strand] || STRAND_COLORS.NPV;
+
+  // Hint is optional and hidden by default on every new question — the
+  // child must choose to reveal it; it is never a permanent panel.
+  $("tip-box").hidden = true;
+  $("hint-toggle-btn").setAttribute("aria-expanded", "false");
+  $("hint-toggle-btn").innerHTML = '<span aria-hidden="true">💡</span> View Hint';
 
   const wrap = $("answers");
   wrap.innerHTML = "";
@@ -1161,6 +1157,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initSetup();
   $("to-questions-btn").addEventListener("click", startCheck);
   $("next-btn").addEventListener("click", nextQuestion);
+  $("hint-toggle-btn").addEventListener("click", toggleHint);
 
   document.querySelectorAll("#confidence-options .confidence-btn").forEach(btn => {
     btn.addEventListener("click", () => selectConfidence(btn));

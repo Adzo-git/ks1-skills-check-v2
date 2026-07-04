@@ -108,15 +108,17 @@
             <span id="progress-count">Question 1 of 37</span>
           </div>
           <div class="progress-track"><div id="progress-fill" class="progress-fill"></div></div>
-          <p id="encourage-text" class="encourage" aria-live="polite"></p>
         </div>
 
         <div id="q-illus" class="illus" aria-hidden="false"></div>
         <p id="q-text" class="qtext">…</p>
 
-        <div id="answers" class="answers" role="radiogroup" aria-label="Answer options"></div>
+        <div id="answers" class="answers answers-grid" role="radiogroup" aria-label="Answer options"></div>
 
-        <div id="tip-box" class="tip" aria-live="polite">
+        <button type="button" id="hint-toggle-btn" class="btn-hint" aria-expanded="false" aria-controls="tip-box">
+          <span aria-hidden="true">💡</span> View Hint
+        </button>
+        <div id="tip-box" class="tip" aria-live="polite" hidden>
           <span id="tip-icon" class="tip-icon" aria-hidden="true">💡</span>
           <div>
             <span id="tip-label" class="tip-label">Maths Tip</span>

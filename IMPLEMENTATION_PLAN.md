@@ -324,3 +324,74 @@ zero other code changes.
 **The live assessment runs exactly as it did before this stage** — this
 isn't a judgement call, it's a checksum fact.
 
+---
+
+## Stage 2A — COMPLETE (Page Layout Framework)
+
+**Scope discipline confirmed by checksum**: `questions.js`, `config.js`,
+`supabase-setup.sql`, `tools/generate-questions.js`, and all 5 asset
+manifests are byte-for-byte identical before and after this stage. Only
+`index.html`, `styles.css`, and `app.js` changed.
+
+**What changed:**
+
+1. **Colour tokens updated to exact Master Pack C hex values** — Purple
+   `#652DA0` (already correct), Pink `#E91E63` (was `#e84b8a`), Green
+   `#43A047` (was `#2e9e6b`), added Blue `#2196F3` as the 4th primary
+   (token added, not yet applied anywhere — available for future stages).
+   Neutrals updated to the brand bible's Text Dark/Medium/Border values.
+2. **Type scale updated** — H1 now 32px bold per the brand bible's own
+   type scale (was 30px). Question text (`.qtext`) enlarged to 28px→32px
+   (mobile→desktop) and set to bold 700 weight — it is now the single
+   largest, boldest text on the question screen, ahead of even the page
+   header, matching "maths is always the hero."
+3. **Illustration area enlarged** — 300px→400px (mobile→desktop), up
+   from 280px→360px.
+4. **2×2 answer card grid** — new `.answers-grid` class applied only to
+   the question-screen answers (`#answers`), leaving the parent
+   independence screen's 3-option single-column list (which reuses the
+   base `.answers` class) completely unaffected. Drops to single column
+   below 360px width so long answers (e.g. "half past 3") never feel
+   cramped on the smallest phones.
+5. **The always-visible Maths Tip box is now hidden by default**, with a
+   small "💡 View Hint" button that reveals it on tap (matching Master
+   Pack C's own "View Hint" button pattern) and automatically re-hides on
+   every new question. Restyled smaller and quieter — soft yellow, no
+   dashed border, 13.5px body text (down from 15px) — matching the brand
+   bible's own Hint Box example rather than the pink dashed box invented
+   in earlier work.
+6. **The sparing encouragement line was removed entirely** (previously
+   shown on every 6th question). This is an interpretation, not an
+   explicit line-item instruction — Master Pack C's own page hierarchy
+   panel lists Question/Illustration/Answers as largest, Progress/
+   Navigation as medium, Hint as small, and explicitly states **"Nothing
+   else."** Encouragement wasn't in that list, so it was removed along
+   with the tip box's permanence. Flagging this clearly in case the
+   sparing encouragement was actually wanted to stay — it's a one-line
+   revert if so.
+
+**Verified, not asserted** (full faithful-DOM tests, not just a code read):
+- Loads from Question 1 with zero console warnings and zero thrown errors.
+- Hint starts hidden on every question; tapping "View Hint" reveals it and
+  changes the button to "Hide Hint"; tapping again hides it; moving to the
+  next question automatically resets it to hidden.
+- Answer selection enables the Next button correctly; Next correctly
+  advances `state.index`.
+- A full simulated 37-question sitting → confidence → independence →
+  report produces the identical response shape as before (11 keys,
+  unchanged) — scoring and Supabase row shape are untouched.
+- Full standard regression suite (37 questions, correct quotas, 209
+  illustrations, 2,000 unique selections) — all pass.
+- Aria-label leak sweep re-run across all 209 illustrated questions —
+  still 0 leaks (unaffected by this stage, checked anyway).
+- CSS brace-balanced (118/118), no duplicate HTML ids.
+- Mobile breakpoint (`max-width: 480px`) re-checked against the new type
+  scale — still scales down sensibly.
+
+**Not done in this stage, deliberately**: no character/object/scene
+assets wired in (that's Stage 4 territory once the layout itself is
+approved), no strand-colour accent added to the illustration container
+(mentioned as a future step in the Stage 1 README), no changes to any
+individual question's content or illustration.
+
+
