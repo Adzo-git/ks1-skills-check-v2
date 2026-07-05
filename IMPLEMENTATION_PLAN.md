@@ -394,4 +394,148 @@ approved), no strand-colour accent added to the illustration container
 (mentioned as a future step in the Stage 1 README), no changes to any
 individual question's content or illustration.
 
+---
+
+## Stage 2B — COMPLETE (True Desktop Layout Redesign)
+
+**Scope discipline confirmed by checksum**: `questions.js`, `config.js`
+(aside from the version bump), `supabase-setup.sql`,
+`tools/generate-questions.js`, and all 5 asset manifests are byte-for-byte
+identical before and after this stage. Only `index.html`, `styles.css`,
+and `app.js` changed.
+
+**What changed:**
+
+1. **True two-column desktop layout for the question screen only.** The
+   question screen now uses a wide container (`.qcard`, up to 1100px) with
+   a CSS grid (`.qlayout`) splitting into a large main panel (illustration/
+   question/answers, `.qmain`) and a small secondary hint panel (`.qside`)
+   at ≥900px width. Below 900px it stacks into a single column — same
+   content, same order, no functionality lost. Every *other* screen
+   (welcome, instructions, confidence, complete, independence, report)
+   keeps its original narrow, centred card — `.card` was given an explicit
+   `max-width: 660px` so widening `.app` didn't widen them too.
+2. **Answer cards are now substantially bigger** (62px→84px min-height,
+   20px→21px text, 14px→16px corner radius) with a **coloured letter
+   badge (A/B/C/D)** per Master Pack C's answer-card examples — blue,
+   green, amber, purple. This is presentation only: the same
+   `selectAnswer(i)` function, same click handler, same `aria-checked`
+   logic, verified directly (see below).
+3. **A bottom nav row** (`.qnav`) with Previous / Flag for Review / Next,
+   matching the approved reference's layout.
+4. **Colour palette, type scale, hint box, 2×2 grid, and encouragement
+   removal** all carried over unchanged from Stage 2A.
+
+**One decision flagged, not silently made**: **Previous and Flag for
+Review are rendered but intentionally disabled**, not wired to any
+behaviour. This check was deliberately built with no back-navigation (PTO
+Standards Part 20 — "children move forward through the check," capturing
+current thinking rather than allowing improved guessing) and the brief
+for this stage was explicit that question logic must not change. Adding
+real back-navigation is a genuine behaviour change — it would need its
+own design pass (what happens to the currently-shown Maths Tip, the
+recorded answer, re-selection) — not something to bundle silently into a
+CSS/layout stage. They're present in the layout for visual completeness
+against the reference, each with a `title` attribute explaining why
+they're inactive. Happy to scope real Previous/Flag functionality as its
+own stage if wanted.
+
+**Verified, not asserted:**
+- Loads from Question 1, zero console warnings, zero thrown errors.
+- All 4 answer badges render with the correct letter and colour.
+- Clicking an answer correctly marks only that card `selected` (verified
+  with a test harness that actually implements `querySelectorAll`, not a
+  stub) and correctly sets `aria-checked` on all four; Next enables.
+- Hint starts hidden, toggles correctly, resets to hidden on every new
+  question (identical behaviour to Stage 2A, re-verified after the HTML
+  restructure).
+- All 37 questions render with 0 failures across the full order.
+- Full sitting → report → Supabase row shape: 37/37 responses, identical
+  11-key shape to before.
+- Full standard regression suite (37 questions, correct quotas, 209
+  illustrations, 2,000 unique selections) — all pass.
+- Aria-label leak sweep re-run across all 209 illustrated questions —
+  still 0 leaks.
+- CSS brace-balanced (133/133), no duplicate HTML ids.
+
+**A real mistake caught and fixed before it shipped**: an early edit
+accidentally deleted the base `.answers { display: grid; ... }` rule while
+inserting the new layout CSS around it. Caught by grepping for the rule
+immediately after the edit, before any testing — restored before any
+validation ran.
+
+---
+
+## Stage 2C — COMPLETE (Final UI Refinement)
+
+**Scope discipline**: `questions.js`, `supabase-setup.sql`,
+`tools/generate-questions.js`, and all 5 asset manifests are byte-for-byte
+identical before and after this stage (verified by checksum, config.js
+excepted since a version bump was explicitly permitted). Only
+`index.html`, `styles.css`, `app.js`, `config.js`, and this document
+changed.
+
+**The single most important change**: the always-visible 185-tip strand
+pool (random tip on every question, described in the brief as "too large
+and too frequent") has been **retired from the live hint mechanism**. In
+its place, `app.js` now reads the small, curated, skill-specific hint
+library that already existed in `assets/hints/manifest.js` — a frozen
+asset, **read but never modified**. A question only shows a genuine hint
+if its skill has one curated (9 skills, 57 of 360 questions — about 16%,
+matching "many questions will not need one"); every other question shows
+a calm, quiet fallback line ("No hint needed for this one — you've got
+this!", the exact wording from the brief) instead of a fabricated or
+repeated tip. Verified directly: 5 known skillIds tested against the
+lookup, 3 curated ones returned their exact real hint text, 2 non-curated
+ones correctly fell through to the fallback.
+
+**Removed entirely, per the brief**: the "View Hint" toggle button (the
+hint is now always visible but its *content* is what's intelligent, not
+its visibility); Previous and Flag for Review buttons (only a single,
+centred Next button remains — no back-navigation, unchanged from the
+established "captures a child's first instinct" principle); the unused
+185-entry `TIPS`/`TIP_TYPES` system and `pickMathsTip`/`toggleHint`
+functions from `app.js` (app.js shrank from 1163 to 945 lines).
+
+**Visual refinements**: side hint panel narrowed to ~25% width
+(`3fr minmax(220px,1fr)`, was a fixed 300px); answer cards enlarged
+further (84px min-height, 18px corner radius) with a subtle hover-lift
+(`translateY(-2px)`) and a stronger selected-state shadow+lift; the
+strand-colour accent that used to sit on the tip box now sits on the
+illustration container instead (the deferred Stage 1 idea, now
+implemented) — with an important fix: **the illustration container is
+now hidden entirely (not shown empty) for the ~40% of questions with no
+illustration**, since an empty coloured box would itself be exactly the
+kind of decorative clutter this stage asked to remove.
+
+**Two real mistakes caught and fixed before they shipped**: (1) an early
+CSS edit accidentally deleted the `.illus svg { max-width... }` sizing
+rule while inserting the new border/background styling around it —
+caught by grepping immediately after the edit; (2) the assumption that
+Question 1 in a test run would show a real hint (because it's usually an
+NPV question and NPV has 2 curated skills) turned out wrong for that
+specific random sitting — investigated and confirmed it was correct,
+quota-based behaviour (which specific NPV skill lands in slot 1 varies),
+not a bug, by testing the lookup mechanism directly against known
+skillIds rather than trusting one sitting's output.
+
+**Verified, not asserted:**
+- Loads from Question 1, zero console warnings, zero thrown errors.
+- Hint lookup tested directly against 5 known skillIds (curated and
+  non-curated) — all matched correctly.
+- Answer selection correctly marks the clicked card (and only that card)
+  as selected, using a test harness with genuine `querySelectorAll`
+  support, not a stub.
+- All 37 questions in a full sitting render with 0 failures; hint
+  intelligence distribution (8 real / 29 fallback in one sample sitting)
+  is consistent with the curated-skill coverage across strand quotas.
+- Full sitting → report → Supabase row shape: 37/37 responses, identical
+  11-key shape.
+- Full standard regression suite (37 questions, correct quotas, 209
+  illustrations, 2,000 unique selections) — all pass.
+- Aria-label leak sweep re-run across all 209 illustrated questions —
+  still 0 leaks.
+- CSS brace-balanced (128/128), no duplicate HTML ids.
+
+
 

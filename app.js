@@ -21,7 +21,6 @@ const state = {
   independence: null,   // parent's rating: independent / a_little_help / a_lot_of_help
   questionsCompletedAt: null, // timestamp when the LAST MATHS QUESTION was answered
                               // (captured separately so duration excludes the two short survey screens)
-  lastTip: null, // the previous Maths Tip shown, so we can avoid an immediate repeat
   saving: false,    // true while a save is in flight
   saved: false      // true once a result has been stored (prevents duplicates)
 };
@@ -72,250 +71,25 @@ function shuffled(arr) {
 
 const TICK = '<svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
-/* ---------- Maths Tips (Version 1.4) ----------
-   A qualified-teacher-style tip shown below every question — never a hint,
-   never tied to the specific numbers, shape, or picture on screen. Each tip
-   has a TYPE (matching the wider PTO style used across lessons/worksheets)
-   so the label and icon reflect the kind of guidance being given:
-     mathsTip      💡 Maths Tip       — practical mathematical strategies
-     remember      🧠 Remember        — key knowledge to hold in mind
-     topTip        ⭐ Top Tip         — helpful problem-solving approaches
-     lookCarefully 👀 Look Carefully  — careful observation
-     learningHabit 🌱 Learning Habit  — confidence, resilience, growth mindset
-   One tip is picked at random per question from general + strand pools
-   (never the same one twice in a row where the pool allows it). None
-   reference a number, picture, or method for a specific question — checked
-   automatically, see validation. */
-const TIP_TYPES = {
-  mathsTip:      { icon: "💡", label: "Maths Tip" },
-  remember:      { icon: "🧠", label: "Remember" },
-  topTip:        { icon: "⭐", label: "Top Tip" },
-  lookCarefully: { icon: "👀", label: "Look Carefully" },
-  learningHabit: { icon: "🌱", label: "Learning Habit" }
-};
+/* ---------- Contextual hints (Stage 2C) ----------
+   Replaces the earlier always-visible 185-tip strand pool, which was
+   correctly identified as too large and too frequent. Instead, this reads
+   the small, curated, skill-specific hint library that already exists in
+   assets/hints/manifest.js (loaded via a <script> tag in index.html) —
+   that file is a frozen asset and is never modified here, only read.
 
-// category: "GENERAL" or a strand code. All GENERAL tips are learningHabit
-// type (confidence/resilience/growth mindset); strand tips are typed by
-// what each one actually teaches (fact vs strategy vs approach vs looking).
-const TIPS = [
-  // ---- GENERAL (25) — Learning Habit ----
-  { category:"GENERAL", type:"learningHabit", text:"Good mathematicians always check their answers." },
-  { category:"GENERAL", type:"learningHabit", text:"Take your time. Careful thinking is more important than being quick." },
-  { category:"GENERAL", type:"learningHabit", text:"If you're unsure, try to imagine the problem in your head." },
-  { category:"GENERAL", type:"learningHabit", text:"Counting carefully often helps." },
-  { category:"GENERAL", type:"learningHabit", text:"Looking twice can help you spot mistakes." },
-  { category:"GENERAL", type:"learningHabit", text:"Every question is a chance to learn something new." },
-  { category:"GENERAL", type:"learningHabit", text:"If something doesn't look right, check it again." },
-  { category:"GENERAL", type:"learningHabit", text:"Sometimes drawing a quick picture can help you think." },
-  { category:"GENERAL", type:"learningHabit", text:"Mistakes are part of learning maths." },
-  { category:"GENERAL", type:"learningHabit", text:"Reading a question twice can help you understand it better." },
-  { category:"GENERAL", type:"learningHabit", text:"It's okay to think for a while before answering." },
-  { category:"GENERAL", type:"learningHabit", text:"Good mathematicians ask themselves, \"does this make sense?\"" },
-  { category:"GENERAL", type:"learningHabit", text:"Breaking a problem into smaller steps can help." },
-  { category:"GENERAL", type:"learningHabit", text:"Staying calm helps you think clearly." },
-  { category:"GENERAL", type:"learningHabit", text:"There is often more than one way to solve a problem." },
-  { category:"GENERAL", type:"learningHabit", text:"Trying your best matters more than getting everything right." },
-  { category:"GENERAL", type:"learningHabit", text:"Maths is about thinking, not just remembering." },
-  { category:"GENERAL", type:"learningHabit", text:"A confident guess is better than no answer at all." },
-  { category:"GENERAL", type:"learningHabit", text:"Checking your working builds good habits." },
-  { category:"GENERAL", type:"learningHabit", text:"Slow and careful thinking often beats rushing." },
-  { category:"GENERAL", type:"learningHabit", text:"It helps to picture what the question is describing." },
-  { category:"GENERAL", type:"learningHabit", text:"Good mathematicians stay curious." },
-  { category:"GENERAL", type:"learningHabit", text:"Practice helps ideas make more sense over time." },
-  { category:"GENERAL", type:"learningHabit", text:"It's fine to pause and think before choosing." },
-  { category:"GENERAL", type:"learningHabit", text:"Every mathematician learns by trying." },
+   A question only gets a hint if its skill genuinely has one curated for
+   it (57 of 360 questions, ~16% — matching "many questions will not need
+   one"). Every other question shows a calm, generic encouragement instead
+   of a fabricated or repeated tip. */
+const HINT_FALLBACK_TEXT = "No hint needed for this one — you've got this!";
+const HINT_FALLBACK_ICON = "🙂";
 
-  // ---- NPV (20) ----
-  { category:"NPV", type:"remember",      text:"Tens are worth more than ones." },
-  { category:"NPV", type:"remember",      text:"Numbers always have an order." },
-  { category:"NPV", type:"mathsTip",      text:"A number line can help you imagine where numbers belong." },
-  { category:"NPV", type:"topTip",        text:"Counting forwards and backwards builds confidence." },
-  { category:"NPV", type:"remember",      text:"Every digit has a value depending on where it sits." },
-  { category:"NPV", type:"remember",      text:"The position of a digit changes what it means." },
-  { category:"NPV", type:"remember",      text:"Bigger numbers usually have more digits." },
-  { category:"NPV", type:"mathsTip",      text:"Counting in steps can help you move through numbers quickly." },
-  { category:"NPV", type:"remember",      text:"Zero is a number too, and it has its own place value." },
-  { category:"NPV", type:"mathsTip",      text:"Numbers can be broken apart into tens and ones." },
-  { category:"NPV", type:"topTip",        text:"When comparing two numbers, check the tens digit first." },
-  { category:"NPV", type:"topTip",        text:"Ordering numbers gets easier with practice." },
-  { category:"NPV", type:"remember",      text:"Ten ones make one ten." },
-  { category:"NPV", type:"remember",      text:"Numbers can be shown in lots of different ways." },
-  { category:"NPV", type:"mathsTip",      text:"It helps to say a number out loud sometimes." },
-  { category:"NPV", type:"mathsTip",      text:"Counting on from a number is a useful skill." },
-  { category:"NPV", type:"remember",      text:"The tens digit tells you how many groups of ten there are." },
-  { category:"NPV", type:"remember",      text:"Numbers get bigger as you move along a number line." },
-  { category:"NPV", type:"mathsTip",      text:"Thinking in tens can make counting quicker." },
-  { category:"NPV", type:"remember",      text:"Place value helps us understand what a number really means." },
-
-  // ---- AS (20) ----
-  { category:"AS", type:"remember",      text:"Adding means putting amounts together." },
-  { category:"AS", type:"remember",      text:"Subtraction can mean taking away or finding the difference." },
-  { category:"AS", type:"mathsTip",      text:"Counting on can sometimes make addition easier." },
-  { category:"AS", type:"mathsTip",      text:"Counting backwards can sometimes help with subtraction." },
-  { category:"AS", type:"topTip",        text:"Estimate roughly first, then check your exact answer is close to it." },
-  { category:"AS", type:"remember",      text:"Number bonds can be useful building blocks." },
-  { category:"AS", type:"remember",      text:"Adding in a different order gives the same total." },
-  { category:"AS", type:"remember",      text:"Taking away makes a number smaller." },
-  { category:"AS", type:"remember",      text:"Adding makes a number bigger, or keeps it the same." },
-  { category:"AS", type:"mathsTip",      text:"It can help to picture objects being added or removed." },
-  { category:"AS", type:"remember",      text:"Subtraction is the opposite of addition." },
-  { category:"AS", type:"mathsTip",      text:"Sometimes it helps to count up to find a difference." },
-  { category:"AS", type:"topTip",        text:"Knowing your number bonds can save time." },
-  { category:"AS", type:"topTip",        text:"A good estimate can help you check your answer." },
-  { category:"AS", type:"mathsTip",      text:"Ten is a useful number to build calculations around." },
-  { category:"AS", type:"mathsTip",      text:"Breaking numbers apart can make adding easier." },
-  { category:"AS", type:"topTip",        text:"Practising number facts builds speed and confidence." },
-  { category:"AS", type:"remember",      text:"Addition and subtraction are connected to each other." },
-  { category:"AS", type:"mathsTip",      text:"Thinking about \"how many more\" can help with subtraction." },
-  { category:"AS", type:"lookCarefully", text:"Careful counting helps avoid small mistakes." },
-
-  // ---- MD (20) ----
-  { category:"MD", type:"remember",      text:"Multiplication is repeated addition." },
-  { category:"MD", type:"remember",      text:"Equal groups are important in multiplication." },
-  { category:"MD", type:"remember",      text:"Arrays help us organise equal groups." },
-  { category:"MD", type:"remember",      text:"Division means sharing or grouping equally." },
-  { category:"MD", type:"mathsTip",      text:"Skip counting is a useful skill." },
-  { category:"MD", type:"remember",      text:"Doubling means adding a number to itself." },
-  { category:"MD", type:"remember",      text:"Sharing equally means everyone gets the same amount." },
-  { category:"MD", type:"mathsTip",      text:"Grouping helps us count large amounts quickly." },
-  { category:"MD", type:"remember",      text:"Multiplication and division are connected to each other." },
-  { category:"MD", type:"mathsTip",      text:"Counting in twos, fives and tens builds useful patterns." },
-  { category:"MD", type:"remember",      text:"Halving is the opposite of doubling." },
-  { category:"MD", type:"lookCarefully", text:"Equal rows can help you see multiplication clearly." },
-  { category:"MD", type:"remember",      text:"The same total can be made from different equal groups." },
-  { category:"MD", type:"mathsTip",      text:"Thinking in groups can make big numbers easier to manage." },
-  { category:"MD", type:"remember",      text:"Sharing fairly means each group has the same number." },
-  { category:"MD", type:"remember",      text:"Multiplying by ten follows a helpful pattern." },
-  { category:"MD", type:"topTip",        text:"Times tables are useful tools once you know them well." },
-  { category:"MD", type:"remember",      text:"A remainder is what's left over after sharing equally." },
-  { category:"MD", type:"topTip",        text:"Patterns in multiplication can help you spot answers faster." },
-  { category:"MD", type:"mathsTip",      text:"Grouping objects can make counting quicker and clearer." },
-
-  // ---- FRA (20) ----
-  { category:"FRA", type:"remember",      text:"Equal parts must always be the same size." },
-  { category:"FRA", type:"remember",      text:"A whole can be divided into equal parts." },
-  { category:"FRA", type:"remember",      text:"Fractions describe parts of a whole." },
-  { category:"FRA", type:"lookCarefully", text:"Look carefully at how something has been split." },
-  { category:"FRA", type:"remember",      text:"Bigger pieces do not always mean more pieces." },
-  { category:"FRA", type:"remember",      text:"Halving something means splitting it into two equal parts." },
-  { category:"FRA", type:"remember",      text:"A quarter means splitting something into four equal parts." },
-  { category:"FRA", type:"remember",      text:"The more equal parts something is split into, the smaller each part is." },
-  { category:"FRA", type:"remember",      text:"Fractions can describe parts of a group, not just a shape." },
-  { category:"FRA", type:"remember",      text:"Sharing equally is at the heart of fractions." },
-  { category:"FRA", type:"mathsTip",      text:"It helps to picture cutting something fairly." },
-  { category:"FRA", type:"remember",      text:"Every equal part of a whole is the same size as the others." },
-  { category:"FRA", type:"remember",      text:"Fractions are a way of describing how much of something there is." },
-  { category:"FRA", type:"lookCarefully", text:"Splitting things fairly takes careful thinking." },
-  { category:"FRA", type:"remember",      text:"A half is one of two equal parts." },
-  { category:"FRA", type:"lookCarefully", text:"Comparing fraction sizes takes careful looking." },
-  { category:"FRA", type:"remember",      text:"Fractions appear in everyday life, like sharing food." },
-  { category:"FRA", type:"mathsTip",      text:"Thinking about how many parts there are altogether can help." },
-  { category:"FRA", type:"topTip",        text:"Equal sharing is different from just splitting something roughly." },
-  { category:"FRA", type:"lookCarefully", text:"Careful counting of parts helps with fractions." },
-
-  // ---- MEA (20) ----
-  { category:"MEA", type:"lookCarefully", text:"Think carefully about what is being measured." },
-  { category:"MEA", type:"remember",      text:"Different objects can be measured in different ways." },
-  { category:"MEA", type:"remember",      text:"Clocks always move forwards." },
-  { category:"MEA", type:"topTip",        text:"When counting coins, add the largest one first." },
-  { category:"MEA", type:"lookCarefully", text:"Compare carefully before deciding." },
-  { category:"MEA", type:"remember",      text:"Length tells us how long or short something is." },
-  { category:"MEA", type:"remember",      text:"Mass tells us how heavy or light something is." },
-  { category:"MEA", type:"remember",      text:"Capacity tells us how much something can hold." },
-  { category:"MEA", type:"remember",      text:"Time can be measured in seconds, minutes and hours." },
-  { category:"MEA", type:"remember",      text:"Coins and notes have different values, not just different sizes." },
-  { category:"MEA", type:"remember",      text:"The short hand points to the hour, and the long hand points to the minutes." },
-  { category:"MEA", type:"lookCarefully", text:"Comparing sizes carefully helps avoid mistakes." },
-  { category:"MEA", type:"topTip",        text:"Estimating first can help you check your answer later." },
-  { category:"MEA", type:"remember",      text:"Units help us measure things fairly and consistently." },
-  { category:"MEA", type:"remember",      text:"Some things are measured by weight, others by length." },
-  { category:"MEA", type:"remember",      text:"A full container holds more than an empty one." },
-  { category:"MEA", type:"lookCarefully", text:"Careful comparison is important when measuring." },
-  { category:"MEA", type:"remember",      text:"The days of the week always happen in the same order." },
-  { category:"MEA", type:"lookCarefully", text:"Reading a scale takes careful attention." },
-  { category:"MEA", type:"mathsTip",      text:"Thinking about which is more or which is less can help." },
-
-  // ---- GEO (20) ----
-  { category:"GEO", type:"remember",      text:"Shapes have different numbers of sides." },
-  { category:"GEO", type:"remember",      text:"Corners are also called vertices." },
-  { category:"GEO", type:"lookCarefully", text:"Look carefully before deciding." },
-  { category:"GEO", type:"remember",      text:"Some shapes can roll and some cannot." },
-  { category:"GEO", type:"remember",      text:"Shapes can be sorted in different ways." },
-  { category:"GEO", type:"remember",      text:"Every shape has its own special properties." },
-  { category:"GEO", type:"lookCarefully", text:"Straight sides and curved sides look different." },
-  { category:"GEO", type:"lookCarefully", text:"Count every side before deciding what a shape is called." },
-  { category:"GEO", type:"remember",      text:"Shapes can be big or small and still be the same type." },
-  { category:"GEO", type:"remember",      text:"Some shapes have equal sides, others do not." },
-  { category:"GEO", type:"remember",      text:"Solid shapes have faces, edges and corners." },
-  { category:"GEO", type:"remember",      text:"Flat shapes have length and width, but no thickness." },
-  { category:"GEO", type:"remember",      text:"Solid shapes have length, width and height." },
-  { category:"GEO", type:"remember",      text:"Symmetry means two halves that match." },
-  { category:"GEO", type:"remember",      text:"Shapes can be found all around us." },
-  { category:"GEO", type:"mathsTip",      text:"Looking at a shape from different angles can help." },
-  { category:"GEO", type:"remember",      text:"Some shapes fit together perfectly, others do not." },
-  { category:"GEO", type:"topTip",        text:"A shape's name depends on its sides and corners." },
-  { category:"GEO", type:"remember",      text:"Shapes can be turned without changing their properties." },
-  { category:"GEO", type:"lookCarefully", text:"Comparing shapes carefully helps avoid mixing them up." },
-
-  // ---- POS (20) ----
-  { category:"POS", type:"mathsTip",      text:"Imagine standing where the picture is facing." },
-  { category:"POS", type:"remember",      text:"Turning changes the direction you face." },
-  { category:"POS", type:"remember",      text:"Left and right depend on which way you are facing." },
-  { category:"POS", type:"remember",      text:"Arrows help us understand direction." },
-  { category:"POS", type:"topTip",        text:"Picture yourself making the turn before you choose an answer." },
-  { category:"POS", type:"remember",      text:"A full turn brings you back to where you started." },
-  { category:"POS", type:"remember",      text:"Position words describe where something is." },
-  { category:"POS", type:"remember",      text:"Direction words describe which way something moves." },
-  { category:"POS", type:"remember",      text:"Above and below describe up and down positions." },
-  { category:"POS", type:"remember",      text:"In front of and behind describe forward and backward positions." },
-  { category:"POS", type:"remember",      text:"Quarter turns are a useful way to measure turning." },
-  { category:"POS", type:"mathsTip",      text:"Thinking about a turn as part of a full circle can help." },
-  { category:"POS", type:"remember",      text:"Maps and pictures often show direction from above." },
-  { category:"POS", type:"lookCarefully", text:"Describing movement clearly takes careful thinking." },
-  { category:"POS", type:"remember",      text:"Direction can change depending on your starting point." },
-  { category:"POS", type:"mathsTip",      text:"It helps to picture yourself moving through the scene." },
-  { category:"POS", type:"remember",      text:"Position and direction often work together." },
-  { category:"POS", type:"lookCarefully", text:"Careful looking helps when describing where something is." },
-  { category:"POS", type:"remember",      text:"Turning clockwise and turning anticlockwise are opposites." },
-  { category:"POS", type:"topTip",        text:"Movement can be described in small, careful steps." },
-
-  // ---- STA (20) ----
-  { category:"STA", type:"lookCarefully", text:"Count carefully before choosing." },
-  { category:"STA", type:"topTip",        text:"Count each row on its own before comparing them." },
-  { category:"STA", type:"lookCarefully", text:"Check every picture before counting." },
-  { category:"STA", type:"lookCarefully", text:"Looking carefully helps avoid mistakes." },
-  { category:"STA", type:"topTip",        text:"Compare information before deciding." },
-  { category:"STA", type:"remember",      text:"Charts organise information so it's easier to understand." },
-  { category:"STA", type:"remember",      text:"Every symbol or mark usually stands for the same amount." },
-  { category:"STA", type:"lookCarefully", text:"Comparing amounts carefully takes patience." },
-  { category:"STA", type:"remember",      text:"The tallest bar or longest row often shows the most." },
-  { category:"STA", type:"remember",      text:"Totals are found by combining every group together." },
-  { category:"STA", type:"remember",      text:"Data can be shown in lots of different ways." },
-  { category:"STA", type:"lookCarefully", text:"Reading information carefully is an important skill." },
-  { category:"STA", type:"remember",      text:"Pictograms use pictures to represent amounts." },
-  { category:"STA", type:"remember",      text:"Tally marks are grouped to make counting easier." },
-  { category:"STA", type:"lookCarefully", text:"Comparing two groups means looking at both carefully." },
-  { category:"STA", type:"topTip",        text:"Charts can help us spot patterns in information." },
-  { category:"STA", type:"lookCarefully", text:"Careful counting prevents small errors." },
-  { category:"STA", type:"remember",      text:"Information can be organised to answer questions quickly." },
-  { category:"STA", type:"topTip",        text:"Double-checking counts helps build accuracy." },
-  { category:"STA", type:"lookCarefully", text:"Reading data takes just as much care as reading words." }
-];
-
-function pickMathsTip(strand) {
-  const pool = TIPS.filter(t => t.category === "GENERAL" || t.category === strand);
-  let choice = pool[Math.floor(Math.random() * pool.length)];
-  // Avoid showing the exact same tip twice in a row when there's a choice.
-  if (pool.length > 1) {
-    let attempts = 0;
-    while (choice.text === state.lastTip && attempts < 8) {
-      choice = pool[Math.floor(Math.random() * pool.length)];
-      attempts++;
-    }
-  }
-  state.lastTip = choice.text;
-  return choice;
+function findHintForSkill(skillId) {
+  if (typeof HINTS === "undefined") return null; // manifest not loaded (shouldn't happen live)
+  return Object.values(HINTS).find(h => skillId.endsWith(h.skill)) || null;
 }
+
 
 /* ---------- Strand colours & encouragement (PTO Design System v1.0) ----------
    Strand colours are a small accent only — the tip's icon and text label
@@ -807,17 +581,6 @@ function startCheck() {
 }
 
 /* ---------- Render a question ---------- */
-function toggleHint() {
-  const box = $("tip-box");
-  const btn = $("hint-toggle-btn");
-  const nowHidden = !box.hidden; // toggle
-  box.hidden = nowHidden;
-  btn.setAttribute("aria-expanded", nowHidden ? "false" : "true");
-  btn.innerHTML = nowHidden
-    ? '<span aria-hidden="true">💡</span> View Hint'
-    : '<span aria-hidden="true">💡</span> Hide Hint';
-}
-
 function renderQuestion() {
   const q = state.order[state.index];
   const total = state.order.length;
@@ -827,23 +590,29 @@ function renderQuestion() {
   $("progress-fill").style.width = `${(num / total) * 100}%`;
 
   $("q-illus").innerHTML = renderIllustration(q.illustration);
+  $("q-illus").hidden = !q.illustration;
+  $("q-illus").style.borderTopColor = STRAND_COLORS[q.strand] || STRAND_COLORS.NPV;
   $("q-text").textContent = q.text;
-  const tip = pickMathsTip(q.strand);
-  const meta = TIP_TYPES[tip.type];
-  $("tip-icon").textContent = meta.icon;
-  $("tip-label").textContent = meta.label;
-  $("tip-text").textContent = tip.text;
-  $("tip-box").style.borderLeftColor = STRAND_COLORS[q.strand] || STRAND_COLORS.NPV;
 
-  // Hint is optional and hidden by default on every new question — the
-  // child must choose to reveal it; it is never a permanent panel.
-  $("tip-box").hidden = true;
-  $("hint-toggle-btn").setAttribute("aria-expanded", "false");
-  $("hint-toggle-btn").innerHTML = '<span aria-hidden="true">💡</span> View Hint';
+  const hint = findHintForSkill(q.skillId);
+  const tipBox = $("tip-box");
+  if (hint) {
+    tipBox.classList.remove("tip-empty");
+    $("tip-icon").textContent = "💡";
+    $("tip-text").textContent = hint.text;
+  } else {
+    tipBox.classList.add("tip-empty");
+    $("tip-icon").textContent = HINT_FALLBACK_ICON;
+    $("tip-text").textContent = HINT_FALLBACK_TEXT;
+  }
 
   const wrap = $("answers");
   wrap.innerHTML = "";
   const existing = state.answers.find(a => a.question.id === q.id);
+
+  // Master Pack C answer-card colours: A blue, B green, C amber, D purple.
+  const ANSWER_BADGE_COLORS = ["#2196F3", "#43A047", "#F59E0B", "#652DA0"];
+  const ANSWER_LETTERS = ["A", "B", "C", "D"];
 
   q.sessionOptions.forEach((opt, i) => {
     const btn = document.createElement("button");
@@ -851,7 +620,10 @@ function renderQuestion() {
     btn.className = "answer" + (existing && existing.chosenIndex === i ? " selected" : "");
     btn.setAttribute("role", "radio");
     btn.setAttribute("aria-checked", existing && existing.chosenIndex === i ? "true" : "false");
-    btn.innerHTML = `<span class="tick">${TICK}</span><span>${escapeHtml(opt)}</span>`;
+    const badgeColor = ANSWER_BADGE_COLORS[i % ANSWER_BADGE_COLORS.length];
+    const letter = ANSWER_LETTERS[i % ANSWER_LETTERS.length];
+    btn.innerHTML = `<span class="answer-badge" style="background:${badgeColor}">${letter}</span>` +
+      `<span class="answer-text">${escapeHtml(opt)}</span><span class="tick">${TICK}</span>`;
     btn.addEventListener("click", () => selectAnswer(i));
     wrap.appendChild(btn);
   });
@@ -1157,7 +929,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initSetup();
   $("to-questions-btn").addEventListener("click", startCheck);
   $("next-btn").addEventListener("click", nextQuestion);
-  $("hint-toggle-btn").addEventListener("click", toggleHint);
 
   document.querySelectorAll("#confidence-options .confidence-btn").forEach(btn => {
     btn.addEventListener("click", () => selectConfidence(btn));

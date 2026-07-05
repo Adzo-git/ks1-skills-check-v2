@@ -1,4 +1,4 @@
-# KS1 Maths Skills Check (Version 1.9)
+# KS1 Maths Skills Check (Version 1.11)
 
 A short, friendly Key Stage 1 maths check for **Primary Tutor Online**. A parent
 sets it up, the child answers **37 questions** one screen at a time, and the parent
@@ -500,4 +500,4 @@ and a full pass over the remaining ~173 tips.
 
 ---
 
-Primary Tutor Online · KS1 Maths Skills Check · v1.9
+Primary Tutor Online · KS1 Maths Skills Check · v1.11

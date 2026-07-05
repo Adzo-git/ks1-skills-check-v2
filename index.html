@@ -102,7 +102,7 @@
 
     <!-- ============ SCREEN 3: QUESTIONS ============ -->
     <section id="screen-question" class="screen">
-      <div class="card">
+      <div class="qcard">
         <div class="progress-wrap">
           <div class="progress-top">
             <span id="progress-count">Question 1 of 37</span>
@@ -110,24 +110,26 @@
           <div class="progress-track"><div id="progress-fill" class="progress-fill"></div></div>
         </div>
 
-        <div id="q-illus" class="illus" aria-hidden="false"></div>
-        <p id="q-text" class="qtext">…</p>
-
-        <div id="answers" class="answers answers-grid" role="radiogroup" aria-label="Answer options"></div>
-
-        <button type="button" id="hint-toggle-btn" class="btn-hint" aria-expanded="false" aria-controls="tip-box">
-          <span aria-hidden="true">💡</span> View Hint
-        </button>
-        <div id="tip-box" class="tip" aria-live="polite" hidden>
-          <span id="tip-icon" class="tip-icon" aria-hidden="true">💡</span>
-          <div>
-            <span id="tip-label" class="tip-label">Maths Tip</span>
-            <p id="tip-text" class="tip-text"></p>
+        <div class="qlayout">
+          <div class="qmain">
+            <div id="q-illus" class="illus" aria-hidden="false"></div>
+            <p id="q-text" class="qtext">…</p>
+            <div id="answers" class="answers answers-grid" role="radiogroup" aria-label="Answer options"></div>
           </div>
+
+          <aside class="qside">
+            <div id="tip-box" class="tip" aria-live="polite">
+              <span id="tip-icon" class="tip-icon" aria-hidden="true">💡</span>
+              <p id="tip-text" class="tip-text"></p>
+            </div>
+          </aside>
         </div>
 
-        <button type="button" id="next-btn" class="btn btn-primary" disabled>Next</button>
+        <div class="qnav">
+          <button type="button" id="next-btn" class="btn btn-primary qnav-main" disabled>Next</button>
+        </div>
       </div>
+    </section>
     </section>
 
     <!-- ============ SCREEN 3b: CONFIDENCE (child) ============ -->
@@ -225,6 +227,7 @@
   <!-- App files -->
   <script src="config.js"></script>
   <script src="questions.js"></script>
+  <script src="assets/hints/manifest.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
