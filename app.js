@@ -16,6 +16,7 @@ const state = {
   startedAt: null,
   order: [],        // questions with per-session shuffled options
   index: 0,
+  advancing: false, // true briefly during nextQuestion(), to block duplicate/re-entrant calls
   answers: [],      // { question, chosenIndex }
   confidence: null,     // child's self-rating: easy / ok / quite_difficult / very_difficult
   independence: null,   // parent's rating: independent / a_little_help / a_lot_of_help
@@ -81,13 +82,32 @@ const TICK = '<svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" str
    A question only gets a hint if its skill genuinely has one curated for
    it (57 of 360 questions, ~16% — matching "many questions will not need
    one"). Every other question shows a calm, generic encouragement instead
-   of a fabricated or repeated tip. */
-const HINT_FALLBACK_TEXT = "No hint needed for this one — you've got this!";
-const HINT_FALLBACK_ICON = "🙂";
+   of a fabricated or repeated tip.
+
+   RESILIENCE: a live, user-facing feature should never depend on a single
+   external file load succeeding, especially across different hosts/build
+   tools (a folder named "assets" is a reserved/special name to several
+   static-site build systems, which can silently interfere with a plain
+   file sitting inside one). LOCAL_HINTS below is a verbatim, byte-for-byte
+   copy of assets/hints/manifest.js's content, used automatically if the
+   external file fails to load for any reason — the external file is still
+   preferred when it does load correctly, so this is a safety net, not a
+   replacement, and does not modify the frozen asset itself. */
+const LOCAL_HINTS = {
+  hint_npv_01: { skill: "NPV-COUNT",    text: "Count each object once." },
+  hint_npv_02: { skill: "NPV-TENS",     text: "Start with the tens." },
+  hint_time_01: { skill: "MEA-OCLOCK",   text: "The short hand shows the hour." },
+  hint_time_02: { skill: "MEA-HALFPAST", text: "The long hand shows the minutes." },
+  hint_md_01: { skill: "MD-ARRAY", text: "Count one row first, then add it again for each extra row." },
+  hint_md_02: { skill: "MD-GROUPS", text: "Equal groups can help us multiply." },
+  hint_fra_01: { skill: "FRA-SHADE", text: "Check that every part is exactly the same size." },
+  hint_geo_01: { skill: "GEO-SIDES", text: "Count the sides carefully before deciding." },
+  hint_pos_01: { skill: "POS-TURN", text: "Picture yourself making the turn before you choose." }
+};
 
 function findHintForSkill(skillId) {
-  if (typeof HINTS === "undefined") return null; // manifest not loaded (shouldn't happen live)
-  return Object.values(HINTS).find(h => skillId.endsWith(h.skill)) || null;
+  const source = (typeof HINTS !== "undefined" && HINTS) ? HINTS : LOCAL_HINTS;
+  return Object.values(source).find(h => skillId.endsWith(h.skill)) || null;
 }
 
 
@@ -126,6 +146,20 @@ function renderIllustration(ill) {
   return "";
 }
 
+// A small, designed palette of scatter offsets — deterministic (not random,
+// so rendering stays stable/testable) and BALANCED, so a group of objects
+// scatters organically around its centre rather than systematically
+// drifting in one direction. (Stage 2D: the previous formula caused every
+// small group to drift upward by 2.5–4.5px on average — that's what made
+// scattered illustrations look "accidentally" placed rather than designed.)
+// Same magnitude bounds as before (|dx|<=6, |dy|<=5), so the existing
+// overlap-safety proof for scattered layouts still holds unchanged.
+const SCATTER_PALETTE = [
+  [-5,-3], [5,3], [4,-4], [-4,4], [-3,5], [3,-5], [6,2], [-6,-2],
+  [2,-4], [-2,4], [-5,1], [5,-1], [1,5], [-1,-5]
+];
+function scatterOffset(i) { return SCATTER_PALETTE[i % SCATTER_PALETTE.length]; }
+
 function svgDots(n, color, emoji, ariaLabel, scattered) {
   const perRow = 5, r = 20, gap = 20, pad = 16;
   const rows = Math.ceil(n / perRow);
@@ -139,11 +173,10 @@ function svgDots(n, color, emoji, ariaLabel, scattered) {
     let cx = pad + r + col * (r * 2 + gap);
     let cy = pad + r + row * (r * 2 + gap);
     if (scattered) {
-      // Deterministic jitter (not random) — a stable, testable "scattered"
-      // feel for real-object counting questions, with an offset well under
-      // half the gap so objects never overlap or leave the canvas.
-      cx += ((i * 37) % 13) - 6;
-      cy += ((i * 23) % 11) - 5;
+      // Balanced, designed scatter (see scatterOffset) — organic-looking
+      // without ever systematically drifting the group in one direction.
+      const [dx, dy] = scatterOffset(i);
+      cx += dx; cy += dy;
     }
     marks += emoji
       ? `<text x="${cx}" y="${cy + r * 0.65}" text-anchor="middle" font-size="${r * 1.7}">${emoji}</text>`
@@ -170,7 +203,7 @@ function svgEmojiGrid(glyphs, ariaLabel, scattered) {
   glyphs.forEach((g, i) => {
     const row = Math.floor(i / perRow), col = i % perRow;
     let cx = pad + r + col * (r * 2 + gap), cy = pad + r + row * (r * 2 + gap);
-    if (scattered) { cx += ((i * 37) % 13) - 6; cy += ((i * 23) % 11) - 5; }
+    if (scattered) { const [dx, dy] = scatterOffset(i); cx += dx; cy += dy; }
     marks += `<text x="${cx}" y="${cy + r * 0.65}" text-anchor="middle" font-size="${r * 1.7}">${g}</text>`;
   });
   // aria-label deliberately never states the combined count — for a "how many
@@ -206,7 +239,7 @@ function svgCoins(values, scattered) {
   values.forEach((v, i) => {
     let cx = pad + r + i * (r * 2 + gap);
     let cy = pad + r + (scattered ? 5 : 0);
-    if (scattered) { cx += ((i * 37) % 13) - 6; cy += ((i * 23) % 11) - 5; }
+    if (scattered) { const [dx, dy] = scatterOffset(i); cx += dx; cy += dy; }
     out += `
       <circle cx="${cx}" cy="${cy}" r="${r}" fill="#e9c34a" stroke="#c79a1f" stroke-width="3"/>
       <circle cx="${cx}" cy="${cy}" r="${r - 7}" fill="none" stroke="#c79a1f" stroke-width="1.5" opacity="0.6"/>
@@ -463,18 +496,26 @@ function svgArrow(direction) {
     forwards: { angle: 270, label: "forwards" }, backwards: { angle: 90, label: "backwards" }
   };
   const d = map[direction] || map.right;
-  const cx = 100, cy = 90, len = 70;
+  // A fixed "arrow zone" (independent of direction) so the label position
+  // never depends on which way the arrow points — this is what previously
+  // caused the label to overlap the arrow's tail for vertical directions
+  // (up/down/top/bottom), since the label used a fixed y that only worked
+  // for horizontal arrows. Now the arrow is always drawn centred within
+  // the same zone, and the label always sits in its own band well below it.
+  const cx = 100, zoneCy = 85, len = 55;
   const rad = d.angle * Math.PI / 180;
-  const tx = cx + Math.cos(rad) * len, ty = cy + Math.sin(rad) * len;
-  const bx = cx - Math.cos(rad) * len, by = cy - Math.sin(rad) * len;
-  // arrowhead
-  const headA1 = rad + 2.6, headA2 = rad - 2.6;
-  const h1x = tx + Math.cos(headA1) * 18, h1y = ty + Math.sin(headA1) * 18;
-  const h2x = tx + Math.cos(headA2) * 18, h2y = ty + Math.sin(headA2) * 18;
-  return `<svg viewBox="0 0 200 160" role="img" aria-label="An arrow pointing ${d.label}">
-    <line x1="${bx.toFixed(1)}" y1="${by.toFixed(1)}" x2="${tx.toFixed(1)}" y2="${ty.toFixed(1)}" stroke="#652da0" stroke-width="8" stroke-linecap="round"/>
+  const tx = cx + Math.cos(rad) * len, ty = zoneCy + Math.sin(rad) * len;
+  const bx = cx - Math.cos(rad) * len, by = zoneCy - Math.sin(rad) * len;
+  // Bold, dominant arrowhead and shaft — large enough to immediately read
+  // as "an arrow", not a thin decorative line.
+  const headLen = 26, headSpread = 2.5;
+  const headA1 = rad + headSpread, headA2 = rad - headSpread;
+  const h1x = tx + Math.cos(headA1) * headLen, h1y = ty + Math.sin(headA1) * headLen;
+  const h2x = tx + Math.cos(headA2) * headLen, h2y = ty + Math.sin(headA2) * headLen;
+  return `<svg viewBox="0 0 200 210" role="img" aria-label="An arrow pointing ${d.label}">
+    <line x1="${bx.toFixed(1)}" y1="${by.toFixed(1)}" x2="${tx.toFixed(1)}" y2="${ty.toFixed(1)}" stroke="#652da0" stroke-width="16" stroke-linecap="round"/>
     <polygon points="${tx.toFixed(1)},${ty.toFixed(1)} ${h1x.toFixed(1)},${h1y.toFixed(1)} ${h2x.toFixed(1)},${h2y.toFixed(1)}" fill="#652da0"/>
-    <text x="100" y="145" text-anchor="middle" font-size="20" font-weight="700" font-family="Poppins, Arial" fill="#4e2280">${d.label}</text>
+    <text x="100" y="190" text-anchor="middle" font-size="28" font-weight="700" font-family="Poppins, Arial" fill="#4e2280">${d.label}</text>
   </svg>`;
 }
 
@@ -582,6 +623,7 @@ function startCheck() {
 
 /* ---------- Render a question ---------- */
 function renderQuestion() {
+  state.advancing = false; // safe to advance again once this render completes
   const q = state.order[state.index];
   const total = state.order.length;
   const num = state.index + 1;
@@ -595,15 +637,19 @@ function renderQuestion() {
   $("q-text").textContent = q.text;
 
   const hint = findHintForSkill(q.skillId);
-  const tipBox = $("tip-box");
+  const qside = $("qside");
+  const qlayout = $("qlayout");
   if (hint) {
-    tipBox.classList.remove("tip-empty");
+    qside.hidden = false;
+    qlayout.classList.remove("no-hint");
     $("tip-icon").textContent = "💡";
     $("tip-text").textContent = hint.text;
   } else {
-    tipBox.classList.add("tip-empty");
-    $("tip-icon").textContent = HINT_FALLBACK_ICON;
-    $("tip-text").textContent = HINT_FALLBACK_TEXT;
+    // No genuine hint for this skill — collapse the panel entirely rather
+    // than show an empty box or a generic placeholder message. The main
+    // question/illustration/answers area uses the freed-up space instead.
+    qside.hidden = true;
+    qlayout.classList.add("no-hint");
   }
 
   const wrap = $("answers");
@@ -611,19 +657,40 @@ function renderQuestion() {
   const existing = state.answers.find(a => a.question.id === q.id);
 
   // Master Pack C answer-card colours: A blue, B green, C amber, D purple.
-  const ANSWER_BADGE_COLORS = ["#2196F3", "#43A047", "#F59E0B", "#652DA0"];
+  // Stage 2D: previously each letter had its own colour (blue/green/amber/
+  // purple). Reviewed from a UX + educational-neutrality perspective: (a)
+  // four different colours asks a child to decode colour AND letter AND
+  // content, which is more cognitive load than the badge needs to add; and
+  // (b) a coloured illustration (e.g. yellow stars) could coincidentally
+  // match one specific answer's badge colour, subtly hinting at it. A single
+  // consistent brand colour for every badge keeps the clear A/B/C/D
+  // labelling (still useful for a child describing their answer aloud) while
+  // removing any possibility of colour ever pointing toward an answer.
+  const ANSWER_BADGE_COLOR = "#652DA0";
   const ANSWER_LETTERS = ["A", "B", "C", "D"];
 
   q.sessionOptions.forEach((opt, i) => {
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "answer" + (existing && existing.chosenIndex === i ? " selected" : "");
+    const isSelected = !!(existing && existing.chosenIndex === i);
+    btn.className = "answer" + (isSelected ? " selected" : "");
     btn.setAttribute("role", "radio");
-    btn.setAttribute("aria-checked", existing && existing.chosenIndex === i ? "true" : "false");
-    const badgeColor = ANSWER_BADGE_COLORS[i % ANSWER_BADGE_COLORS.length];
+    btn.setAttribute("aria-checked", isSelected ? "true" : "false");
+    // Roving tabindex (ARIA radiogroup pattern): exactly one option is a Tab
+    // stop at a time — the selected one if there is one, otherwise the
+    // first — so Tab enters the group once and arrow keys move within it.
+    btn.setAttribute("tabindex", (isSelected || (!existing && i === 0)) ? "0" : "-1");
     const letter = ANSWER_LETTERS[i % ANSWER_LETTERS.length];
-    btn.innerHTML = `<span class="answer-badge" style="background:${badgeColor}">${letter}</span>` +
-      `<span class="answer-text">${escapeHtml(opt)}</span><span class="tick">${TICK}</span>`;
+    // Stage 2F: the badge never resizes and never has its content replaced.
+    // Both the letter and the tick sit stacked on top of each other at all
+    // times; only their opacity crossfades (~180ms, in CSS) when the card
+    // is selected — this is what makes a smooth fade actually possible.
+    // Swapping innerHTML (the old approach) can't be animated at all.
+    btn.innerHTML = `<span class="answer-badge" style="background:${ANSWER_BADGE_COLOR}">` +
+        `<span class="badge-letter">${letter}</span>` +
+        `<span class="badge-tick">${TICK}</span>` +
+      `</span>` +
+      `<span class="answer-text">${escapeHtml(opt)}</span>`;
     btn.addEventListener("click", () => selectAnswer(i));
     wrap.appendChild(btn);
   });
@@ -640,16 +707,26 @@ function selectAnswer(i) {
   if (existingIdx >= 0) state.answers[existingIdx] = record;
   else state.answers.push(record);
 
+  // Purely a class toggle — the letter/tick crossfade and the card's
+  // outline/fill/shadow are all driven by CSS from the "selected" class,
+  // so there's nothing here that could cause a layout jump.
   document.querySelectorAll("#answers .answer").forEach((el, idx) => {
     const on = idx === i;
     el.classList.toggle("selected", on);
     el.setAttribute("aria-checked", on ? "true" : "false");
+    el.setAttribute("tabindex", on ? "0" : "-1");
   });
   $("next-btn").disabled = false;
 }
 
 function nextQuestion() {
+  // Guard against this firing more than once for a single user action (e.g.
+  // if a script got included twice by a hosting/build quirk and attached two
+  // separate listeners — see the DOMContentLoaded guard below for the same
+  // defence at the source). Reset the moment the new question renders.
+  if (state.advancing) return;
   if (!state.answers.find(a => a.question.id === state.order[state.index].id)) return;
+  state.advancing = true;
   if (state.index < state.order.length - 1) {
     state.index++;
     renderQuestion();
@@ -660,6 +737,7 @@ function nextQuestion() {
 
 /* ---------- Confidence check (child, straight after the last question) ---------- */
 function showConfidence() {
+  state.advancing = false; // safe to advance again — this is the other exit path from nextQuestion
   state.questionsCompletedAt = new Date().toISOString();
   state.confidence = null;
   document.querySelectorAll("#confidence-options .confidence-btn").forEach(el => el.classList.remove("selected"));
@@ -667,9 +745,41 @@ function showConfidence() {
   show("screen-confidence");
 }
 
+/* ---------- Keyboard support for radiogroup-style option lists ----------
+   role="radiogroup" (used for the answer options, the confidence check,
+   and the independence check) implies arrow-key navigation between
+   options per the ARIA Authoring Practices — previously only Tab and
+   Enter/Space worked, and Tab landed on every option as a separate stop
+   rather than the single stop a real radiogroup gives you. This adds a
+   proper roving tabindex (exactly one option is ever a Tab stop) and
+   real ArrowUp/Down/Left/Right handling, shared across all three groups
+   via one small helper rather than duplicated three times. Arrow keys
+   both move focus AND select — this matches how native radio buttons and
+   every screen-reader user already expects a radiogroup to behave. */
+function wireRadiogroupKeyboard(containerId, itemSelector, onSelect) {
+  const container = $(containerId);
+  container.addEventListener("keydown", (e) => {
+    if (!["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp"].includes(e.key)) return;
+    const items = Array.from(document.querySelectorAll(`#${containerId} ${itemSelector}`));
+    if (!items.length) return;
+    e.preventDefault();
+    const currentIdx = items.indexOf(document.activeElement);
+    const dir = (e.key === "ArrowRight" || e.key === "ArrowDown") ? 1 : -1;
+    const fromIdx = currentIdx === -1 ? 0 : currentIdx;
+    const nextIdx = (fromIdx + dir + items.length) % items.length;
+    items[nextIdx].focus();
+    onSelect(items[nextIdx], nextIdx);
+  });
+}
+
 function selectConfidence(btn) {
   state.confidence = btn.dataset.value;
-  document.querySelectorAll("#confidence-options .confidence-btn").forEach(el => el.classList.toggle("selected", el === btn));
+  document.querySelectorAll("#confidence-options .confidence-btn").forEach(el => {
+    const on = el === btn;
+    el.classList.toggle("selected", on);
+    el.setAttribute("aria-checked", on ? "true" : "false");
+    el.setAttribute("tabindex", on ? "0" : "-1");
+  });
   $("confidence-next-btn").disabled = false;
 }
 
@@ -689,7 +799,12 @@ function showIndependence() {
 
 function selectIndependence(btn) {
   state.independence = btn.dataset.value;
-  document.querySelectorAll("#independence-options .answer").forEach(el => el.classList.toggle("selected", el === btn));
+  document.querySelectorAll("#independence-options .answer").forEach(el => {
+    const on = el === btn;
+    el.classList.toggle("selected", on);
+    el.setAttribute("aria-checked", on ? "true" : "false");
+    el.setAttribute("tabindex", on ? "0" : "-1");
+  });
   $("to-report-btn").disabled = false;
 }
 
@@ -798,7 +913,7 @@ function renderReport(r) {
 
   // Gentle overall summary — no big percentage headline (Part 5)
   $("report-summary").innerHTML =
-    `<p class="summary-line">${escapeHtml(r.child)} answered <strong>${r.totalCorrect} of ${r.totalQuestions}</strong> questions and worked through every one — that effort really matters.</p>
+    `<p class="summary-line">${escapeHtml(r.child)} worked through all <strong>${r.totalQuestions}</strong> questions, getting <strong>${r.totalCorrect}</strong> correct — that effort really matters.</p>
      <p class="report-meta">This is an early snapshot from a short check. It’s a starting point for what to explore next, not a final judgement.</p>`;
 
   // Strengths
@@ -926,13 +1041,29 @@ async function saveResults(r) {
 
 /* ---------- Wire up ---------- */
 document.addEventListener("DOMContentLoaded", () => {
+  // If app.js were ever included twice on the page (a hosting/build quirk —
+  // the same category of issue that caused assets/hints/manifest.js to fail
+  // to load in production), this setup would otherwise run twice, attaching
+  // two independent sets of click listeners and causing every button press
+  // to fire twice — e.g. "Next" silently advancing two questions per click,
+  // which would explain a session appearing to skip several questions ahead.
+  // This guard makes that failure mode structurally impossible rather than
+  // just unlikely.
+  if (window.__PTO_APP_INITIALIZED__) {
+    console.warn("[PTO] app.js setup already ran once on this page — skipping a duplicate initialization.");
+    return;
+  }
+  window.__PTO_APP_INITIALIZED__ = true;
+
   initSetup();
   $("to-questions-btn").addEventListener("click", startCheck);
   $("next-btn").addEventListener("click", nextQuestion);
+  wireRadiogroupKeyboard("answers", ".answer", (el, idx) => selectAnswer(idx));
 
   document.querySelectorAll("#confidence-options .confidence-btn").forEach(btn => {
     btn.addEventListener("click", () => selectConfidence(btn));
   });
+  wireRadiogroupKeyboard("confidence-options", ".confidence-btn", (el) => selectConfidence(el));
   $("confidence-next-btn").addEventListener("click", finish);
 
   $("show-report-btn").addEventListener("click", showIndependence);
@@ -940,6 +1071,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("#independence-options .answer").forEach(btn => {
     btn.addEventListener("click", () => selectIndependence(btn));
   });
+  wireRadiogroupKeyboard("independence-options", ".answer", (el) => selectIndependence(el));
   $("to-report-btn").addEventListener("click", buildAndShowReport);
 
   $("print-btn").addEventListener("click", () => window.print());
