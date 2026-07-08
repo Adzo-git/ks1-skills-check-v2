@@ -1,233 +1,677 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KS1 Maths Skills Check · Primary Tutor Online</title>
-  <meta name="description" content="A short, friendly Key Stage 1 maths check that produces a simple strengths and next-steps report." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skills Checker - KS1 Maths | Primary Tutor Online</title>
+<meta name="description" content="A free KS1 Maths skills checker for parents — find out what your child knows and what to practise next.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   PTO SKILLS CHECKER — COMPLETE STYLESHEET
+   Brand purple: #652da0  Accent: #e84b8a  Success: #2e9e5b
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <!-- Poppins (PTO brand font, Part 12) with a safe system fallback -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+:root {
+  --brand: #652da0;
+  --brand-light: #f3edf9;
+  --brand-dark: #4e2280;
+  --accent: #e84b8a;
+  --success: #2e9e5b;
+  --success-light: #e8f5e9;
+  --warn: #e0972e;
+  --warn-light: #fff8e1;
+  --text: #1a1a2e;
+  --text-muted: #5a5a72;
+  --bg: #faf9fc;
+  --card: #ffffff;
+  --border: #e8e4ef;
+  --radius: 20px;
+  --radius-sm: 12px;
+  --shadow: 0 2px 16px rgba(101, 45, 160, 0.09);
+  --shadow-lg: 0 8px 32px rgba(101, 45, 160, 0.14);
+}
 
-  <link rel="stylesheet" href="styles.css" />
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ---------- Layout ---------- */
+.container {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 28px 32px 60px;
+}
+
+.screen { display: none; }
+.screen.active { display: block; }
+
+/* ---------- Header ---------- */
+.header {
+  text-align: center;
+  padding: 36px 0 28px;
+}
+.header .logo {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--brand);
+  letter-spacing: 0.02em;
+  margin-bottom: 4px;
+}
+.header h1 {
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: var(--brand-dark);
+  line-height: 1.25;
+}
+.header .subtitle {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+/* ---------- Cards ---------- */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 40px 40px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+
+/* ---------- Forms ---------- */
+label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 7px;
+}
+label .optional {
+  font-weight: 400;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+input[type="text"],
+input[type="email"],
+select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 1.05rem;
+  color: var(--text);
+  background: var(--card);
+  transition: border-color 0.2s;
+  margin-bottom: 18px;
+}
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(101, 45, 160, 0.12);
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 20px 0 28px;
+}
+.checkbox-row input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  margin-top: 2px;
+  accent-color: var(--brand);
+  flex-shrink: 0;
+}
+.checkbox-row label {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-bottom: 0;
+  cursor: pointer;
+}
+.email-note {
+  font-size: 0.85rem;
+  color: var(--accent);
+  margin-top: -14px;
+  margin-bottom: 14px;
+  min-height: 1.2em;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 18px 40px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s, opacity 0.2s;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
+.btn:active { transform: scale(0.97); }
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+.btn-primary {
+  background: var(--brand);
+  color: #fff;
+}
+.btn-primary:hover:not(:disabled) { background: var(--brand-dark); }
+.btn-full { width: 100%; }
+
+.btn-secondary {
+  background: var(--brand-light);
+  color: var(--brand);
+}
+.btn-secondary:hover:not(:disabled) { background: #e8ddf3; }
+
+/* ---------- Instructions screen ---------- */
+.instructions-list {
+  list-style: none;
+  padding: 0;
+}
+.instructions-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 12px 0;
+  font-size: 1.1rem;
+}
+.instructions-list .num {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--brand);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* ---------- Progress bar ---------- */
+.progress-bar {
+  background: var(--brand-light);
+  border-radius: 100px;
+  height: 12px;
+  margin: 16px 0 8px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--brand);
+  border-radius: 100px;
+  transition: width 0.4s ease;
+  min-width: 3%;
+}
+.progress-count {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* ---------- Question layout ---------- */
+.q-layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+.q-layout.no-hint .q-main { flex: 1; }
+.q-main { flex: 1; min-width: 0; }
+
+/* Hint panel (side) */
+.q-side {
+  flex: 0 0 220px;
+  background: var(--warn-light);
+  border: 2px solid var(--warn);
+  border-radius: var(--radius-sm);
+  padding: 1.4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+.q-side .tip-icon {
+  font-size: 2.6rem;
+  line-height: 1;
+}
+.q-side .tip-text {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: var(--text);
+  font-weight: 500;
+}
+
+@media (max-width: 700px) {
+  .q-layout { flex-direction: column; }
+  .q-side { flex: none; width: 100%; flex-direction: row; text-align: left; }
+  .container { padding: 16px 16px 40px; }
+}
+
+/* ── Laptop / short-viewport fix ──────────────────────────────────────────────
+   On screens shorter than ~860px (typical laptop) the question screen can
+   overflow. These rules tighten vertical spacing so everything fits without
+   scrolling, without touching the desktop experience.                        */
+@media (max-height: 860px) {
+  .container { padding-top: 16px; padding-bottom: 32px; }
+  .progress-bar { margin: 8px 0 4px; height: 10px; }
+  .progress-count { margin-bottom: 10px; font-size: 0.88rem; }
+  .q-illus { padding: 14px; margin-bottom: 12px; }
+  .q-illus svg { max-height: 200px; }
+  .q-text { font-size: 1.35rem; margin-bottom: 14px; }
+  .answers { gap: 8px; margin-bottom: 14px; }
+  .answer { padding: 13px 18px; font-size: 1.05rem; }
+  .answer-badge { width: 38px; height: 38px; font-size: 0.95rem; }
+  .btn { padding: 13px 32px; font-size: 1.05rem; }
+  .q-side { padding: 1rem 1.1rem; }
+  .q-side .tip-icon { font-size: 1.8rem; }
+  .q-side .tip-text { font-size: 1.05rem; }
+}
+
+@media (max-height: 720px) {
+  .q-illus svg { max-height: 150px; }
+  .q-text { font-size: 1.2rem; margin-bottom: 10px; }
+  .answers { gap: 6px; margin-bottom: 10px; }
+  .answer { padding: 10px 16px; font-size: 1rem; }
+  .answer-badge { width: 34px; height: 34px; font-size: 0.88rem; }
+  .btn { padding: 11px 28px; font-size: 1rem; }
+  .progress-count { margin-bottom: 6px; }
+  .q-illus { margin-bottom: 8px; }
+}
+
+/* ---------- Illustration ---------- */
+.q-illus {
+  background: var(--card);
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--border);
+  border-top: 5px solid var(--brand);
+  padding: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.q-illus svg {
+  max-width: 100%;
+  max-height: 300px;
+}
+
+/* ---------- Question text ---------- */
+.q-text {
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 24px;
+  line-height: 1.4;
+}
+
+/* ---------- Answer buttons ---------- */
+.answers {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.answer {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  padding: 20px 22px;
+  background: var(--card);
+  border: 2.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.2rem;
+  color: var(--text);
+  text-align: left;
+  transition: border-color 0.2s, background 0.2s;
+}
+.answer:hover { border-color: var(--brand); background: var(--brand-light); }
+.answer:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
+.answer.selected {
+  border-color: var(--brand);
+  background: var(--brand-light);
+}
+
+.answer-badge {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  position: relative;
+}
+.badge-letter, .badge-tick {
+  position: absolute;
+  transition: opacity 0.18s;
+}
+.badge-tick { opacity: 0; }
+.badge-tick svg { width: 22px; height: 22px; }
+.answer.selected .badge-letter { opacity: 0; }
+.answer.selected .badge-tick { opacity: 1; }
+
+.answer-text { flex: 1; }
+
+/* ---------- Encouragement ---------- */
+.encouragement {
+  text-align: center;
+  font-size: 1rem;
+  color: var(--brand);
+  font-weight: 600;
+  padding: 8px 0;
+  animation: fadeSlideIn 0.4s ease;
+}
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Confidence screen ---------- */
+.confidence-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 24px 0;
+}
+.confidence-btn {
+  padding: 20px 16px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  cursor: pointer;
+  text-align: center;
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--text);
+  transition: border-color 0.2s, background 0.2s;
+}
+.confidence-btn .emoji { font-size: 2.2rem; display: block; margin-bottom: 8px; }
+.confidence-btn:hover { border-color: var(--brand); }
+.confidence-btn.selected { border-color: var(--brand); background: var(--brand-light); }
+
+/* ---------- Well done screen ---------- */
+.celebration {
+  text-align: center;
+  padding: 48px 0;
+}
+.celebration .big-emoji { font-size: 5rem; margin-bottom: 16px; }
+.celebration h2 { font-size: 1.8rem; color: var(--brand-dark); margin-bottom: 10px; }
+.celebration p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 10px; }
+
+/* ---------- Report ---------- */
+.report-header { text-align: center; margin-bottom: 28px; }
+.report-header h2 { font-size: 1.6rem; color: var(--brand-dark); }
+.report-header .meta { font-size: 0.9rem; color: var(--text-muted); margin-top: 6px; }
+
+.report-summary {
+  background: var(--brand-light);
+  border-radius: var(--radius-sm);
+  padding: 24px;
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.rcard {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.rcard h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 8px; }
+.rcard p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
+.rcard.good { border-left: 5px solid var(--success); }
+.rcard.grow { border-left: 5px solid var(--warn); }
+.rcard .home {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.section-heading {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--brand-dark);
+  margin: 32px 0 14px;
+}
+
+.save-status {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: 20px;
+}
+
+.report-closing {
+  text-align: center;
+  font-size: 1rem;
+  color: var(--text);
+  margin: 32px 0 24px;
+  line-height: 1.65;
+}
+
+/* ---------- Print ---------- */
+@media print {
+  body { background: #fff; }
+  .btn, .no-print { display: none !important; }
+  .screen { display: block !important; }
+  .card { box-shadow: none; border: 1px solid #ddd; }
+}
+
+/* ---------- Accessibility ---------- */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+</style>
 </head>
 <body>
-  <main class="app">
+<div class="container">
 
-    <!-- Brand header -->
-    <header class="brand">
-      <div class="brand-mark">P</div>
-      <div>
-        <div class="brand-name">Primary Tutor <span>Online</span></div>
-        <span class="brand-sub">Learn · Achieve · Succeed</span>
+  <!-- ===== SCREEN: Welcome / Setup ===== -->
+  <div id="screen-setup" class="screen active">
+    <div class="header">
+      <div class="logo">Primary Tutor Online</div>
+      <h1>Skills Checker - KS1 Maths</h1>
+      <p class="subtitle">A quick check to see what your child knows — and what to practise next.</p>
+    </div>
+    <div class="card">
+      <form id="setup-form">
+        <label for="parent-name">Your name (parent / carer)</label>
+        <input type="text" id="parent-name" autocomplete="name" required>
+
+        <label for="parent-email">Your email address</label>
+        <input type="email" id="parent-email" autocomplete="email" required>
+        <p class="email-note" id="email-note"></p>
+
+        <label for="child-name">Child's first name</label>
+        <input type="text" id="child-name" autocomplete="off" required>
+
+        <label for="child-age">Child's age <span class="optional">(optional)</span></label>
+        <select id="child-age">
+          <option value="">—</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+        </select>
+
+        <div class="checkbox-row">
+          <input type="checkbox" id="consent">
+          <label for="consent">I understand this is a learning tool, not a formal test. Results help identify areas to practise and are stored securely.</label>
+        </div>
+
+        <button type="submit" id="start-btn" class="btn btn-primary btn-full" disabled>Let's go!</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== SCREEN: Instructions ===== -->
+  <div id="screen-instructions" class="screen">
+    <div class="card">
+      <h2 style="margin-bottom: 20px; color: var(--brand-dark); font-size: 1.5rem;">Ready, <span id="child-name-inst"></span>?</h2>
+      <ul class="instructions-list">
+        <li><span class="num">1</span><span>Read each question carefully.</span></li>
+        <li><span class="num">2</span><span>Tap the answer you think is right.</span></li>
+        <li><span class="num">3</span><span>Press <strong>Next</strong> to move on.</span></li>
+        <li><span class="num">4</span><span>It's OK not to know — just have a good try!</span></li>
+      </ul>
+      <div style="margin-top: 28px;">
+        <button id="to-questions-btn" class="btn btn-primary btn-full">Start the questions</button>
       </div>
-    </header>
+    </div>
+  </div>
 
-    <!-- ============ SCREEN 1: WELCOME / SETUP ============ -->
-    <section id="screen-welcome" class="screen active">
-      <div class="card">
-        <span class="eyebrow">KS1 Maths Skills Check</span>
-        <h1>A gentle maths check for your child</h1>
-        <p class="lead">About 37 short questions, taking roughly 12–18 minutes. There’s no timer and no pass or fail — it simply helps us see what your child is confident with and what to explore next.</p>
+  <!-- ===== SCREEN: Question ===== -->
+  <div id="screen-question" class="screen">
+    <div class="progress-bar"><div id="progress-fill" class="progress-fill" style="width:0%"></div></div>
+    <p id="progress-count" class="progress-count"></p>
 
-        <form id="setup-form" novalidate>
-          <div class="field">
-            <label class="flabel" for="parent-name">Your name</label>
-            <input type="text" id="parent-name" autocomplete="name" placeholder="e.g. Sam Taylor" />
-          </div>
-
-          <div class="field">
-            <label class="flabel" for="parent-email">Your email</label>
-            <input type="email" id="parent-email" autocomplete="email" placeholder="e.g. sam@example.com" />
-            <div class="field-note" id="email-note" aria-live="polite"></div>
-            <div class="hint">We’ll use this to send you the report and, with your permission, updates from Primary Tutor Online.</div>
-          </div>
-
-          <div class="field">
-            <label class="flabel" for="child-name">Your child’s first name</label>
-            <input type="text" id="child-name" autocomplete="off" placeholder="e.g. Ellie" />
-            <div class="hint">Used to make the report personal to your child.</div>
-          </div>
-
-          <div class="field">
-            <label class="flabel" for="child-age">Your child’s age <span class="optional">(optional)</span></label>
-            <select id="child-age">
-              <option value="">Prefer not to say</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-            </select>
-          </div>
-
-          <div class="consent">
-            <input type="checkbox" id="consent" />
-            <label for="consent">I’m happy for Primary Tutor Online to save these results and contact me about them. I understand I can ask for this information to be deleted at any time.</label>
-          </div>
-          <p class="privacy">Your details and your child’s answers are stored securely and are not shared with anyone else.</p>
-
-          <button type="submit" id="start-btn" class="btn btn-primary" disabled>Get started</button>
-        </form>
+    <div id="qlayout" class="q-layout">
+      <div class="q-main">
+        <div id="q-illus" class="q-illus" hidden></div>
+        <p id="q-text" class="q-text"></p>
+        <div id="answers" class="answers" role="radiogroup" aria-label="Answer options"></div>
+        <button id="next-btn" class="btn btn-primary btn-full" disabled>Next</button>
       </div>
-    </section>
+      <aside id="qside" class="q-side" hidden>
+        <span id="tip-icon" class="tip-icon">💡</span>
+        <span id="tip-text" class="tip-text"></span>
+      </aside>
+    </div>
+  </div>
 
-    <!-- ============ SCREEN 2: INSTRUCTIONS ============ -->
-    <section id="screen-instructions" class="screen">
-      <div class="card">
-        <span class="eyebrow">Before we begin</span>
-        <h1>Ready, <span id="child-name-inst">there</span>?</h1>
-        <p class="lead">Here’s how it works. You can read these together.</p>
-
-        <ul class="tips">
-          <li><span class="dot">1</span><span>You’ll see one maths question at a time. Tap the answer you think is right.</span></li>
-          <li><span class="dot">2</span><span>It’s okay if you’re not sure — just have a go and try your best.</span></li>
-          <li><span class="dot">3</span><span>There’s no clock and no rush. Take all the time you need to think.</span></li>
-          <li><span class="dot">4</span><span>When you’ve chosen, tap <strong>Next</strong> to move on.</span></li>
-        </ul>
-
-        <div class="note" id="parent-guidance">
-          <strong>A note for the grown-up:</strong> there’s no time limit, so please
-          let your child answer independently rather than prompting them. If
-          they’re not sure, a sensible guess is completely fine — it’s all useful
-          information. The aim of this check is to see what your child knows right
-          now, not to get a perfect score.
-        </div>
-
-        <button type="button" id="to-questions-btn" class="btn btn-primary">Start the questions</button>
+  <!-- ===== SCREEN: Confidence (child) ===== -->
+  <div id="screen-confidence" class="screen">
+    <div class="card" style="text-align: center;">
+      <h2 style="color: var(--brand-dark); margin-bottom: 10px; font-size: 1.5rem;">How did that feel?</h2>
+      <p style="color: var(--text-muted); margin-bottom: 24px; font-size: 1.05rem;">Be honest — there are no wrong answers here!</p>
+      <div id="confidence-options" class="confidence-options" role="radiogroup" aria-label="How did the questions feel?">
+        <button type="button" class="confidence-btn" data-value="easy" role="radio" aria-checked="false" tabindex="0">
+          <span class="emoji">😊</span>Easy
+        </button>
+        <button type="button" class="confidence-btn" data-value="ok" role="radio" aria-checked="false" tabindex="-1">
+          <span class="emoji">🙂</span>OK
+        </button>
+        <button type="button" class="confidence-btn" data-value="quite_difficult" role="radio" aria-checked="false" tabindex="-1">
+          <span class="emoji">🤔</span>Quite hard
+        </button>
+        <button type="button" class="confidence-btn" data-value="very_difficult" role="radio" aria-checked="false" tabindex="-1">
+          <span class="emoji">😅</span>Really hard
+        </button>
       </div>
-    </section>
+      <button id="confidence-next-btn" class="btn btn-primary btn-full" disabled>Next</button>
+    </div>
+  </div>
 
-    <!-- ============ SCREEN 3: QUESTIONS ============ -->
-    <section id="screen-question" class="screen">
-      <div class="qcard">
-        <div class="progress-wrap">
-          <div class="progress-top">
-            <span id="progress-count">Question 1 of 37</span>
-          </div>
-          <div class="progress-track"><div id="progress-fill" class="progress-fill"></div></div>
-        </div>
+  <!-- ===== SCREEN: Well done ===== -->
+  <div id="screen-complete" class="screen">
+    <div class="celebration">
+      <div class="big-emoji">🌟</div>
+      <h2>Well done, <span id="child-name-done"></span>!</h2>
+      <p>You've finished all the questions. Great effort!</p>
+      <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 28px;">Now please hand the device back to your grown-up.</p>
+      <button id="show-report-btn" class="btn btn-primary">Show my report</button>
+    </div>
+  </div>
 
-        <div class="qlayout">
-          <div class="qmain">
-            <div id="q-illus" class="illus" aria-hidden="false"></div>
-            <p id="q-text" class="qtext">…</p>
-            <div id="answers" class="answers answers-grid" role="radiogroup" aria-label="Answer options"></div>
-          </div>
-
-          <aside class="qside">
-            <div id="tip-box" class="tip" aria-live="polite">
-              <span id="tip-icon" class="tip-icon" aria-hidden="true">💡</span>
-              <p id="tip-text" class="tip-text"></p>
-            </div>
-          </aside>
-        </div>
-
-        <div class="qnav">
-          <button type="button" id="next-btn" class="btn btn-primary qnav-main" disabled>Next</button>
-        </div>
+  <!-- ===== SCREEN: Independence check (parent) ===== -->
+  <div id="screen-independence" class="screen">
+    <div class="card">
+      <h2 style="color: var(--brand-dark); margin-bottom: 10px; font-size: 1.5rem;">One quick question for you</h2>
+      <p style="color: var(--text-muted); margin-bottom: 24px; font-size: 1.05rem;">How much help did your child need during the check?</p>
+      <div id="independence-options" role="radiogroup" aria-label="Level of help needed" class="answers">
+        <button type="button" class="answer" data-value="independent" role="radio" aria-checked="false" tabindex="0">
+          <span class="answer-badge" style="background: var(--brand);"><span class="badge-letter">A</span><span class="badge-tick"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+          <span class="answer-text">They did it on their own</span>
+        </button>
+        <button type="button" class="answer" data-value="a_little_help" role="radio" aria-checked="false" tabindex="-1">
+          <span class="answer-badge" style="background: var(--brand);"><span class="badge-letter">B</span><span class="badge-tick"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+          <span class="answer-text">I helped read a few questions</span>
+        </button>
+        <button type="button" class="answer" data-value="a_lot_of_help" role="radio" aria-checked="false" tabindex="-1">
+          <span class="answer-badge" style="background: var(--brand);"><span class="badge-letter">C</span><span class="badge-tick"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+          <span class="answer-text">I helped quite a lot</span>
+        </button>
       </div>
-    </section>
-    </section>
+      <button id="to-report-btn" class="btn btn-primary btn-full" disabled>See the report</button>
+    </div>
+  </div>
 
-    <!-- ============ SCREEN 3b: CONFIDENCE (child) ============ -->
-    <section id="screen-confidence" class="screen">
-      <div class="card">
-        <span class="eyebrow">Almost done</span>
-        <h1>How did you find today’s maths?</h1>
-        <p class="lead">Tap the face that matches how it felt.</p>
+  <!-- ===== SCREEN: Report ===== -->
+  <div id="screen-report" class="screen">
+    <div class="report-header">
+      <h2 id="report-title"></h2>
+      <p class="meta" id="report-meta"></p>
+    </div>
 
-        <div id="confidence-options" class="confidence-options" role="radiogroup" aria-label="How did you find today's maths?">
-          <button type="button" class="confidence-btn" data-value="easy" data-label="Easy">
-            <span class="emoji" aria-hidden="true">😀</span><span>Easy</span>
-          </button>
-          <button type="button" class="confidence-btn" data-value="ok" data-label="OK">
-            <span class="emoji" aria-hidden="true">🙂</span><span>OK</span>
-          </button>
-          <button type="button" class="confidence-btn" data-value="quite_difficult" data-label="Quite difficult">
-            <span class="emoji" aria-hidden="true">😐</span><span>Quite difficult</span>
-          </button>
-          <button type="button" class="confidence-btn" data-value="very_difficult" data-label="Very difficult">
-            <span class="emoji" aria-hidden="true">☹️</span><span>Very difficult</span>
-          </button>
-        </div>
+    <div id="report-summary" class="report-summary"></div>
 
-        <button type="button" id="confidence-next-btn" class="btn btn-primary" disabled>Next</button>
-      </div>
-    </section>
+    <h3 class="section-heading">Strengths</h3>
+    <div id="report-strengths"></div>
 
-    <!-- ============ SCREEN 4: COMPLETE ============ -->
-    <section id="screen-complete" class="screen">
-      <div class="card celebrate">
-        <div class="star" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2.5l2.9 5.9 6.5.95-4.7 4.58 1.11 6.47L12 17.9l-5.81 3.06 1.11-6.47-4.7-4.58 6.5-.95L12 2.5z" fill="#e84b8a"/></svg>
-        </div>
-        <h1>Well done, <span id="child-name-done">friend</span>!</h1>
-        <p class="handover">That’s the end of the check. Please pass the device back to your grown-up to see the report.</p>
-        <button type="button" id="show-report-btn" class="btn btn-primary">Continue</button>
-      </div>
-    </section>
+    <div id="areas-section">
+      <h3 class="section-heading">Areas to explore</h3>
+      <div id="report-areas"></div>
+    </div>
 
-    <!-- ============ SCREEN 4b: INDEPENDENCE (parent) ============ -->
-    <section id="screen-independence" class="screen">
-      <div class="card">
-        <span class="eyebrow">One last thing</span>
-        <h1>Welcome back</h1>
-        <p class="lead">How independently did your child complete this check? This helps us interpret the results accurately.</p>
+    <div id="report-closing" class="report-closing"></div>
 
-        <div id="independence-options" class="answers" role="radiogroup" aria-label="How independently did your child complete this check?">
-          <button type="button" class="answer" data-value="independent">Completely independently</button>
-          <button type="button" class="answer" data-value="a_little_help">Needed a little help</button>
-          <button type="button" class="answer" data-value="a_lot_of_help">Needed quite a lot of help</button>
-        </div>
+    <p id="save-status" class="save-status"></p>
 
-        <button type="button" id="to-report-btn" class="btn btn-primary" disabled>Show the report</button>
-      </div>
-    </section>
+    <div style="text-align: center; margin-top: 28px;">
+      <button id="print-btn" class="btn btn-secondary no-print">Print / save as PDF</button>
+    </div>
+  </div>
 
-    <!-- ============ SCREEN 5: REPORT ============ -->
-    <section id="screen-report" class="screen">
-      <div class="card">
-        <div class="report-head">
-          <span class="eyebrow">Skills Check Report</span>
-          <h1 id="report-title">Maths Skills Check</h1>
-          <div class="report-meta" id="report-meta"></div>
-        </div>
+</div>
 
-        <div id="report-summary"></div>
+<!-- Supabase (optional — only needed if saving results) -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 
-        <div class="rsection">
-          <h2>What went well <span class="pill pill-green">Strengths</span></h2>
-          <div id="report-strengths"></div>
-        </div>
-
-        <div class="rsection" id="areas-section">
-          <h2>Areas to develop next <span class="pill pill-pink">Next steps</span></h2>
-          <div id="report-areas"></div>
-        </div>
-
-        <div class="closing" id="report-closing"></div>
-
-        <div class="btn-row no-print" style="margin-top:24px;">
-          <button type="button" id="print-btn" class="btn btn-ghost">Save or print report</button>
-        </div>
-
-        <div class="save-status" id="save-status" aria-live="polite"></div>
-      </div>
-      <p class="foot">Primary Tutor Online · KS1 Maths Skills Check</p>
-    </section>
-
-  </main>
-
-  <!-- Supabase client (loaded from CDN; app works in preview mode without it) -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <!-- App files -->
-  <script src="config.js"></script>
-  <script src="questions.js"></script>
-  <script src="assets/hints/manifest.js"></script>
-  <script src="app.js"></script>
+<!-- PTO app scripts -->
+<script src="config.js"></script>
+<script src="manifest.js"></script>
+<script src="questions.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

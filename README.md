@@ -1,10 +1,10 @@
-# KS1 Maths Skills Check (Version 1.11)
+# Skills Checker - KS1 Maths (Version 0.9.2 Beta)
 
 A short, friendly Key Stage 1 maths check for **Primary Tutor Online**. A parent
 sets it up, the child answers **37 questions** one screen at a time, and the parent
 gets a simple **strengths and next-steps report**. Results are saved to Supabase.
 
-The 37 questions are chosen at random from a bank of **360 curriculum-mapped
+The 37 questions are chosen at random from a bank of **414 curriculum-mapped
 questions** with balanced coverage of every KS1 maths strand, so repeat sittings
 feel fresh while staying fair and representative.
 
@@ -13,18 +13,38 @@ Plain HTML/CSS/JavaScript — no build step, no framework, minimal maintenance.
 
 ---
 
-## What's in the box
+## Project structure
 
-| File | What it is |
+Everything needed to **deploy the live site** lives at the repository root
+and in `assets/`. Everything else is documentation, kept out of the way
+in `docs/` so the root stays easy to scan.
+
+| File / folder | What it is |
 |------|------------|
 | `index.html` | The whole app (all screens) |
 | `styles.css` | PTO design system (purple/white/pink, Poppins, calm, accessible) |
-| `questions.js` | The 360-question bank + strand definitions — **edit this to change questions** |
 | `app.js` | Flow, question selection, rendering, report generation, saving |
+| `questions.js` | The 414-question bank + strand definitions — **edit this to change questions** |
 | `config.js` | **The one file you edit to go live** (Supabase details) |
 | `supabase-setup.sql` | Run once in Supabase to create the results table |
+| `brand-mark.png` | The official Primary Tutor Online logo (header + favicon) |
+| `.nojekyll` | Tells GitHub Pages to serve the site as-is, skipping Jekyll processing |
+| `assets/` | The reusable asset-library architecture (characters/objects/scenes/models/hints manifests + resolver) — see `assets/README.md`. `assets/hints/manifest.js` is loaded live by `index.html`; the rest are registries for future artwork, not yet wired into the live site. |
 | `tools/generate-questions.js` | *Optional.* The offline authoring script used to build `questions.js` in bulk. **Not part of the website** — only needed (with Node) if you want to regenerate the bank. |
+| `docs/` | Design system, implementation history, the commercial readiness review, and the full Beta release package (release notes, test plan, feedback form, known issues register) — see below. |
 | `README.md` | This file |
+
+### Documentation index (`docs/`)
+
+| Document | What it's for |
+|---|---|
+| `DESIGN_SYSTEM.md` | The visual/UX principles this project is built on |
+| `IMPLEMENTATION_PLAN.md` | The full build history — every stage, what changed, and why |
+| `COMMERCIAL_READINESS_REVIEW.md` | An objective, evidence-based pre-launch design/accessibility review |
+| `BETA_RELEASE_NOTES.md` | What's built, for anyone picking this project up |
+| `BETA_TEST_PLAN.md` | How to run a structured beta (sample size, duration, success criteria) |
+| `BETA_FEEDBACK_FORM.md` | A ready-to-use parent feedback form template |
+| `KNOWN_ISSUES.md` | **The single source of truth for open issues** — check here before assuming something is a new bug |
 
 ---
 
@@ -59,7 +79,15 @@ skills_check_sessions**.
 ### 2. Publish with GitHub Pages (hosts the site, free)
 
 1. Create a new GitHub repository and upload all the files in this folder
-   (keep them at the top level, so `index.html` is in the root).
+   (keep them at the top level, so `index.html` is in the root). **Two things
+   are easy to miss with a drag-and-drop upload**: `.nojekyll` is a hidden
+   file (some file browsers won't show it by default — make sure it's
+   included, since without it GitHub Pages may try to process the site
+   through Jekyll and behave unexpectedly), and the whole `assets/` folder
+   needs to come with it (`index.html` loads `assets/hints/manifest.js`
+   directly). `docs/` and `tools/` are documentation/maintenance only —
+   safe to omit if you want the smallest possible live deployment, though
+   there's no harm in including them either.
 2. In the repo: **Settings → Pages**.
 3. Under **Build and deployment**, set **Source: Deploy from a branch**,
    choose your branch (usually `main`) and folder `/root`, then **Save**.
@@ -67,6 +95,29 @@ skills_check_sessions**.
    (`https://your-username.github.io/your-repo/`).
 
 That's it. To update anything later, edit the file and push the change.
+
+---
+
+## Backups & data safety
+
+Two different things need backing up, and they work differently:
+
+**The code (this project).** Once it's pushed to a GitHub repository, git's
+own history *is* your backup — every version is kept automatically, and
+nothing is lost by future changes. The one practical habit worth adding:
+**tag the exact commit you deploy for beta** (e.g. `git tag v0.9-beta`)
+so "what was live when families were testing" is always one command away,
+even after later changes.
+
+**The results families submit (Supabase).** This is the one thing that
+isn't covered by the code backup above — it's live data, growing as
+families use the assessment. Recommended: **export the
+`skills_check_sessions` table periodically** during the beta (Supabase's
+Table Editor has a CSV export button, or run
+`select * from skills_check_sessions` in the SQL Editor and save the
+result) — weekly is reasonable for a beta-scale audience. Supabase's own
+paid tiers include automatic database backups; the free tier does not, so
+a manual export is worth doing regardless of plan while this is still new.
 
 ---
 
@@ -500,4 +551,4 @@ and a full pass over the remaining ~173 tips.
 
 ---
 
-Primary Tutor Online · KS1 Maths Skills Check · v1.11
+Primary Tutor Online · Skills Checker - KS1 Maths · v0.9.2-beta

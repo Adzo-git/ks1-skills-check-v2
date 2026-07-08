@@ -2,7 +2,7 @@
    PTO KS1 MATHS SKILLS CHECK — QUESTION BANK  (Version 1.1)
    ------------------------------------------------------------
    Plain data. Loaded directly by the website (no build step).
-   360 questions across the full KS1 Maths curriculum.
+   414 questions across the full KS1 Maths curriculum.
 
    Each assessment randomly selects 30 questions with balanced
    curriculum coverage (see app.js -> selectAssessment).
@@ -64,14 +64,15 @@ const PTO_QUESTIONS = [
     "objective": "Count a set of objects reliably",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-errors",
     "teacherNote": "Encourage pointing to each object once.",
     "text": "How many toy cars can you see?",
     "illustration": {
       "type": "dots",
       "count": 3,
       "emoji": "🚗",
-      "ariaLabel": "A group of toy cars to count",
-      "scattered": true
+      "ariaLabel": "A group of toy cars to count"
     },
     "options": [
       3,
@@ -91,14 +92,15 @@ const PTO_QUESTIONS = [
     "objective": "Count a set of objects reliably",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-errors",
     "teacherNote": "Encourage pointing to each object once.",
     "text": "How many buses can you see?",
     "illustration": {
       "type": "dots",
       "count": 4,
       "emoji": "🚌",
-      "ariaLabel": "A group of buses to count",
-      "scattered": true
+      "ariaLabel": "A group of buses to count"
     },
     "options": [
       4,
@@ -118,14 +120,15 @@ const PTO_QUESTIONS = [
     "objective": "Count a set of objects reliably",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-errors",
     "teacherNote": "Encourage pointing to each object once.",
     "text": "How many apples can you see?",
     "illustration": {
       "type": "dots",
       "count": 5,
       "emoji": "🍎",
-      "ariaLabel": "A group of apples to count",
-      "scattered": true
+      "ariaLabel": "A group of apples to count"
     },
     "options": [
       5,
@@ -145,14 +148,15 @@ const PTO_QUESTIONS = [
     "objective": "Count a set of objects reliably",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-errors",
     "teacherNote": "Encourage pointing to each object once.",
     "text": "How many pencils can you see?",
     "illustration": {
       "type": "dots",
       "count": 6,
       "emoji": "✏️",
-      "ariaLabel": "A group of pencils to count",
-      "scattered": true
+      "ariaLabel": "A group of pencils to count"
     },
     "options": [
       6,
@@ -172,14 +176,15 @@ const PTO_QUESTIONS = [
     "objective": "Count a set of objects reliably",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-errors",
     "teacherNote": "Encourage pointing to each object once.",
     "text": "How many books can you see?",
     "illustration": {
       "type": "dots",
       "count": 7,
       "emoji": "📚",
-      "ariaLabel": "A group of books to count",
-      "scattered": true
+      "ariaLabel": "A group of books to count"
     },
     "options": [
       7,
@@ -199,14 +204,15 @@ const PTO_QUESTIONS = [
     "objective": "Count a set of objects reliably",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-errors",
     "teacherNote": "Encourage pointing to each object once.",
     "text": "How many flowers can you see?",
     "illustration": {
       "type": "dots",
       "count": 8,
       "emoji": "🌸",
-      "ariaLabel": "A group of flowers to count",
-      "scattered": true
+      "ariaLabel": "A group of flowers to count"
     },
     "options": [
       8,
@@ -226,14 +232,15 @@ const PTO_QUESTIONS = [
     "objective": "Count a set of objects reliably",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-errors",
     "teacherNote": "Encourage pointing to each object once.",
     "text": "How many footballs can you see?",
     "illustration": {
       "type": "dots",
       "count": 9,
       "emoji": "⚽",
-      "ariaLabel": "A group of footballs to count",
-      "scattered": true
+      "ariaLabel": "A group of footballs to count"
     },
     "options": [
       9,
@@ -253,14 +260,15 @@ const PTO_QUESTIONS = [
     "objective": "Count a set of objects reliably",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-errors",
     "teacherNote": "Encourage pointing to each object once.",
     "text": "How many sweets can you see?",
     "illustration": {
       "type": "dots",
       "count": 10,
       "emoji": "🍬",
-      "ariaLabel": "A group of sweets to count",
-      "scattered": true
+      "ariaLabel": "A group of sweets to count"
     },
     "options": [
       10,
@@ -280,14 +288,15 @@ const PTO_QUESTIONS = [
     "objective": "Count a set of objects reliably",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-errors",
     "teacherNote": "Encourage pointing to each object once.",
     "text": "How many toy cars can you see?",
     "illustration": {
       "type": "dots",
       "count": 12,
       "emoji": "🚗",
-      "ariaLabel": "A group of toy cars to count",
-      "scattered": true
+      "ariaLabel": "A group of toy cars to count"
     },
     "options": [
       12,
@@ -307,14 +316,15 @@ const PTO_QUESTIONS = [
     "objective": "Count a set of objects reliably",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-errors",
     "teacherNote": "Encourage pointing to each object once.",
     "text": "How many buses can you see?",
     "illustration": {
       "type": "dots",
       "count": 14,
       "emoji": "🚌",
-      "ariaLabel": "A group of buses to count",
-      "scattered": true
+      "ariaLabel": "A group of buses to count"
     },
     "options": [
       14,
@@ -334,6 +344,8 @@ const PTO_QUESTIONS = [
     "objective": "Find one more than a number",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-sequence",
     "teacherNote": null,
     "text": "What is one more than 5?",
     "illustration": {
@@ -363,6 +375,8 @@ const PTO_QUESTIONS = [
     "objective": "Find one more than a number",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-sequence",
     "teacherNote": null,
     "text": "What is one more than 7?",
     "illustration": {
@@ -392,6 +406,8 @@ const PTO_QUESTIONS = [
     "objective": "Find one more than a number",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-sequence",
     "teacherNote": null,
     "text": "What is one more than 9?",
     "illustration": {
@@ -421,6 +437,8 @@ const PTO_QUESTIONS = [
     "objective": "Find one more than a number",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-sequence",
     "teacherNote": null,
     "text": "What is one more than 11?",
     "illustration": {
@@ -450,6 +468,8 @@ const PTO_QUESTIONS = [
     "objective": "Find one more than a number",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-sequence",
     "teacherNote": null,
     "text": "What is one more than 13?",
     "illustration": {
@@ -479,6 +499,8 @@ const PTO_QUESTIONS = [
     "objective": "Find one more than a number",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-sequence",
     "teacherNote": null,
     "text": "What is one more than 14?",
     "illustration": {
@@ -508,6 +530,8 @@ const PTO_QUESTIONS = [
     "objective": "Find one more than a number",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-sequence",
     "teacherNote": null,
     "text": "What is one more than 16?",
     "illustration": {
@@ -537,6 +561,8 @@ const PTO_QUESTIONS = [
     "objective": "Find one more than a number",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-sequence",
     "teacherNote": null,
     "text": "What is one more than 18?",
     "illustration": {
@@ -566,6 +592,8 @@ const PTO_QUESTIONS = [
     "objective": "Find one less than a number",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-sequence",
     "teacherNote": null,
     "text": "What is one less than 6?",
     "illustration": {
@@ -595,6 +623,8 @@ const PTO_QUESTIONS = [
     "objective": "Find one less than a number",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-sequence",
     "teacherNote": null,
     "text": "What is one less than 8?",
     "illustration": {
@@ -624,6 +654,8 @@ const PTO_QUESTIONS = [
     "objective": "Find one less than a number",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-sequence",
     "teacherNote": null,
     "text": "What is one less than 10?",
     "illustration": {
@@ -653,6 +685,8 @@ const PTO_QUESTIONS = [
     "objective": "Find one less than a number",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-sequence",
     "teacherNote": null,
     "text": "What is one less than 12?",
     "illustration": {
@@ -682,6 +716,8 @@ const PTO_QUESTIONS = [
     "objective": "Find one less than a number",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-sequence",
     "teacherNote": null,
     "text": "What is one less than 15?",
     "illustration": {
@@ -711,6 +747,8 @@ const PTO_QUESTIONS = [
     "objective": "Find one less than a number",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-sequence",
     "teacherNote": null,
     "text": "What is one less than 17?",
     "illustration": {
@@ -740,6 +778,8 @@ const PTO_QUESTIONS = [
     "objective": "Find one less than a number",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-sequence",
     "teacherNote": null,
     "text": "What is one less than 19?",
     "illustration": {
@@ -769,6 +809,8 @@ const PTO_QUESTIONS = [
     "objective": "Find one less than a number",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-sequence",
     "teacherNote": null,
     "text": "What is one less than 20?",
     "illustration": {
@@ -798,6 +840,8 @@ const PTO_QUESTIONS = [
     "objective": "Find ten more than a two-digit number",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "place-value",
     "teacherNote": "Only the tens digit changes.",
     "text": "What is ten more than 13?",
     "illustration": {
@@ -823,6 +867,8 @@ const PTO_QUESTIONS = [
     "objective": "Find ten more than a two-digit number",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "place-value",
     "teacherNote": "Only the tens digit changes.",
     "text": "What is ten more than 24?",
     "illustration": {
@@ -848,6 +894,8 @@ const PTO_QUESTIONS = [
     "objective": "Find ten more than a two-digit number",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "place-value",
     "teacherNote": "Only the tens digit changes.",
     "text": "What is ten more than 35?",
     "illustration": {
@@ -873,6 +921,8 @@ const PTO_QUESTIONS = [
     "objective": "Find ten more than a two-digit number",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "place-value",
     "teacherNote": "Only the tens digit changes.",
     "text": "What is ten more than 42?",
     "illustration": {
@@ -898,6 +948,8 @@ const PTO_QUESTIONS = [
     "objective": "Find ten more than a two-digit number",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "place-value",
     "teacherNote": "Only the tens digit changes.",
     "text": "What is ten more than 56?",
     "illustration": {
@@ -923,6 +975,8 @@ const PTO_QUESTIONS = [
     "objective": "Find ten more than a two-digit number",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "place-value",
     "teacherNote": "Only the tens digit changes.",
     "text": "What is ten more than 61?",
     "illustration": {
@@ -948,6 +1002,8 @@ const PTO_QUESTIONS = [
     "objective": "Find ten more than a two-digit number",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "place-value",
     "teacherNote": "Only the tens digit changes.",
     "text": "What is ten more than 73?",
     "illustration": {
@@ -973,6 +1029,8 @@ const PTO_QUESTIONS = [
     "objective": "Find ten less than a two-digit number",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "place-value",
     "teacherNote": null,
     "text": "What is ten less than 25?",
     "illustration": {
@@ -998,6 +1056,8 @@ const PTO_QUESTIONS = [
     "objective": "Find ten less than a two-digit number",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "place-value",
     "teacherNote": null,
     "text": "What is ten less than 34?",
     "illustration": {
@@ -1023,6 +1083,8 @@ const PTO_QUESTIONS = [
     "objective": "Find ten less than a two-digit number",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "place-value",
     "teacherNote": null,
     "text": "What is ten less than 46?",
     "illustration": {
@@ -1048,6 +1110,8 @@ const PTO_QUESTIONS = [
     "objective": "Find ten less than a two-digit number",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "place-value",
     "teacherNote": null,
     "text": "What is ten less than 53?",
     "illustration": {
@@ -1073,6 +1137,8 @@ const PTO_QUESTIONS = [
     "objective": "Find ten less than a two-digit number",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "place-value",
     "teacherNote": null,
     "text": "What is ten less than 67?",
     "illustration": {
@@ -1098,6 +1164,8 @@ const PTO_QUESTIONS = [
     "objective": "Find ten less than a two-digit number",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "place-value",
     "teacherNote": null,
     "text": "What is ten less than 72?",
     "illustration": {
@@ -1123,6 +1191,8 @@ const PTO_QUESTIONS = [
     "objective": "Find ten less than a two-digit number",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "place-value",
     "teacherNote": null,
     "text": "What is ten less than 90?",
     "illustration": {
@@ -1148,6 +1218,8 @@ const PTO_QUESTIONS = [
     "objective": "Find a missing number in a count in ones",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-in-steps",
     "teacherNote": null,
     "text": "Which number is missing? 7, 8, __, 10",
     "illustration": {
@@ -1179,6 +1251,8 @@ const PTO_QUESTIONS = [
     "objective": "Find a missing number in a count in ones",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-in-steps",
     "teacherNote": null,
     "text": "Which number is missing? 12, 13, __, 15",
     "illustration": {
@@ -1210,6 +1284,8 @@ const PTO_QUESTIONS = [
     "objective": "Find a missing number in a count in ones",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-in-steps",
     "teacherNote": null,
     "text": "Which number is missing? 18, 19, __, 21",
     "illustration": {
@@ -1241,6 +1317,8 @@ const PTO_QUESTIONS = [
     "objective": "Find a missing number in a count in ones",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-in-steps",
     "teacherNote": null,
     "text": "Which number is missing? 23, 24, __, 26",
     "illustration": {
@@ -1272,6 +1350,8 @@ const PTO_QUESTIONS = [
     "objective": "Find a missing number in a count in ones",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-in-steps",
     "teacherNote": null,
     "text": "Which number is missing? 29, 30, __, 32",
     "illustration": {
@@ -1303,6 +1383,8 @@ const PTO_QUESTIONS = [
     "objective": "Find a missing number in a count in ones",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-in-steps",
     "teacherNote": null,
     "text": "Which number is missing? 34, 35, __, 37",
     "illustration": {
@@ -1334,6 +1416,8 @@ const PTO_QUESTIONS = [
     "objective": "Find a missing number in a count in ones",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-in-steps",
     "teacherNote": null,
     "text": "Which number is missing? 45, 46, __, 48",
     "illustration": {
@@ -1365,6 +1449,8 @@ const PTO_QUESTIONS = [
     "objective": "Continue a count in twos",
     "difficulty": "Secure",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-in-steps",
     "teacherNote": null,
     "text": "What comes next? 2, 4, 6, __",
     "illustration": null,
@@ -1386,6 +1472,8 @@ const PTO_QUESTIONS = [
     "objective": "Continue a count in twos",
     "difficulty": "Secure",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-in-steps",
     "teacherNote": null,
     "text": "What comes next? 6, 8, 10, __",
     "illustration": null,
@@ -1407,6 +1495,8 @@ const PTO_QUESTIONS = [
     "objective": "Continue a count in twos",
     "difficulty": "Secure",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-in-steps",
     "teacherNote": null,
     "text": "What comes next? 10, 12, 14, __",
     "illustration": null,
@@ -1428,6 +1518,8 @@ const PTO_QUESTIONS = [
     "objective": "Continue a count in twos",
     "difficulty": "Secure",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-in-steps",
     "teacherNote": null,
     "text": "What comes next? 14, 16, 18, __",
     "illustration": null,
@@ -1449,6 +1541,8 @@ const PTO_QUESTIONS = [
     "objective": "Continue a count in twos",
     "difficulty": "Secure",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-in-steps",
     "teacherNote": null,
     "text": "What comes next? 20, 22, 24, __",
     "illustration": null,
@@ -1470,6 +1564,8 @@ const PTO_QUESTIONS = [
     "objective": "Continue a count in fives",
     "difficulty": "Secure",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-in-steps",
     "teacherNote": null,
     "text": "What comes next? 5, 10, 15, __",
     "illustration": null,
@@ -1491,6 +1587,8 @@ const PTO_QUESTIONS = [
     "objective": "Continue a count in fives",
     "difficulty": "Secure",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-in-steps",
     "teacherNote": null,
     "text": "What comes next? 15, 20, 25, __",
     "illustration": null,
@@ -1512,6 +1610,8 @@ const PTO_QUESTIONS = [
     "objective": "Continue a count in fives",
     "difficulty": "Secure",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-in-steps",
     "teacherNote": null,
     "text": "What comes next? 25, 30, 35, __",
     "illustration": null,
@@ -1533,6 +1633,8 @@ const PTO_QUESTIONS = [
     "objective": "Continue a count in fives",
     "difficulty": "Secure",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-in-steps",
     "teacherNote": null,
     "text": "What comes next? 35, 40, 45, __",
     "illustration": null,
@@ -1554,6 +1656,8 @@ const PTO_QUESTIONS = [
     "objective": "Continue a count in fives",
     "difficulty": "Secure",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-in-steps",
     "teacherNote": null,
     "text": "What comes next? 45, 50, 55, __",
     "illustration": null,
@@ -1575,6 +1679,8 @@ const PTO_QUESTIONS = [
     "objective": "Continue a count in tens",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-in-steps",
     "teacherNote": null,
     "text": "What comes next? 10, 20, 30, __",
     "illustration": null,
@@ -1596,6 +1702,8 @@ const PTO_QUESTIONS = [
     "objective": "Continue a count in tens",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-in-steps",
     "teacherNote": null,
     "text": "What comes next? 20, 30, 40, __",
     "illustration": null,
@@ -1617,6 +1725,8 @@ const PTO_QUESTIONS = [
     "objective": "Continue a count in tens",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-in-steps",
     "teacherNote": null,
     "text": "What comes next? 30, 40, 50, __",
     "illustration": null,
@@ -1638,6 +1748,8 @@ const PTO_QUESTIONS = [
     "objective": "Continue a count in tens",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-in-steps",
     "teacherNote": null,
     "text": "What comes next? 40, 50, 60, __",
     "illustration": null,
@@ -1659,6 +1771,8 @@ const PTO_QUESTIONS = [
     "objective": "Continue a count in tens",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "counting-in-steps",
     "teacherNote": null,
     "text": "What comes next? 60, 70, 80, __",
     "illustration": null,
@@ -1680,6 +1794,8 @@ const PTO_QUESTIONS = [
     "objective": "Identify the greatest of four numbers",
     "difficulty": "Secure",
     "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "number-comparison",
     "teacherNote": "Compare the tens first, not the ones.",
     "text": "Which number is the greatest?",
     "illustration": null,
@@ -1701,6 +1817,8 @@ const PTO_QUESTIONS = [
     "objective": "Identify the greatest of four numbers",
     "difficulty": "Secure",
     "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "number-comparison",
     "teacherNote": "Compare the tens first, not the ones.",
     "text": "Which number is the greatest?",
     "illustration": null,
@@ -1722,6 +1840,8 @@ const PTO_QUESTIONS = [
     "objective": "Identify the greatest of four numbers",
     "difficulty": "Secure",
     "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "number-comparison",
     "teacherNote": "Compare the tens first, not the ones.",
     "text": "Which number is the greatest?",
     "illustration": null,
@@ -1743,6 +1863,8 @@ const PTO_QUESTIONS = [
     "objective": "Identify the greatest of four numbers",
     "difficulty": "Secure",
     "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "number-comparison",
     "teacherNote": "Compare the tens first, not the ones.",
     "text": "Which number is the greatest?",
     "illustration": null,
@@ -1764,6 +1886,8 @@ const PTO_QUESTIONS = [
     "objective": "Identify the greatest of four numbers",
     "difficulty": "Secure",
     "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "number-comparison",
     "teacherNote": "Compare the tens first, not the ones.",
     "text": "Which number is the greatest?",
     "illustration": null,
@@ -1785,6 +1909,8 @@ const PTO_QUESTIONS = [
     "objective": "Identify the greatest of four numbers",
     "difficulty": "Secure",
     "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "number-comparison",
     "teacherNote": "Compare the tens first, not the ones.",
     "text": "Which number is the greatest?",
     "illustration": null,
@@ -1806,6 +1932,8 @@ const PTO_QUESTIONS = [
     "objective": "Identify the greatest of four numbers",
     "difficulty": "Secure",
     "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "number-comparison",
     "teacherNote": "Compare the tens first, not the ones.",
     "text": "Which number is the greatest?",
     "illustration": null,
@@ -1827,6 +1955,8 @@ const PTO_QUESTIONS = [
     "objective": "Identify the greatest of four numbers",
     "difficulty": "Secure",
     "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "number-comparison",
     "teacherNote": "Compare the tens first, not the ones.",
     "text": "Which number is the greatest?",
     "illustration": null,
@@ -1848,6 +1978,8 @@ const PTO_QUESTIONS = [
     "objective": "Identify the smallest of four numbers",
     "difficulty": "Secure",
     "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "number-comparison",
     "teacherNote": null,
     "text": "Which number is the smallest?",
     "illustration": null,
@@ -1869,6 +2001,8 @@ const PTO_QUESTIONS = [
     "objective": "Identify the smallest of four numbers",
     "difficulty": "Secure",
     "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "number-comparison",
     "teacherNote": null,
     "text": "Which number is the smallest?",
     "illustration": null,
@@ -1890,6 +2024,8 @@ const PTO_QUESTIONS = [
     "objective": "Identify the smallest of four numbers",
     "difficulty": "Secure",
     "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "number-comparison",
     "teacherNote": null,
     "text": "Which number is the smallest?",
     "illustration": null,
@@ -1911,6 +2047,8 @@ const PTO_QUESTIONS = [
     "objective": "Identify the smallest of four numbers",
     "difficulty": "Secure",
     "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "number-comparison",
     "teacherNote": null,
     "text": "Which number is the smallest?",
     "illustration": null,
@@ -1932,6 +2070,8 @@ const PTO_QUESTIONS = [
     "objective": "Identify the smallest of four numbers",
     "difficulty": "Secure",
     "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "number-comparison",
     "teacherNote": null,
     "text": "Which number is the smallest?",
     "illustration": null,
@@ -1953,6 +2093,8 @@ const PTO_QUESTIONS = [
     "objective": "Identify the smallest of four numbers",
     "difficulty": "Secure",
     "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "number-comparison",
     "teacherNote": null,
     "text": "Which number is the smallest?",
     "illustration": null,
@@ -1974,6 +2116,8 @@ const PTO_QUESTIONS = [
     "objective": "State how many tens are in a two-digit number",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "place-value",
     "teacherNote": null,
     "text": "How many tens are in 24?",
     "illustration": {
@@ -2000,6 +2144,8 @@ const PTO_QUESTIONS = [
     "objective": "State how many tens are in a two-digit number",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "place-value",
     "teacherNote": null,
     "text": "How many tens are in 37?",
     "illustration": {
@@ -2026,6 +2172,8 @@ const PTO_QUESTIONS = [
     "objective": "State how many tens are in a two-digit number",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "place-value",
     "teacherNote": null,
     "text": "How many tens are in 45?",
     "illustration": {
@@ -2052,6 +2200,8 @@ const PTO_QUESTIONS = [
     "objective": "State how many tens are in a two-digit number",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "place-value",
     "teacherNote": null,
     "text": "How many tens are in 53?",
     "illustration": {
@@ -2078,6 +2228,8 @@ const PTO_QUESTIONS = [
     "objective": "State how many tens are in a two-digit number",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "place-value",
     "teacherNote": null,
     "text": "How many tens are in 68?",
     "illustration": {
@@ -2104,6 +2256,8 @@ const PTO_QUESTIONS = [
     "objective": "State how many tens are in a two-digit number",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "place-value",
     "teacherNote": null,
     "text": "How many tens are in 72?",
     "illustration": {
@@ -2130,6 +2284,8 @@ const PTO_QUESTIONS = [
     "objective": "State how many tens are in a two-digit number",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "place-value",
     "teacherNote": null,
     "text": "How many tens are in 86?",
     "illustration": {
@@ -2156,6 +2312,8 @@ const PTO_QUESTIONS = [
     "objective": "State how many tens are in a two-digit number",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "place-value",
     "teacherNote": null,
     "text": "How many tens are in 91?",
     "illustration": {
@@ -2182,6 +2340,8 @@ const PTO_QUESTIONS = [
     "objective": "Combine tens and ones into a number",
     "difficulty": "Greater Depth",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "place-value",
     "teacherNote": "Watch for reversing tens and ones.",
     "text": "What number is made from 4 tens and 3 ones?",
     "illustration": {
@@ -2207,6 +2367,8 @@ const PTO_QUESTIONS = [
     "objective": "Combine tens and ones into a number",
     "difficulty": "Greater Depth",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "place-value",
     "teacherNote": "Watch for reversing tens and ones.",
     "text": "What number is made from 2 tens and 6 ones?",
     "illustration": {
@@ -2232,6 +2394,8 @@ const PTO_QUESTIONS = [
     "objective": "Combine tens and ones into a number",
     "difficulty": "Greater Depth",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "place-value",
     "teacherNote": "Watch for reversing tens and ones.",
     "text": "What number is made from 5 tens and 1 ones?",
     "illustration": {
@@ -2257,6 +2421,8 @@ const PTO_QUESTIONS = [
     "objective": "Combine tens and ones into a number",
     "difficulty": "Greater Depth",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "place-value",
     "teacherNote": "Watch for reversing tens and ones.",
     "text": "What number is made from 7 tens and 0 ones?",
     "illustration": {
@@ -2282,6 +2448,8 @@ const PTO_QUESTIONS = [
     "objective": "Combine tens and ones into a number",
     "difficulty": "Greater Depth",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "place-value",
     "teacherNote": "Watch for reversing tens and ones.",
     "text": "What number is made from 3 tens and 8 ones?",
     "illustration": {
@@ -2307,6 +2475,8 @@ const PTO_QUESTIONS = [
     "objective": "Combine tens and ones into a number",
     "difficulty": "Greater Depth",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "place-value",
     "teacherNote": "Watch for reversing tens and ones.",
     "text": "What number is made from 6 tens and 4 ones?",
     "illustration": {
@@ -2332,6 +2502,8 @@ const PTO_QUESTIONS = [
     "objective": "Recall number bonds to 10",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "number-bonds",
     "teacherNote": "Bonds to 10 are worth knowing by heart.",
     "text": "1 + __ = 10",
     "illustration": null,
@@ -2353,6 +2525,8 @@ const PTO_QUESTIONS = [
     "objective": "Recall number bonds to 10",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "number-bonds",
     "teacherNote": "Bonds to 10 are worth knowing by heart.",
     "text": "2 + __ = 10",
     "illustration": null,
@@ -2374,6 +2548,8 @@ const PTO_QUESTIONS = [
     "objective": "Recall number bonds to 10",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "number-bonds",
     "teacherNote": "Bonds to 10 are worth knowing by heart.",
     "text": "3 + __ = 10",
     "illustration": null,
@@ -2395,6 +2571,8 @@ const PTO_QUESTIONS = [
     "objective": "Recall number bonds to 10",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "number-bonds",
     "teacherNote": "Bonds to 10 are worth knowing by heart.",
     "text": "4 + __ = 10",
     "illustration": null,
@@ -2416,6 +2594,8 @@ const PTO_QUESTIONS = [
     "objective": "Recall number bonds to 10",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "number-bonds",
     "teacherNote": "Bonds to 10 are worth knowing by heart.",
     "text": "6 + __ = 10",
     "illustration": null,
@@ -2437,6 +2617,8 @@ const PTO_QUESTIONS = [
     "objective": "Recall number bonds to 10",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "number-bonds",
     "teacherNote": "Bonds to 10 are worth knowing by heart.",
     "text": "7 + __ = 10",
     "illustration": null,
@@ -2458,6 +2640,8 @@ const PTO_QUESTIONS = [
     "objective": "Recall number bonds to 10",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "number-bonds",
     "teacherNote": "Bonds to 10 are worth knowing by heart.",
     "text": "8 + __ = 10",
     "illustration": null,
@@ -2479,6 +2663,8 @@ const PTO_QUESTIONS = [
     "objective": "Recall number bonds to 10",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "number-bonds",
     "teacherNote": "Bonds to 10 are worth knowing by heart.",
     "text": "9 + __ = 10",
     "illustration": null,
@@ -2500,6 +2686,8 @@ const PTO_QUESTIONS = [
     "objective": "Recall number bonds to 20",
     "difficulty": "Secure",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "number-bonds",
     "teacherNote": null,
     "text": "11 + __ = 20",
     "illustration": null,
@@ -2521,6 +2709,8 @@ const PTO_QUESTIONS = [
     "objective": "Recall number bonds to 20",
     "difficulty": "Secure",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "number-bonds",
     "teacherNote": null,
     "text": "12 + __ = 20",
     "illustration": null,
@@ -2542,6 +2732,8 @@ const PTO_QUESTIONS = [
     "objective": "Recall number bonds to 20",
     "difficulty": "Secure",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "number-bonds",
     "teacherNote": null,
     "text": "13 + __ = 20",
     "illustration": null,
@@ -2563,6 +2755,8 @@ const PTO_QUESTIONS = [
     "objective": "Recall number bonds to 20",
     "difficulty": "Secure",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "number-bonds",
     "teacherNote": null,
     "text": "14 + __ = 20",
     "illustration": null,
@@ -2584,6 +2778,8 @@ const PTO_QUESTIONS = [
     "objective": "Recall number bonds to 20",
     "difficulty": "Secure",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "number-bonds",
     "teacherNote": null,
     "text": "16 + __ = 20",
     "illustration": null,
@@ -2605,6 +2801,8 @@ const PTO_QUESTIONS = [
     "objective": "Recall number bonds to 20",
     "difficulty": "Secure",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "number-bonds",
     "teacherNote": null,
     "text": "17 + __ = 20",
     "illustration": null,
@@ -2626,6 +2824,8 @@ const PTO_QUESTIONS = [
     "objective": "Recall number bonds to 20",
     "difficulty": "Secure",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "number-bonds",
     "teacherNote": null,
     "text": "18 + __ = 20",
     "illustration": null,
@@ -2647,6 +2847,8 @@ const PTO_QUESTIONS = [
     "objective": "Add two numbers within 10",
     "difficulty": "Foundation",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "addition-strategy",
     "teacherNote": null,
     "text": "2 + 3 = ?",
     "illustration": null,
@@ -2668,6 +2870,8 @@ const PTO_QUESTIONS = [
     "objective": "Add two numbers within 10",
     "difficulty": "Foundation",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "addition-strategy",
     "teacherNote": null,
     "text": "4 + 3 = ?",
     "illustration": null,
@@ -2689,6 +2893,8 @@ const PTO_QUESTIONS = [
     "objective": "Add two numbers within 10",
     "difficulty": "Foundation",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "addition-strategy",
     "teacherNote": null,
     "text": "5 + 4 = ?",
     "illustration": null,
@@ -2710,6 +2916,8 @@ const PTO_QUESTIONS = [
     "objective": "Add two numbers within 10",
     "difficulty": "Foundation",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "addition-strategy",
     "teacherNote": null,
     "text": "6 + 2 = ?",
     "illustration": null,
@@ -2731,6 +2939,8 @@ const PTO_QUESTIONS = [
     "objective": "Add two numbers within 10",
     "difficulty": "Foundation",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "addition-strategy",
     "teacherNote": null,
     "text": "3 + 3 = ?",
     "illustration": null,
@@ -2752,6 +2962,8 @@ const PTO_QUESTIONS = [
     "objective": "Add two numbers within 10",
     "difficulty": "Foundation",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "addition-strategy",
     "teacherNote": null,
     "text": "1 + 7 = ?",
     "illustration": null,
@@ -2773,6 +2985,8 @@ const PTO_QUESTIONS = [
     "objective": "Add two numbers within 10",
     "difficulty": "Foundation",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "addition-strategy",
     "teacherNote": null,
     "text": "2 + 6 = ?",
     "illustration": null,
@@ -2794,6 +3008,8 @@ const PTO_QUESTIONS = [
     "objective": "Add two numbers within 20",
     "difficulty": "Secure",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "addition-strategy",
     "teacherNote": null,
     "text": "12 + 5 = ?",
     "illustration": null,
@@ -2815,6 +3031,8 @@ const PTO_QUESTIONS = [
     "objective": "Add two numbers within 20",
     "difficulty": "Secure",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "addition-strategy",
     "teacherNote": null,
     "text": "11 + 7 = ?",
     "illustration": null,
@@ -2836,6 +3054,8 @@ const PTO_QUESTIONS = [
     "objective": "Add two numbers within 20",
     "difficulty": "Secure",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "addition-strategy",
     "teacherNote": null,
     "text": "13 + 6 = ?",
     "illustration": null,
@@ -2857,6 +3077,8 @@ const PTO_QUESTIONS = [
     "objective": "Add two numbers within 20",
     "difficulty": "Secure",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "addition-strategy",
     "teacherNote": null,
     "text": "8 + 9 = ?",
     "illustration": null,
@@ -2878,6 +3100,8 @@ const PTO_QUESTIONS = [
     "objective": "Add two numbers within 20",
     "difficulty": "Secure",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "addition-strategy",
     "teacherNote": null,
     "text": "14 + 5 = ?",
     "illustration": null,
@@ -2899,6 +3123,8 @@ const PTO_QUESTIONS = [
     "objective": "Add two numbers within 20",
     "difficulty": "Secure",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "addition-strategy",
     "teacherNote": null,
     "text": "7 + 8 = ?",
     "illustration": null,
@@ -2920,6 +3146,8 @@ const PTO_QUESTIONS = [
     "objective": "Add two numbers within 20",
     "difficulty": "Secure",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "addition-strategy",
     "teacherNote": null,
     "text": "15 + 4 = ?",
     "illustration": null,
@@ -2941,6 +3169,8 @@ const PTO_QUESTIONS = [
     "objective": "Add two numbers within 20",
     "difficulty": "Secure",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "addition-strategy",
     "teacherNote": null,
     "text": "6 + 9 = ?",
     "illustration": null,
@@ -2962,6 +3192,8 @@ const PTO_QUESTIONS = [
     "objective": "Add a one-digit number to a two-digit number",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "addition-strategy",
     "teacherNote": null,
     "text": "23 + 4 = ?",
     "illustration": null,
@@ -2983,6 +3215,8 @@ const PTO_QUESTIONS = [
     "objective": "Add a one-digit number to a two-digit number",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "addition-strategy",
     "teacherNote": null,
     "text": "31 + 5 = ?",
     "illustration": null,
@@ -3004,6 +3238,8 @@ const PTO_QUESTIONS = [
     "objective": "Add a one-digit number to a two-digit number",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "addition-strategy",
     "teacherNote": null,
     "text": "42 + 6 = ?",
     "illustration": null,
@@ -3025,6 +3261,8 @@ const PTO_QUESTIONS = [
     "objective": "Add a one-digit number to a two-digit number",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "addition-strategy",
     "teacherNote": null,
     "text": "54 + 3 = ?",
     "illustration": null,
@@ -3046,6 +3284,8 @@ const PTO_QUESTIONS = [
     "objective": "Add a one-digit number to a two-digit number",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "addition-strategy",
     "teacherNote": null,
     "text": "65 + 4 = ?",
     "illustration": null,
@@ -3067,6 +3307,8 @@ const PTO_QUESTIONS = [
     "objective": "Add a one-digit number to a two-digit number",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "addition-strategy",
     "teacherNote": null,
     "text": "72 + 5 = ?",
     "illustration": null,
@@ -3088,6 +3330,8 @@ const PTO_QUESTIONS = [
     "objective": "Add two multiples of ten",
     "difficulty": "Secure",
     "type": "Fluency",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "addition-strategy",
     "teacherNote": null,
     "text": "20 + 30 = ?",
     "illustration": null,
@@ -3109,6 +3353,8 @@ const PTO_QUESTIONS = [
     "objective": "Add two multiples of ten",
     "difficulty": "Secure",
     "type": "Fluency",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "addition-strategy",
     "teacherNote": null,
     "text": "40 + 10 = ?",
     "illustration": null,
@@ -3130,6 +3376,8 @@ const PTO_QUESTIONS = [
     "objective": "Add two multiples of ten",
     "difficulty": "Secure",
     "type": "Fluency",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "addition-strategy",
     "teacherNote": null,
     "text": "50 + 20 = ?",
     "illustration": null,
@@ -3151,6 +3399,8 @@ const PTO_QUESTIONS = [
     "objective": "Add two multiples of ten",
     "difficulty": "Secure",
     "type": "Fluency",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "addition-strategy",
     "teacherNote": null,
     "text": "30 + 30 = ?",
     "illustration": null,
@@ -3172,6 +3422,8 @@ const PTO_QUESTIONS = [
     "objective": "Add two multiples of ten",
     "difficulty": "Secure",
     "type": "Fluency",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "addition-strategy",
     "teacherNote": null,
     "text": "60 + 20 = ?",
     "illustration": null,
@@ -3193,6 +3445,8 @@ const PTO_QUESTIONS = [
     "objective": "Add two multiples of ten",
     "difficulty": "Secure",
     "type": "Fluency",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "addition-strategy",
     "teacherNote": null,
     "text": "10 + 70 = ?",
     "illustration": null,
@@ -3214,6 +3468,8 @@ const PTO_QUESTIONS = [
     "objective": "Subtract within 10",
     "difficulty": "Foundation",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "subtraction-strategy",
     "teacherNote": null,
     "text": "7 − 3 = ?",
     "illustration": null,
@@ -3235,6 +3491,8 @@ const PTO_QUESTIONS = [
     "objective": "Subtract within 10",
     "difficulty": "Foundation",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "subtraction-strategy",
     "teacherNote": null,
     "text": "9 − 4 = ?",
     "illustration": null,
@@ -3256,6 +3514,8 @@ const PTO_QUESTIONS = [
     "objective": "Subtract within 10",
     "difficulty": "Foundation",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "subtraction-strategy",
     "teacherNote": null,
     "text": "8 − 5 = ?",
     "illustration": null,
@@ -3277,6 +3537,8 @@ const PTO_QUESTIONS = [
     "objective": "Subtract within 10",
     "difficulty": "Foundation",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "subtraction-strategy",
     "teacherNote": null,
     "text": "6 − 2 = ?",
     "illustration": null,
@@ -3298,6 +3560,8 @@ const PTO_QUESTIONS = [
     "objective": "Subtract within 10",
     "difficulty": "Foundation",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "subtraction-strategy",
     "teacherNote": null,
     "text": "10 − 4 = ?",
     "illustration": null,
@@ -3319,6 +3583,8 @@ const PTO_QUESTIONS = [
     "objective": "Subtract within 10",
     "difficulty": "Foundation",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "subtraction-strategy",
     "teacherNote": null,
     "text": "5 − 3 = ?",
     "illustration": null,
@@ -3340,6 +3606,8 @@ const PTO_QUESTIONS = [
     "objective": "Subtract within 10",
     "difficulty": "Foundation",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "subtraction-strategy",
     "teacherNote": null,
     "text": "9 − 7 = ?",
     "illustration": null,
@@ -3361,6 +3629,8 @@ const PTO_QUESTIONS = [
     "objective": "Subtract within 20",
     "difficulty": "Secure",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "subtraction-strategy",
     "teacherNote": null,
     "text": "18 − 6 = ?",
     "illustration": null,
@@ -3382,6 +3652,8 @@ const PTO_QUESTIONS = [
     "objective": "Subtract within 20",
     "difficulty": "Secure",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "subtraction-strategy",
     "teacherNote": null,
     "text": "15 − 7 = ?",
     "illustration": null,
@@ -3403,6 +3675,8 @@ const PTO_QUESTIONS = [
     "objective": "Subtract within 20",
     "difficulty": "Secure",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "subtraction-strategy",
     "teacherNote": null,
     "text": "17 − 8 = ?",
     "illustration": null,
@@ -3424,6 +3698,8 @@ const PTO_QUESTIONS = [
     "objective": "Subtract within 20",
     "difficulty": "Secure",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "subtraction-strategy",
     "teacherNote": null,
     "text": "14 − 5 = ?",
     "illustration": null,
@@ -3445,6 +3721,8 @@ const PTO_QUESTIONS = [
     "objective": "Subtract within 20",
     "difficulty": "Secure",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "subtraction-strategy",
     "teacherNote": null,
     "text": "19 − 6 = ?",
     "illustration": null,
@@ -3466,6 +3744,8 @@ const PTO_QUESTIONS = [
     "objective": "Subtract within 20",
     "difficulty": "Secure",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "subtraction-strategy",
     "teacherNote": null,
     "text": "16 − 9 = ?",
     "illustration": null,
@@ -3487,6 +3767,8 @@ const PTO_QUESTIONS = [
     "objective": "Subtract within 20",
     "difficulty": "Secure",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "subtraction-strategy",
     "teacherNote": null,
     "text": "13 − 4 = ?",
     "illustration": null,
@@ -3508,6 +3790,8 @@ const PTO_QUESTIONS = [
     "objective": "Subtract within 20",
     "difficulty": "Secure",
     "type": "Fluency",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "subtraction-strategy",
     "teacherNote": null,
     "text": "20 − 7 = ?",
     "illustration": null,
@@ -3529,6 +3813,8 @@ const PTO_QUESTIONS = [
     "objective": "Subtract a one-digit number from a two-digit number",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "subtraction-strategy",
     "teacherNote": null,
     "text": "27 − 5 = ?",
     "illustration": null,
@@ -3550,6 +3836,8 @@ const PTO_QUESTIONS = [
     "objective": "Subtract a one-digit number from a two-digit number",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "subtraction-strategy",
     "teacherNote": null,
     "text": "34 − 3 = ?",
     "illustration": null,
@@ -3571,6 +3859,8 @@ const PTO_QUESTIONS = [
     "objective": "Subtract a one-digit number from a two-digit number",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "subtraction-strategy",
     "teacherNote": null,
     "text": "46 − 4 = ?",
     "illustration": null,
@@ -3592,6 +3882,8 @@ const PTO_QUESTIONS = [
     "objective": "Subtract a one-digit number from a two-digit number",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "subtraction-strategy",
     "teacherNote": null,
     "text": "53 − 2 = ?",
     "illustration": null,
@@ -3613,6 +3905,8 @@ const PTO_QUESTIONS = [
     "objective": "Subtract a one-digit number from a two-digit number",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "subtraction-strategy",
     "teacherNote": null,
     "text": "68 − 6 = ?",
     "illustration": null,
@@ -3634,6 +3928,8 @@ const PTO_QUESTIONS = [
     "objective": "Subtract a one-digit number from a two-digit number",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "subtraction-strategy",
     "teacherNote": null,
     "text": "75 − 4 = ?",
     "illustration": null,
@@ -3655,6 +3951,8 @@ const PTO_QUESTIONS = [
     "objective": "Find a missing addend",
     "difficulty": "Greater Depth",
     "type": "Reasoning",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "missing-number",
     "teacherNote": null,
     "text": "7 + __ = 13",
     "illustration": null,
@@ -3676,6 +3974,8 @@ const PTO_QUESTIONS = [
     "objective": "Find a missing addend",
     "difficulty": "Greater Depth",
     "type": "Reasoning",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "missing-number",
     "teacherNote": null,
     "text": "6 + __ = 14",
     "illustration": null,
@@ -3697,6 +3997,8 @@ const PTO_QUESTIONS = [
     "objective": "Find a missing addend",
     "difficulty": "Greater Depth",
     "type": "Reasoning",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "missing-number",
     "teacherNote": null,
     "text": "8 + __ = 15",
     "illustration": null,
@@ -3718,6 +4020,8 @@ const PTO_QUESTIONS = [
     "objective": "Find a missing addend",
     "difficulty": "Greater Depth",
     "type": "Reasoning",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "missing-number",
     "teacherNote": null,
     "text": "9 + __ = 16",
     "illustration": null,
@@ -3739,6 +4043,8 @@ const PTO_QUESTIONS = [
     "objective": "Find a missing addend",
     "difficulty": "Greater Depth",
     "type": "Reasoning",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "missing-number",
     "teacherNote": null,
     "text": "5 + __ = 12",
     "illustration": null,
@@ -3760,6 +4066,8 @@ const PTO_QUESTIONS = [
     "objective": "Find a missing addend",
     "difficulty": "Greater Depth",
     "type": "Reasoning",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "missing-number",
     "teacherNote": null,
     "text": "4 + __ = 11",
     "illustration": null,
@@ -3781,6 +4089,8 @@ const PTO_QUESTIONS = [
     "objective": "Find a missing minuend",
     "difficulty": "Greater Depth",
     "type": "Reasoning",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "missing-number",
     "teacherNote": null,
     "text": "__ − 3 = 5",
     "illustration": null,
@@ -3802,6 +4112,8 @@ const PTO_QUESTIONS = [
     "objective": "Find a missing minuend",
     "difficulty": "Greater Depth",
     "type": "Reasoning",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "missing-number",
     "teacherNote": null,
     "text": "__ − 4 = 6",
     "illustration": null,
@@ -3823,6 +4135,8 @@ const PTO_QUESTIONS = [
     "objective": "Find a missing minuend",
     "difficulty": "Greater Depth",
     "type": "Reasoning",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "missing-number",
     "teacherNote": null,
     "text": "__ − 5 = 7",
     "illustration": null,
@@ -3844,6 +4158,8 @@ const PTO_QUESTIONS = [
     "objective": "Find a missing minuend",
     "difficulty": "Greater Depth",
     "type": "Reasoning",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "missing-number",
     "teacherNote": null,
     "text": "__ − 6 = 4",
     "illustration": null,
@@ -3865,6 +4181,8 @@ const PTO_QUESTIONS = [
     "objective": "Find a missing minuend",
     "difficulty": "Greater Depth",
     "type": "Reasoning",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "missing-number",
     "teacherNote": null,
     "text": "__ − 2 = 9",
     "illustration": null,
@@ -3886,6 +4204,8 @@ const PTO_QUESTIONS = [
     "objective": "Find a missing minuend",
     "difficulty": "Greater Depth",
     "type": "Reasoning",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "missing-number",
     "teacherNote": null,
     "text": "__ − 7 = 3",
     "illustration": null,
@@ -3907,6 +4227,8 @@ const PTO_QUESTIONS = [
     "objective": "Solve a one-step addition problem",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "word-problem-operation",
     "teacherNote": null,
     "text": "Emily has 4 red apples and 5 green apples. How many altogether?",
     "illustration": {
@@ -3920,8 +4242,7 @@ const PTO_QUESTIONS = [
           "emoji": "🍏",
           "count": 5
         }
-      ],
-      "scattered": true
+      ]
     },
     "options": [
       9,
@@ -3941,6 +4262,8 @@ const PTO_QUESTIONS = [
     "objective": "Solve a one-step addition problem",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "word-problem-operation",
     "teacherNote": null,
     "text": "Oliver has 6 red apples and 3 green apples. How many altogether?",
     "illustration": {
@@ -3954,8 +4277,7 @@ const PTO_QUESTIONS = [
           "emoji": "🍏",
           "count": 3
         }
-      ],
-      "scattered": true
+      ]
     },
     "options": [
       9,
@@ -3975,6 +4297,8 @@ const PTO_QUESTIONS = [
     "objective": "Solve a one-step addition problem",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "word-problem-operation",
     "teacherNote": null,
     "text": "Sophie has 7 red apples and 8 green apples. How many altogether?",
     "illustration": {
@@ -3988,8 +4312,7 @@ const PTO_QUESTIONS = [
           "emoji": "🍏",
           "count": 8
         }
-      ],
-      "scattered": true
+      ]
     },
     "options": [
       15,
@@ -4009,6 +4332,8 @@ const PTO_QUESTIONS = [
     "objective": "Solve a one-step addition problem",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "word-problem-operation",
     "teacherNote": null,
     "text": "Ben has 5 red apples and 9 green apples. How many altogether?",
     "illustration": {
@@ -4022,8 +4347,7 @@ const PTO_QUESTIONS = [
           "emoji": "🍏",
           "count": 9
         }
-      ],
-      "scattered": true
+      ]
     },
     "options": [
       14,
@@ -4043,6 +4367,8 @@ const PTO_QUESTIONS = [
     "objective": "Solve a one-step addition problem",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "word-problem-operation",
     "teacherNote": null,
     "text": "Emily has 3 red apples and 6 green apples. How many altogether?",
     "illustration": {
@@ -4056,8 +4382,7 @@ const PTO_QUESTIONS = [
           "emoji": "🍏",
           "count": 6
         }
-      ],
-      "scattered": true
+      ]
     },
     "options": [
       9,
@@ -4077,13 +4402,14 @@ const PTO_QUESTIONS = [
     "objective": "Solve a one-step subtraction problem",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "word-problem-operation",
     "teacherNote": null,
     "text": "Oliver has 8 cakes. 3 are eaten. How many are left?",
     "illustration": {
       "type": "dots",
       "count": 8,
-      "emoji": "🍰",
-      "scattered": true
+      "emoji": "🍰"
     },
     "options": [
       5,
@@ -4103,13 +4429,14 @@ const PTO_QUESTIONS = [
     "objective": "Solve a one-step subtraction problem",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "word-problem-operation",
     "teacherNote": null,
     "text": "Sophie has 10 cakes. 4 are eaten. How many are left?",
     "illustration": {
       "type": "dots",
       "count": 10,
-      "emoji": "🍰",
-      "scattered": true
+      "emoji": "🍰"
     },
     "options": [
       6,
@@ -4129,13 +4456,14 @@ const PTO_QUESTIONS = [
     "objective": "Solve a one-step subtraction problem",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "word-problem-operation",
     "teacherNote": null,
     "text": "Ben has 9 cakes. 5 are eaten. How many are left?",
     "illustration": {
       "type": "dots",
       "count": 9,
-      "emoji": "🍰",
-      "scattered": true
+      "emoji": "🍰"
     },
     "options": [
       4,
@@ -4155,13 +4483,14 @@ const PTO_QUESTIONS = [
     "objective": "Solve a one-step subtraction problem",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "word-problem-operation",
     "teacherNote": null,
     "text": "Emily has 7 cakes. 2 are eaten. How many are left?",
     "illustration": {
       "type": "dots",
       "count": 7,
-      "emoji": "🍰",
-      "scattered": true
+      "emoji": "🍰"
     },
     "options": [
       5,
@@ -4181,13 +4510,14 @@ const PTO_QUESTIONS = [
     "objective": "Solve a one-step subtraction problem",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "word-problem-operation",
     "teacherNote": null,
     "text": "Oliver has 12 cakes. 5 are eaten. How many are left?",
     "illustration": {
       "type": "dots",
       "count": 12,
-      "emoji": "🍰",
-      "scattered": true
+      "emoji": "🍰"
     },
     "options": [
       7,
@@ -4207,6 +4537,8 @@ const PTO_QUESTIONS = [
     "objective": "Understand that addition can be done in any order",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "commutativity",
     "teacherNote": null,
     "text": "If 3 + 4 = 7, what is 4 + 3?",
     "illustration": null,
@@ -4228,6 +4560,8 @@ const PTO_QUESTIONS = [
     "objective": "Understand that addition can be done in any order",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "commutativity",
     "teacherNote": null,
     "text": "If 5 + 2 = 7, what is 2 + 5?",
     "illustration": null,
@@ -4249,6 +4583,8 @@ const PTO_QUESTIONS = [
     "objective": "Understand that addition can be done in any order",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "commutativity",
     "teacherNote": null,
     "text": "If 6 + 3 = 9, what is 3 + 6?",
     "illustration": null,
@@ -4270,6 +4606,8 @@ const PTO_QUESTIONS = [
     "objective": "Understand that addition can be done in any order",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "commutativity",
     "teacherNote": null,
     "text": "If 8 + 1 = 9, what is 1 + 8?",
     "illustration": null,
@@ -4291,6 +4629,8 @@ const PTO_QUESTIONS = [
     "objective": "Understand that addition can be done in any order",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "commutativity",
     "teacherNote": null,
     "text": "If 2 + 7 = 9, what is 7 + 2?",
     "illustration": null,
@@ -4312,6 +4652,8 @@ const PTO_QUESTIONS = [
     "objective": "Double a number",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "doubling",
     "teacherNote": null,
     "text": "Double 1 is __",
     "illustration": {
@@ -4337,6 +4679,8 @@ const PTO_QUESTIONS = [
     "objective": "Double a number",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "doubling",
     "teacherNote": null,
     "text": "Double 2 is __",
     "illustration": {
@@ -4362,6 +4706,8 @@ const PTO_QUESTIONS = [
     "objective": "Double a number",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "doubling",
     "teacherNote": null,
     "text": "Double 3 is __",
     "illustration": {
@@ -4387,6 +4733,8 @@ const PTO_QUESTIONS = [
     "objective": "Double a number",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "doubling",
     "teacherNote": null,
     "text": "Double 4 is __",
     "illustration": {
@@ -4412,6 +4760,8 @@ const PTO_QUESTIONS = [
     "objective": "Double a number",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "doubling",
     "teacherNote": null,
     "text": "Double 5 is __",
     "illustration": {
@@ -4437,6 +4787,8 @@ const PTO_QUESTIONS = [
     "objective": "Double a number",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "doubling",
     "teacherNote": null,
     "text": "Double 6 is __",
     "illustration": {
@@ -4462,6 +4814,8 @@ const PTO_QUESTIONS = [
     "objective": "Double a number",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "doubling",
     "teacherNote": null,
     "text": "Double 7 is __",
     "illustration": {
@@ -4487,6 +4841,8 @@ const PTO_QUESTIONS = [
     "objective": "Double a number",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "doubling",
     "teacherNote": null,
     "text": "Double 8 is __",
     "illustration": {
@@ -4512,6 +4868,8 @@ const PTO_QUESTIONS = [
     "objective": "Find the total of equal groups",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "grouping-sharing",
     "teacherNote": "Repeated addition supports this.",
     "text": "How many eggs altogether?",
     "illustration": {
@@ -4538,6 +4896,8 @@ const PTO_QUESTIONS = [
     "objective": "Find the total of equal groups",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "grouping-sharing",
     "teacherNote": "Repeated addition supports this.",
     "text": "How many eggs altogether?",
     "illustration": {
@@ -4564,6 +4924,8 @@ const PTO_QUESTIONS = [
     "objective": "Find the total of equal groups",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "grouping-sharing",
     "teacherNote": "Repeated addition supports this.",
     "text": "How many eggs altogether?",
     "illustration": {
@@ -4590,6 +4952,8 @@ const PTO_QUESTIONS = [
     "objective": "Find the total of equal groups",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "grouping-sharing",
     "teacherNote": "Repeated addition supports this.",
     "text": "How many eggs altogether?",
     "illustration": {
@@ -4616,6 +4980,8 @@ const PTO_QUESTIONS = [
     "objective": "Find the total of equal groups",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "grouping-sharing",
     "teacherNote": "Repeated addition supports this.",
     "text": "How many eggs altogether?",
     "illustration": {
@@ -4642,6 +5008,8 @@ const PTO_QUESTIONS = [
     "objective": "Find the total of equal groups",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "grouping-sharing",
     "teacherNote": "Repeated addition supports this.",
     "text": "How many eggs altogether?",
     "illustration": {
@@ -4668,6 +5036,8 @@ const PTO_QUESTIONS = [
     "objective": "Count the total in an array",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "grouping-sharing",
     "teacherNote": null,
     "text": "How many oranges are in this array?",
     "illustration": {
@@ -4694,6 +5064,8 @@ const PTO_QUESTIONS = [
     "objective": "Count the total in an array",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "grouping-sharing",
     "teacherNote": null,
     "text": "How many oranges are in this array?",
     "illustration": {
@@ -4720,6 +5092,8 @@ const PTO_QUESTIONS = [
     "objective": "Count the total in an array",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "grouping-sharing",
     "teacherNote": null,
     "text": "How many oranges are in this array?",
     "illustration": {
@@ -4746,6 +5120,8 @@ const PTO_QUESTIONS = [
     "objective": "Count the total in an array",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "grouping-sharing",
     "teacherNote": null,
     "text": "How many oranges are in this array?",
     "illustration": {
@@ -4772,6 +5148,8 @@ const PTO_QUESTIONS = [
     "objective": "Count the total in an array",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "grouping-sharing",
     "teacherNote": null,
     "text": "How many oranges are in this array?",
     "illustration": {
@@ -4798,8 +5176,10 @@ const PTO_QUESTIONS = [
     "objective": "Multiply by five",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "times-tables",
     "teacherNote": null,
-    "text": "What is 1 groups of 5?",
+    "text": "What is 1 group of 5?",
     "illustration": null,
     "options": [
       5,
@@ -4808,7 +5188,7 @@ const PTO_QUESTIONS = [
       0
     ],
     "correctIndex": 0,
-    "explanation": "1 groups of 5 is 5. Count in 5s.",
+    "explanation": "1 group of 5 is 5. Count in 5s.",
     "misconception": "Loses count when counting in fives."
   },
   {
@@ -4819,6 +5199,8 @@ const PTO_QUESTIONS = [
     "objective": "Multiply by five",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "times-tables",
     "teacherNote": null,
     "text": "What is 2 groups of 5?",
     "illustration": null,
@@ -4840,6 +5222,8 @@ const PTO_QUESTIONS = [
     "objective": "Multiply by five",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "times-tables",
     "teacherNote": null,
     "text": "What is 3 groups of 5?",
     "illustration": null,
@@ -4861,6 +5245,8 @@ const PTO_QUESTIONS = [
     "objective": "Multiply by five",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "times-tables",
     "teacherNote": null,
     "text": "What is 4 groups of 5?",
     "illustration": null,
@@ -4882,6 +5268,8 @@ const PTO_QUESTIONS = [
     "objective": "Multiply by five",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "times-tables",
     "teacherNote": null,
     "text": "What is 5 groups of 5?",
     "illustration": null,
@@ -4903,8 +5291,10 @@ const PTO_QUESTIONS = [
     "objective": "Multiply by ten",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "times-tables",
     "teacherNote": null,
-    "text": "What is 1 groups of 10?",
+    "text": "What is 1 group of 10?",
     "illustration": null,
     "options": [
       10,
@@ -4913,7 +5303,7 @@ const PTO_QUESTIONS = [
       1
     ],
     "correctIndex": 0,
-    "explanation": "1 groups of 10 is 10. Count in 10s.",
+    "explanation": "1 group of 10 is 10. Count in 10s.",
     "misconception": "Loses count when counting in tens."
   },
   {
@@ -4924,6 +5314,8 @@ const PTO_QUESTIONS = [
     "objective": "Multiply by ten",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "times-tables",
     "teacherNote": null,
     "text": "What is 2 groups of 10?",
     "illustration": null,
@@ -4945,6 +5337,8 @@ const PTO_QUESTIONS = [
     "objective": "Multiply by ten",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "times-tables",
     "teacherNote": null,
     "text": "What is 3 groups of 10?",
     "illustration": null,
@@ -4966,6 +5360,8 @@ const PTO_QUESTIONS = [
     "objective": "Multiply by ten",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "times-tables",
     "teacherNote": null,
     "text": "What is 4 groups of 10?",
     "illustration": null,
@@ -4987,6 +5383,8 @@ const PTO_QUESTIONS = [
     "objective": "Multiply by ten",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "times-tables",
     "teacherNote": null,
     "text": "What is 5 groups of 10?",
     "illustration": null,
@@ -5008,13 +5406,14 @@ const PTO_QUESTIONS = [
     "objective": "Share a quantity equally",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "grouping-sharing",
     "teacherNote": "Sharing links to division.",
     "text": "Share 10 sweets equally between 2 children. How many each?",
     "illustration": {
       "type": "dots",
       "count": 10,
-      "emoji": "🍬",
-      "scattered": true
+      "emoji": "🍬"
     },
     "options": [
       5,
@@ -5034,13 +5433,14 @@ const PTO_QUESTIONS = [
     "objective": "Share a quantity equally",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "grouping-sharing",
     "teacherNote": "Sharing links to division.",
     "text": "Share 12 sweets equally between 2 children. How many each?",
     "illustration": {
       "type": "dots",
       "count": 12,
-      "emoji": "🍬",
-      "scattered": true
+      "emoji": "🍬"
     },
     "options": [
       6,
@@ -5060,13 +5460,14 @@ const PTO_QUESTIONS = [
     "objective": "Share a quantity equally",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "grouping-sharing",
     "teacherNote": "Sharing links to division.",
     "text": "Share 8 sweets equally between 2 children. How many each?",
     "illustration": {
       "type": "dots",
       "count": 8,
-      "emoji": "🍬",
-      "scattered": true
+      "emoji": "🍬"
     },
     "options": [
       4,
@@ -5086,13 +5487,14 @@ const PTO_QUESTIONS = [
     "objective": "Share a quantity equally",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "grouping-sharing",
     "teacherNote": "Sharing links to division.",
     "text": "Share 6 sweets equally between 3 children. How many each?",
     "illustration": {
       "type": "dots",
       "count": 6,
-      "emoji": "🍬",
-      "scattered": true
+      "emoji": "🍬"
     },
     "options": [
       2,
@@ -5112,13 +5514,14 @@ const PTO_QUESTIONS = [
     "objective": "Share a quantity equally",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "grouping-sharing",
     "teacherNote": "Sharing links to division.",
     "text": "Share 9 sweets equally between 3 children. How many each?",
     "illustration": {
       "type": "dots",
       "count": 9,
-      "emoji": "🍬",
-      "scattered": true
+      "emoji": "🍬"
     },
     "options": [
       3,
@@ -5138,13 +5541,14 @@ const PTO_QUESTIONS = [
     "objective": "Share a quantity equally",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "grouping-sharing",
     "teacherNote": "Sharing links to division.",
     "text": "Share 12 sweets equally between 3 children. How many each?",
     "illustration": {
       "type": "dots",
       "count": 12,
-      "emoji": "🍬",
-      "scattered": true
+      "emoji": "🍬"
     },
     "options": [
       4,
@@ -5164,13 +5568,14 @@ const PTO_QUESTIONS = [
     "objective": "Share a quantity equally",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "grouping-sharing",
     "teacherNote": "Sharing links to division.",
     "text": "Share 20 sweets equally between 2 children. How many each?",
     "illustration": {
       "type": "dots",
       "count": 20,
-      "emoji": "🍬",
-      "scattered": true
+      "emoji": "🍬"
     },
     "options": [
       10,
@@ -5190,13 +5595,14 @@ const PTO_QUESTIONS = [
     "objective": "Share a quantity equally",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "grouping-sharing",
     "teacherNote": "Sharing links to division.",
     "text": "Share 10 sweets equally between 5 children. How many each?",
     "illustration": {
       "type": "dots",
       "count": 10,
-      "emoji": "🍬",
-      "scattered": true
+      "emoji": "🍬"
     },
     "options": [
       2,
@@ -5216,13 +5622,14 @@ const PTO_QUESTIONS = [
     "objective": "Find how many equal groups",
     "difficulty": "Greater Depth",
     "type": "Reasoning",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "grouping-sharing",
     "teacherNote": null,
     "text": "How many groups of 2 toy cars are in 6?",
     "illustration": {
       "type": "dots",
       "count": 6,
-      "emoji": "🚗",
-      "scattered": true
+      "emoji": "🚗"
     },
     "options": [
       3,
@@ -5242,13 +5649,14 @@ const PTO_QUESTIONS = [
     "objective": "Find how many equal groups",
     "difficulty": "Greater Depth",
     "type": "Reasoning",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "grouping-sharing",
     "teacherNote": null,
     "text": "How many groups of 2 toy cars are in 10?",
     "illustration": {
       "type": "dots",
       "count": 10,
-      "emoji": "🚗",
-      "scattered": true
+      "emoji": "🚗"
     },
     "options": [
       5,
@@ -5268,13 +5676,14 @@ const PTO_QUESTIONS = [
     "objective": "Find how many equal groups",
     "difficulty": "Greater Depth",
     "type": "Reasoning",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "grouping-sharing",
     "teacherNote": null,
     "text": "How many groups of 2 toy cars are in 8?",
     "illustration": {
       "type": "dots",
       "count": 8,
-      "emoji": "🚗",
-      "scattered": true
+      "emoji": "🚗"
     },
     "options": [
       4,
@@ -5294,13 +5703,14 @@ const PTO_QUESTIONS = [
     "objective": "Find how many equal groups",
     "difficulty": "Greater Depth",
     "type": "Reasoning",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "grouping-sharing",
     "teacherNote": null,
     "text": "How many groups of 3 toy cars are in 9?",
     "illustration": {
       "type": "dots",
       "count": 9,
-      "emoji": "🚗",
-      "scattered": true
+      "emoji": "🚗"
     },
     "options": [
       3,
@@ -5320,13 +5730,14 @@ const PTO_QUESTIONS = [
     "objective": "Find how many equal groups",
     "difficulty": "Greater Depth",
     "type": "Reasoning",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "grouping-sharing",
     "teacherNote": null,
     "text": "How many groups of 3 toy cars are in 12?",
     "illustration": {
       "type": "dots",
       "count": 12,
-      "emoji": "🚗",
-      "scattered": true
+      "emoji": "🚗"
     },
     "options": [
       4,
@@ -5346,13 +5757,14 @@ const PTO_QUESTIONS = [
     "objective": "Find how many equal groups",
     "difficulty": "Greater Depth",
     "type": "Reasoning",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "grouping-sharing",
     "teacherNote": null,
     "text": "How many groups of 5 toy cars are in 15?",
     "illustration": {
       "type": "dots",
       "count": 15,
-      "emoji": "🚗",
-      "scattered": true
+      "emoji": "🚗"
     },
     "options": [
       3,
@@ -5372,6 +5784,8 @@ const PTO_QUESTIONS = [
     "objective": "Name the fraction that is shaded",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "What fraction of the shape is shaded?",
     "illustration": {
@@ -5398,6 +5812,8 @@ const PTO_QUESTIONS = [
     "objective": "Name the fraction that is shaded",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "What fraction of the shape is shaded?",
     "illustration": {
@@ -5424,6 +5840,8 @@ const PTO_QUESTIONS = [
     "objective": "Name the fraction that is shaded",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "What fraction of the shape is shaded?",
     "illustration": {
@@ -5450,6 +5868,8 @@ const PTO_QUESTIONS = [
     "objective": "Name the fraction that is shaded",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "What fraction of the shape is shaded?",
     "illustration": {
@@ -5476,6 +5896,8 @@ const PTO_QUESTIONS = [
     "objective": "Name the fraction that is shaded",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "What fraction of the shape is shaded?",
     "illustration": {
@@ -5502,6 +5924,8 @@ const PTO_QUESTIONS = [
     "objective": "Name the fraction that is shaded",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "What fraction of the shape is shaded?",
     "illustration": {
@@ -5528,13 +5952,14 @@ const PTO_QUESTIONS = [
     "objective": "Find half of a set of objects",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "What is half of these 4 stickers?",
     "illustration": {
       "type": "dots",
       "count": 4,
-      "emoji": "⭐",
-      "scattered": true
+      "emoji": "⭐"
     },
     "options": [
       2,
@@ -5554,13 +5979,14 @@ const PTO_QUESTIONS = [
     "objective": "Find half of a set of objects",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "What is half of these 6 stickers?",
     "illustration": {
       "type": "dots",
       "count": 6,
-      "emoji": "⭐",
-      "scattered": true
+      "emoji": "⭐"
     },
     "options": [
       3,
@@ -5580,13 +6006,14 @@ const PTO_QUESTIONS = [
     "objective": "Find half of a set of objects",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "What is half of these 8 stickers?",
     "illustration": {
       "type": "dots",
       "count": 8,
-      "emoji": "⭐",
-      "scattered": true
+      "emoji": "⭐"
     },
     "options": [
       4,
@@ -5606,13 +6033,14 @@ const PTO_QUESTIONS = [
     "objective": "Find half of a set of objects",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "What is half of these 10 stickers?",
     "illustration": {
       "type": "dots",
       "count": 10,
-      "emoji": "⭐",
-      "scattered": true
+      "emoji": "⭐"
     },
     "options": [
       5,
@@ -5632,13 +6060,14 @@ const PTO_QUESTIONS = [
     "objective": "Find half of a set of objects",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "What is half of these 12 stickers?",
     "illustration": {
       "type": "dots",
       "count": 12,
-      "emoji": "⭐",
-      "scattered": true
+      "emoji": "⭐"
     },
     "options": [
       6,
@@ -5658,13 +6087,14 @@ const PTO_QUESTIONS = [
     "objective": "Find half of a set of objects",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "What is half of these 16 stickers?",
     "illustration": {
       "type": "dots",
       "count": 16,
-      "emoji": "⭐",
-      "scattered": true
+      "emoji": "⭐"
     },
     "options": [
       8,
@@ -5684,13 +6114,14 @@ const PTO_QUESTIONS = [
     "objective": "Find a quarter of a set of objects",
     "difficulty": "Greater Depth",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "What is a quarter of these 4 cookies?",
     "illustration": {
       "type": "dots",
       "count": 4,
-      "emoji": "🍪",
-      "scattered": true
+      "emoji": "🍪"
     },
     "options": [
       1,
@@ -5710,13 +6141,14 @@ const PTO_QUESTIONS = [
     "objective": "Find a quarter of a set of objects",
     "difficulty": "Greater Depth",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "What is a quarter of these 8 cookies?",
     "illustration": {
       "type": "dots",
       "count": 8,
-      "emoji": "🍪",
-      "scattered": true
+      "emoji": "🍪"
     },
     "options": [
       2,
@@ -5736,13 +6168,14 @@ const PTO_QUESTIONS = [
     "objective": "Find a quarter of a set of objects",
     "difficulty": "Greater Depth",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "What is a quarter of these 12 cookies?",
     "illustration": {
       "type": "dots",
       "count": 12,
-      "emoji": "🍪",
-      "scattered": true
+      "emoji": "🍪"
     },
     "options": [
       3,
@@ -5762,13 +6195,14 @@ const PTO_QUESTIONS = [
     "objective": "Find a quarter of a set of objects",
     "difficulty": "Greater Depth",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "What is a quarter of these 16 cookies?",
     "illustration": {
       "type": "dots",
       "count": 16,
-      "emoji": "🍪",
-      "scattered": true
+      "emoji": "🍪"
     },
     "options": [
       4,
@@ -5788,13 +6222,14 @@ const PTO_QUESTIONS = [
     "objective": "Find a quarter of a set of objects",
     "difficulty": "Greater Depth",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "What is a quarter of these 20 cookies?",
     "illustration": {
       "type": "dots",
       "count": 20,
-      "emoji": "🍪",
-      "scattered": true
+      "emoji": "🍪"
     },
     "options": [
       5,
@@ -5814,6 +6249,8 @@ const PTO_QUESTIONS = [
     "objective": "Find half of a number",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "What is half of 8?",
     "illustration": {
@@ -5839,6 +6276,8 @@ const PTO_QUESTIONS = [
     "objective": "Find half of a number",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "What is half of 10?",
     "illustration": {
@@ -5864,6 +6303,8 @@ const PTO_QUESTIONS = [
     "objective": "Find half of a number",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "What is half of 14?",
     "illustration": {
@@ -5889,6 +6330,8 @@ const PTO_QUESTIONS = [
     "objective": "Find half of a number",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "What is half of 18?",
     "illustration": {
@@ -5914,6 +6357,8 @@ const PTO_QUESTIONS = [
     "objective": "Find half of a number",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "What is half of 22?",
     "illustration": {
@@ -5939,6 +6384,8 @@ const PTO_QUESTIONS = [
     "objective": "Find half of a number",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "What is half of 30?",
     "illustration": {
@@ -5964,6 +6411,8 @@ const PTO_QUESTIONS = [
     "objective": "Find a quarter of a number",
     "difficulty": "Greater Depth",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "What is a quarter of 8?",
     "illustration": {
@@ -5989,6 +6438,8 @@ const PTO_QUESTIONS = [
     "objective": "Find a quarter of a number",
     "difficulty": "Greater Depth",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "What is a quarter of 12?",
     "illustration": {
@@ -6014,6 +6465,8 @@ const PTO_QUESTIONS = [
     "objective": "Find a quarter of a number",
     "difficulty": "Greater Depth",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "What is a quarter of 16?",
     "illustration": {
@@ -6039,6 +6492,8 @@ const PTO_QUESTIONS = [
     "objective": "Find a quarter of a number",
     "difficulty": "Greater Depth",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "What is a quarter of 20?",
     "illustration": {
@@ -6064,6 +6519,8 @@ const PTO_QUESTIONS = [
     "objective": "Find a quarter of a number",
     "difficulty": "Greater Depth",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "What is a quarter of 24?",
     "illustration": {
@@ -6089,6 +6546,8 @@ const PTO_QUESTIONS = [
     "objective": "Count the equal parts a shape is divided into",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "Into how many equal parts is this shape divided?",
     "illustration": {
@@ -6115,6 +6574,8 @@ const PTO_QUESTIONS = [
     "objective": "Count the equal parts a shape is divided into",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "Into how many equal parts is this shape divided?",
     "illustration": {
@@ -6141,6 +6602,8 @@ const PTO_QUESTIONS = [
     "objective": "Count the equal parts a shape is divided into",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "Into how many equal parts is this shape divided?",
     "illustration": {
@@ -6167,6 +6630,8 @@ const PTO_QUESTIONS = [
     "objective": "Count the equal parts a shape is divided into",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "Into how many equal parts is this shape divided?",
     "illustration": {
@@ -6193,6 +6658,8 @@ const PTO_QUESTIONS = [
     "objective": "Count the equal parts a shape is divided into",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "Into how many equal parts is this shape divided?",
     "illustration": {
@@ -6219,6 +6686,8 @@ const PTO_QUESTIONS = [
     "objective": "Count the equal parts a shape is divided into",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "equal-parts",
     "teacherNote": null,
     "text": "Into how many equal parts is this shape divided?",
     "illustration": {
@@ -6245,6 +6714,8 @@ const PTO_QUESTIONS = [
     "objective": "Find the total value of coins",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "money-value",
     "teacherNote": "Add the largest coins first.",
     "text": "How much money is here?",
     "illustration": {
@@ -6253,8 +6724,7 @@ const PTO_QUESTIONS = [
         10,
         5,
         2
-      ],
-      "scattered": true
+      ]
     },
     "options": [
       "17p",
@@ -6274,6 +6744,8 @@ const PTO_QUESTIONS = [
     "objective": "Find the total value of coins",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "money-value",
     "teacherNote": "Add the largest coins first.",
     "text": "How much money is here?",
     "illustration": {
@@ -6281,8 +6753,7 @@ const PTO_QUESTIONS = [
       "values": [
         10,
         10
-      ],
-      "scattered": true
+      ]
     },
     "options": [
       "20p",
@@ -6302,6 +6773,8 @@ const PTO_QUESTIONS = [
     "objective": "Find the total value of coins",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "money-value",
     "teacherNote": "Add the largest coins first.",
     "text": "How much money is here?",
     "illustration": {
@@ -6310,8 +6783,7 @@ const PTO_QUESTIONS = [
         5,
         5,
         2
-      ],
-      "scattered": true
+      ]
     },
     "options": [
       "12p",
@@ -6331,6 +6803,8 @@ const PTO_QUESTIONS = [
     "objective": "Find the total value of coins",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "money-value",
     "teacherNote": "Add the largest coins first.",
     "text": "How much money is here?",
     "illustration": {
@@ -6338,8 +6812,7 @@ const PTO_QUESTIONS = [
       "values": [
         20,
         5
-      ],
-      "scattered": true
+      ]
     },
     "options": [
       "25p",
@@ -6359,6 +6832,8 @@ const PTO_QUESTIONS = [
     "objective": "Find the total value of coins",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "money-value",
     "teacherNote": "Add the largest coins first.",
     "text": "How much money is here?",
     "illustration": {
@@ -6367,8 +6842,7 @@ const PTO_QUESTIONS = [
         10,
         2,
         2
-      ],
-      "scattered": true
+      ]
     },
     "options": [
       "14p",
@@ -6388,6 +6862,8 @@ const PTO_QUESTIONS = [
     "objective": "Find the total value of coins",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "money-value",
     "teacherNote": "Add the largest coins first.",
     "text": "How much money is here?",
     "illustration": {
@@ -6396,8 +6872,7 @@ const PTO_QUESTIONS = [
         5,
         2,
         1
-      ],
-      "scattered": true
+      ]
     },
     "options": [
       "8p",
@@ -6417,6 +6892,8 @@ const PTO_QUESTIONS = [
     "objective": "Find the total value of coins",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "money-value",
     "teacherNote": "Add the largest coins first.",
     "text": "How much money is here?",
     "illustration": {
@@ -6425,8 +6902,7 @@ const PTO_QUESTIONS = [
         10,
         10,
         5
-      ],
-      "scattered": true
+      ]
     },
     "options": [
       "25p",
@@ -6446,6 +6922,8 @@ const PTO_QUESTIONS = [
     "objective": "Find the total value of coins",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "money-value",
     "teacherNote": "Add the largest coins first.",
     "text": "How much money is here?",
     "illustration": {
@@ -6454,8 +6932,7 @@ const PTO_QUESTIONS = [
         2,
         2,
         2
-      ],
-      "scattered": true
+      ]
     },
     "options": [
       "6p",
@@ -6475,6 +6952,8 @@ const PTO_QUESTIONS = [
     "objective": "Find the total value of coins",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "money-value",
     "teacherNote": "Add the largest coins first.",
     "text": "How much money is here?",
     "illustration": {
@@ -6482,8 +6961,7 @@ const PTO_QUESTIONS = [
       "values": [
         20,
         10
-      ],
-      "scattered": true
+      ]
     },
     "options": [
       "30p",
@@ -6503,6 +6981,8 @@ const PTO_QUESTIONS = [
     "objective": "Find the total value of coins",
     "difficulty": "Secure",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "money-value",
     "teacherNote": "Add the largest coins first.",
     "text": "How much money is here?",
     "illustration": {
@@ -6511,8 +6991,7 @@ const PTO_QUESTIONS = [
         5,
         5,
         5
-      ],
-      "scattered": true
+      ]
     },
     "options": [
       "15p",
@@ -6532,6 +7011,8 @@ const PTO_QUESTIONS = [
     "objective": "Identify the largest amount",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "money-value",
     "teacherNote": null,
     "text": "Which is the largest amount of money?",
     "illustration": {
@@ -6541,8 +7022,7 @@ const PTO_QUESTIONS = [
         10,
         2,
         20
-      ],
-      "scattered": true
+      ]
     },
     "options": [
       "20p",
@@ -6562,6 +7042,8 @@ const PTO_QUESTIONS = [
     "objective": "Identify the largest amount",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "money-value",
     "teacherNote": null,
     "text": "Which is the largest amount of money?",
     "illustration": {
@@ -6571,8 +7053,7 @@ const PTO_QUESTIONS = [
         2,
         5,
         10
-      ],
-      "scattered": true
+      ]
     },
     "options": [
       "10p",
@@ -6592,6 +7073,8 @@ const PTO_QUESTIONS = [
     "objective": "Identify the largest amount",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "money-value",
     "teacherNote": null,
     "text": "Which is the largest amount of money?",
     "illustration": {
@@ -6601,8 +7084,7 @@ const PTO_QUESTIONS = [
         50,
         10,
         5
-      ],
-      "scattered": true
+      ]
     },
     "options": [
       "50p",
@@ -6622,6 +7104,8 @@ const PTO_QUESTIONS = [
     "objective": "Identify the largest amount",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "money-value",
     "teacherNote": null,
     "text": "Which is the largest amount of money?",
     "illustration": {
@@ -6631,8 +7115,7 @@ const PTO_QUESTIONS = [
         5,
         1,
         10
-      ],
-      "scattered": true
+      ]
     },
     "options": [
       "10p",
@@ -6652,6 +7135,8 @@ const PTO_QUESTIONS = [
     "objective": "Identify the largest amount",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "money-value",
     "teacherNote": null,
     "text": "Which is the largest amount of money?",
     "illustration": {
@@ -6661,8 +7146,7 @@ const PTO_QUESTIONS = [
         20,
         5,
         2
-      ],
-      "scattered": true
+      ]
     },
     "options": [
       "20p",
@@ -6682,6 +7166,8 @@ const PTO_QUESTIONS = [
     "objective": "Read o'clock times",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "time-reading",
     "teacherNote": "The short hand shows the hour.",
     "text": "What time does the clock show?",
     "illustration": {
@@ -6707,6 +7193,8 @@ const PTO_QUESTIONS = [
     "objective": "Read o'clock times",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "time-reading",
     "teacherNote": "The short hand shows the hour.",
     "text": "What time does the clock show?",
     "illustration": {
@@ -6732,6 +7220,8 @@ const PTO_QUESTIONS = [
     "objective": "Read o'clock times",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "time-reading",
     "teacherNote": "The short hand shows the hour.",
     "text": "What time does the clock show?",
     "illustration": {
@@ -6757,6 +7247,8 @@ const PTO_QUESTIONS = [
     "objective": "Read o'clock times",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "time-reading",
     "teacherNote": "The short hand shows the hour.",
     "text": "What time does the clock show?",
     "illustration": {
@@ -6782,6 +7274,8 @@ const PTO_QUESTIONS = [
     "objective": "Read o'clock times",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "time-reading",
     "teacherNote": "The short hand shows the hour.",
     "text": "What time does the clock show?",
     "illustration": {
@@ -6807,6 +7301,8 @@ const PTO_QUESTIONS = [
     "objective": "Read o'clock times",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "time-reading",
     "teacherNote": "The short hand shows the hour.",
     "text": "What time does the clock show?",
     "illustration": {
@@ -6832,6 +7328,8 @@ const PTO_QUESTIONS = [
     "objective": "Read o'clock times",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "time-reading",
     "teacherNote": "The short hand shows the hour.",
     "text": "What time does the clock show?",
     "illustration": {
@@ -6857,6 +7355,8 @@ const PTO_QUESTIONS = [
     "objective": "Read o'clock times",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "time-reading",
     "teacherNote": "The short hand shows the hour.",
     "text": "What time does the clock show?",
     "illustration": {
@@ -6882,6 +7382,8 @@ const PTO_QUESTIONS = [
     "objective": "Read half past times",
     "difficulty": "Greater Depth",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "time-reading",
     "teacherNote": null,
     "text": "What time does the clock show?",
     "illustration": {
@@ -6907,6 +7409,8 @@ const PTO_QUESTIONS = [
     "objective": "Read half past times",
     "difficulty": "Greater Depth",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "time-reading",
     "teacherNote": null,
     "text": "What time does the clock show?",
     "illustration": {
@@ -6932,6 +7436,8 @@ const PTO_QUESTIONS = [
     "objective": "Read half past times",
     "difficulty": "Greater Depth",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "time-reading",
     "teacherNote": null,
     "text": "What time does the clock show?",
     "illustration": {
@@ -6957,6 +7463,8 @@ const PTO_QUESTIONS = [
     "objective": "Read half past times",
     "difficulty": "Greater Depth",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "time-reading",
     "teacherNote": null,
     "text": "What time does the clock show?",
     "illustration": {
@@ -6982,6 +7490,8 @@ const PTO_QUESTIONS = [
     "objective": "Read half past times",
     "difficulty": "Greater Depth",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "time-reading",
     "teacherNote": null,
     "text": "What time does the clock show?",
     "illustration": {
@@ -7007,6 +7517,8 @@ const PTO_QUESTIONS = [
     "objective": "Read half past times",
     "difficulty": "Greater Depth",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "time-reading",
     "teacherNote": null,
     "text": "What time does the clock show?",
     "illustration": {
@@ -7032,6 +7544,8 @@ const PTO_QUESTIONS = [
     "objective": "Know the order of the days of the week",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "time-sequence",
     "teacherNote": null,
     "text": "Which day comes after Monday?",
     "illustration": null,
@@ -7053,6 +7567,8 @@ const PTO_QUESTIONS = [
     "objective": "Know the order of the days of the week",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "time-sequence",
     "teacherNote": null,
     "text": "Which day comes after Tuesday?",
     "illustration": null,
@@ -7074,6 +7590,8 @@ const PTO_QUESTIONS = [
     "objective": "Know the order of the days of the week",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "time-sequence",
     "teacherNote": null,
     "text": "Which day comes after Wednesday?",
     "illustration": null,
@@ -7095,6 +7613,8 @@ const PTO_QUESTIONS = [
     "objective": "Know the order of the days of the week",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "time-sequence",
     "teacherNote": null,
     "text": "Which day comes after Thursday?",
     "illustration": null,
@@ -7116,6 +7636,8 @@ const PTO_QUESTIONS = [
     "objective": "Know the order of the days of the week",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "time-sequence",
     "teacherNote": null,
     "text": "Which day comes after Friday?",
     "illustration": null,
@@ -7137,6 +7659,8 @@ const PTO_QUESTIONS = [
     "objective": "Know the order of the days of the week",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "time-sequence",
     "teacherNote": null,
     "text": "Which day comes after Saturday?",
     "illustration": null,
@@ -7158,6 +7682,8 @@ const PTO_QUESTIONS = [
     "objective": "Know the order of the days of the week",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "time-sequence",
     "teacherNote": null,
     "text": "Which day comes after Sunday?",
     "illustration": null,
@@ -7179,6 +7705,8 @@ const PTO_QUESTIONS = [
     "objective": "Compare units of time",
     "difficulty": "Secure",
     "type": "Reasoning",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "time-duration",
     "teacherNote": null,
     "text": "Which takes the longest time?",
     "illustration": null,
@@ -7200,6 +7728,8 @@ const PTO_QUESTIONS = [
     "objective": "Compare units of time",
     "difficulty": "Secure",
     "type": "Reasoning",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "time-duration",
     "teacherNote": null,
     "text": "Which takes the longest time?",
     "illustration": null,
@@ -7221,6 +7751,8 @@ const PTO_QUESTIONS = [
     "objective": "Compare units of time",
     "difficulty": "Secure",
     "type": "Reasoning",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "time-duration",
     "teacherNote": null,
     "text": "Which takes the longest time?",
     "illustration": null,
@@ -7242,6 +7774,8 @@ const PTO_QUESTIONS = [
     "objective": "Compare units of time",
     "difficulty": "Secure",
     "type": "Reasoning",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "time-duration",
     "teacherNote": null,
     "text": "Which takes the longest time?",
     "illustration": null,
@@ -7263,6 +7797,8 @@ const PTO_QUESTIONS = [
     "objective": "Compare lengths",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "measurement-comparison",
     "teacherNote": null,
     "text": "Which bar is the longest?",
     "illustration": {
@@ -7300,6 +7836,8 @@ const PTO_QUESTIONS = [
     "objective": "Compare lengths",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "measurement-comparison",
     "teacherNote": null,
     "text": "Which bar is the longest?",
     "illustration": {
@@ -7337,6 +7875,8 @@ const PTO_QUESTIONS = [
     "objective": "Compare lengths",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "measurement-comparison",
     "teacherNote": null,
     "text": "Which bar is the longest?",
     "illustration": {
@@ -7374,6 +7914,8 @@ const PTO_QUESTIONS = [
     "objective": "Compare lengths",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "measurement-comparison",
     "teacherNote": null,
     "text": "Which bar is the longest?",
     "illustration": {
@@ -7411,6 +7953,8 @@ const PTO_QUESTIONS = [
     "objective": "Compare lengths",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "measurement-comparison",
     "teacherNote": null,
     "text": "Which bar is the longest?",
     "illustration": {
@@ -7448,6 +7992,8 @@ const PTO_QUESTIONS = [
     "objective": "Compare mass in everyday contexts",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "measurement-comparison",
     "teacherNote": null,
     "text": "Which is the heaviest?",
     "illustration": null,
@@ -7469,6 +8015,8 @@ const PTO_QUESTIONS = [
     "objective": "Compare mass in everyday contexts",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "measurement-comparison",
     "teacherNote": null,
     "text": "Which is the heaviest?",
     "illustration": null,
@@ -7490,6 +8038,8 @@ const PTO_QUESTIONS = [
     "objective": "Compare mass in everyday contexts",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "measurement-comparison",
     "teacherNote": null,
     "text": "Which is the heaviest?",
     "illustration": null,
@@ -7511,6 +8061,8 @@ const PTO_QUESTIONS = [
     "objective": "Name common 2D shapes",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "shape-properties",
     "teacherNote": null,
     "text": "What is the name of this shape?",
     "illustration": {
@@ -7535,6 +8087,8 @@ const PTO_QUESTIONS = [
     "objective": "Name common 2D shapes",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "shape-properties",
     "teacherNote": null,
     "text": "What is the name of this shape?",
     "illustration": {
@@ -7559,6 +8113,8 @@ const PTO_QUESTIONS = [
     "objective": "Name common 2D shapes",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "shape-properties",
     "teacherNote": null,
     "text": "What is the name of this shape?",
     "illustration": {
@@ -7583,6 +8139,8 @@ const PTO_QUESTIONS = [
     "objective": "Name common 2D shapes",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "shape-properties",
     "teacherNote": null,
     "text": "What is the name of this shape?",
     "illustration": {
@@ -7607,6 +8165,8 @@ const PTO_QUESTIONS = [
     "objective": "Name common 2D shapes",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "shape-properties",
     "teacherNote": null,
     "text": "What is the name of this shape?",
     "illustration": {
@@ -7631,6 +8191,8 @@ const PTO_QUESTIONS = [
     "objective": "Name common 2D shapes",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "shape-properties",
     "teacherNote": null,
     "text": "What is the name of this shape?",
     "illustration": {
@@ -7655,6 +8217,8 @@ const PTO_QUESTIONS = [
     "objective": "Count the sides of a 2D shape",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "shape-properties",
     "teacherNote": null,
     "text": "How many sides does this shape have?",
     "illustration": {
@@ -7679,6 +8243,8 @@ const PTO_QUESTIONS = [
     "objective": "Count the sides of a 2D shape",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "shape-properties",
     "teacherNote": null,
     "text": "How many sides does this shape have?",
     "illustration": {
@@ -7703,6 +8269,8 @@ const PTO_QUESTIONS = [
     "objective": "Count the sides of a 2D shape",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "shape-properties",
     "teacherNote": null,
     "text": "How many sides does this shape have?",
     "illustration": {
@@ -7727,6 +8295,8 @@ const PTO_QUESTIONS = [
     "objective": "Count the sides of a 2D shape",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "shape-properties",
     "teacherNote": null,
     "text": "How many sides does this shape have?",
     "illustration": {
@@ -7751,6 +8321,8 @@ const PTO_QUESTIONS = [
     "objective": "Count the sides of a 2D shape",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "shape-properties",
     "teacherNote": null,
     "text": "How many sides does this shape have?",
     "illustration": {
@@ -7775,6 +8347,8 @@ const PTO_QUESTIONS = [
     "objective": "Count the corners of a 2D shape",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "shape-properties",
     "teacherNote": null,
     "text": "How many corners does this shape have?",
     "illustration": {
@@ -7799,6 +8373,8 @@ const PTO_QUESTIONS = [
     "objective": "Count the corners of a 2D shape",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "shape-properties",
     "teacherNote": null,
     "text": "How many corners does this shape have?",
     "illustration": {
@@ -7823,6 +8399,8 @@ const PTO_QUESTIONS = [
     "objective": "Count the corners of a 2D shape",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "shape-properties",
     "teacherNote": null,
     "text": "How many corners does this shape have?",
     "illustration": {
@@ -7847,6 +8425,8 @@ const PTO_QUESTIONS = [
     "objective": "Count the corners of a 2D shape",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "shape-properties",
     "teacherNote": null,
     "text": "How many corners does this shape have?",
     "illustration": {
@@ -7871,6 +8451,8 @@ const PTO_QUESTIONS = [
     "objective": "Count the corners of a 2D shape",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "shape-properties",
     "teacherNote": null,
     "text": "How many corners does this shape have?",
     "illustration": {
@@ -7895,6 +8477,8 @@ const PTO_QUESTIONS = [
     "objective": "Recognise 2D shapes in everyday objects",
     "difficulty": "Foundation",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "shape-properties",
     "teacherNote": null,
     "text": "Which of these is shaped most like a circle?",
     "illustration": null,
@@ -7916,6 +8500,8 @@ const PTO_QUESTIONS = [
     "objective": "Recognise 2D shapes in everyday objects",
     "difficulty": "Foundation",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "shape-properties",
     "teacherNote": null,
     "text": "Which of these is shaped most like a square?",
     "illustration": null,
@@ -7937,6 +8523,8 @@ const PTO_QUESTIONS = [
     "objective": "Recognise 2D shapes in everyday objects",
     "difficulty": "Foundation",
     "type": "Application",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "shape-properties",
     "teacherNote": null,
     "text": "Which of these is shaped most like a triangle?",
     "illustration": null,
@@ -7958,6 +8546,8 @@ const PTO_QUESTIONS = [
     "objective": "Recognise 3D shapes in everyday objects",
     "difficulty": "Secure",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "shape-properties",
     "teacherNote": "Uses real-world objects rather than drawings.",
     "text": "Which object is shaped like a sphere?",
     "illustration": null,
@@ -7979,6 +8569,8 @@ const PTO_QUESTIONS = [
     "objective": "Recognise 3D shapes in everyday objects",
     "difficulty": "Secure",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "shape-properties",
     "teacherNote": "Uses real-world objects rather than drawings.",
     "text": "Which object is shaped like a cube?",
     "illustration": null,
@@ -8000,6 +8592,8 @@ const PTO_QUESTIONS = [
     "objective": "Recognise 3D shapes in everyday objects",
     "difficulty": "Secure",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "shape-properties",
     "teacherNote": "Uses real-world objects rather than drawings.",
     "text": "Which object is shaped like a cylinder?",
     "illustration": null,
@@ -8021,6 +8615,8 @@ const PTO_QUESTIONS = [
     "objective": "Recognise 3D shapes in everyday objects",
     "difficulty": "Secure",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "shape-properties",
     "teacherNote": "Uses real-world objects rather than drawings.",
     "text": "Which object is shaped like a cone?",
     "illustration": null,
@@ -8042,6 +8638,8 @@ const PTO_QUESTIONS = [
     "objective": "Identify a shape from a property",
     "difficulty": "Greater Depth",
     "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "shape-properties",
     "teacherNote": null,
     "text": "Which shape is the one that which has 4 equal sides?",
     "illustration": null,
@@ -8063,6 +8661,8 @@ const PTO_QUESTIONS = [
     "objective": "Identify a shape from a property",
     "difficulty": "Greater Depth",
     "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "shape-properties",
     "teacherNote": null,
     "text": "Which shape is the one that which has 3 sides?",
     "illustration": null,
@@ -8084,6 +8684,8 @@ const PTO_QUESTIONS = [
     "objective": "Identify a shape from a property",
     "difficulty": "Greater Depth",
     "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "shape-properties",
     "teacherNote": null,
     "text": "Which shape is the one that which has 6 sides?",
     "illustration": null,
@@ -8105,6 +8707,8 @@ const PTO_QUESTIONS = [
     "objective": "Identify a shape from a property",
     "difficulty": "Greater Depth",
     "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "shape-properties",
     "teacherNote": null,
     "text": "Which shape is the one that which is completely round?",
     "illustration": null,
@@ -8126,6 +8730,8 @@ const PTO_QUESTIONS = [
     "objective": "Know opposite directions",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "position-direction-language",
     "teacherNote": null,
     "text": "What is the opposite of left?",
     "illustration": {
@@ -8150,6 +8756,8 @@ const PTO_QUESTIONS = [
     "objective": "Know opposite directions",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "position-direction-language",
     "teacherNote": null,
     "text": "What is the opposite of up?",
     "illustration": {
@@ -8174,6 +8782,8 @@ const PTO_QUESTIONS = [
     "objective": "Know opposite directions",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "position-direction-language",
     "teacherNote": null,
     "text": "What is the opposite of forwards?",
     "illustration": {
@@ -8198,6 +8808,8 @@ const PTO_QUESTIONS = [
     "objective": "Know opposite directions",
     "difficulty": "Foundation",
     "type": "Recall",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "position-direction-language",
     "teacherNote": null,
     "text": "What is the opposite of top?",
     "illustration": {
@@ -8222,6 +8834,8 @@ const PTO_QUESTIONS = [
     "objective": "Understand quarter and half turns",
     "difficulty": "Greater Depth",
     "type": "Reasoning",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "position-direction-language",
     "teacherNote": null,
     "text": "How many quarter turns make a half turn?",
     "illustration": {
@@ -8246,6 +8860,8 @@ const PTO_QUESTIONS = [
     "objective": "Understand quarter and half turns",
     "difficulty": "Greater Depth",
     "type": "Reasoning",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "position-direction-language",
     "teacherNote": null,
     "text": "How many quarter turns make a full turn?",
     "illustration": {
@@ -8270,6 +8886,8 @@ const PTO_QUESTIONS = [
     "objective": "Understand quarter and half turns",
     "difficulty": "Greater Depth",
     "type": "Reasoning",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "position-direction-language",
     "teacherNote": null,
     "text": "How many quarter turns make a three-quarter turn?",
     "illustration": {
@@ -8294,6 +8912,8 @@ const PTO_QUESTIONS = [
     "objective": "Use ordinal position words",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "position-direction-language",
     "teacherNote": null,
     "text": "Which comes straight after 1st?",
     "illustration": null,
@@ -8315,6 +8935,8 @@ const PTO_QUESTIONS = [
     "objective": "Use ordinal position words",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "position-direction-language",
     "teacherNote": null,
     "text": "Which comes straight after 3rd?",
     "illustration": null,
@@ -8336,6 +8958,8 @@ const PTO_QUESTIONS = [
     "objective": "Use ordinal position words",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "position-direction-language",
     "teacherNote": null,
     "text": "Which comes straight before 3rd?",
     "illustration": null,
@@ -8357,6 +8981,8 @@ const PTO_QUESTIONS = [
     "objective": "Use ordinal position words",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "position-direction-language",
     "teacherNote": null,
     "text": "Which comes straight before 5th?",
     "illustration": null,
@@ -8378,6 +9004,8 @@ const PTO_QUESTIONS = [
     "objective": "Use everyday position words",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "position-direction-language",
     "teacherNote": null,
     "text": "The sky is ___ the ground.",
     "illustration": null,
@@ -8399,6 +9027,8 @@ const PTO_QUESTIONS = [
     "objective": "Use everyday position words",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "position-direction-language",
     "teacherNote": null,
     "text": "Your feet are ___ your head.",
     "illustration": null,
@@ -8420,6 +9050,8 @@ const PTO_QUESTIONS = [
     "objective": "Use everyday position words",
     "difficulty": "Foundation",
     "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "position-direction-language",
     "teacherNote": null,
     "text": "The roof is ___ the house.",
     "illustration": null,
@@ -8441,6 +9073,8 @@ const PTO_QUESTIONS = [
     "objective": "Read a value from a pictogram",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "data-interpretation",
     "teacherNote": null,
     "text": "The pictogram shows how many there are. How many apples are there?",
     "illustration": {
@@ -8478,6 +9112,8 @@ const PTO_QUESTIONS = [
     "objective": "Read a value from a pictogram",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "data-interpretation",
     "teacherNote": null,
     "text": "The chart shows how many there are. How many cats are there?",
     "illustration": {
@@ -8515,6 +9151,8 @@ const PTO_QUESTIONS = [
     "objective": "Read a value from a pictogram",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "data-interpretation",
     "teacherNote": null,
     "text": "The pictogram shows how many there are. How many red are there?",
     "illustration": {
@@ -8552,6 +9190,8 @@ const PTO_QUESTIONS = [
     "objective": "Read a value from a pictogram",
     "difficulty": "Secure",
     "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "data-interpretation",
     "teacherNote": null,
     "text": "The chart shows how many there are. How many buses are there?",
     "illustration": {
@@ -8589,6 +9229,8 @@ const PTO_QUESTIONS = [
     "objective": "Find the category with the most",
     "difficulty": "Secure",
     "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "data-interpretation",
     "teacherNote": null,
     "text": "Which has the most?",
     "illustration": {
@@ -8626,6 +9268,8 @@ const PTO_QUESTIONS = [
     "objective": "Find the category with the most",
     "difficulty": "Secure",
     "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "data-interpretation",
     "teacherNote": null,
     "text": "Which has the most?",
     "illustration": {
@@ -8663,6 +9307,8 @@ const PTO_QUESTIONS = [
     "objective": "Find the category with the most",
     "difficulty": "Secure",
     "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "data-interpretation",
     "teacherNote": null,
     "text": "Which has the most?",
     "illustration": {
@@ -8700,6 +9346,8 @@ const PTO_QUESTIONS = [
     "objective": "Find the category with the most",
     "difficulty": "Secure",
     "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "data-interpretation",
     "teacherNote": null,
     "text": "Which has the most?",
     "illustration": {
@@ -8737,6 +9385,8 @@ const PTO_QUESTIONS = [
     "objective": "Find a total from a pictogram",
     "difficulty": "Greater Depth",
     "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "data-interpretation",
     "teacherNote": null,
     "text": "How many are there altogether?",
     "illustration": {
@@ -8774,6 +9424,8 @@ const PTO_QUESTIONS = [
     "objective": "Find a total from a pictogram",
     "difficulty": "Greater Depth",
     "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "data-interpretation",
     "teacherNote": null,
     "text": "How many are there altogether?",
     "illustration": {
@@ -8811,6 +9463,8 @@ const PTO_QUESTIONS = [
     "objective": "Find a total from a pictogram",
     "difficulty": "Greater Depth",
     "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "data-interpretation",
     "teacherNote": null,
     "text": "How many are there altogether?",
     "illustration": {
@@ -8848,6 +9502,8 @@ const PTO_QUESTIONS = [
     "objective": "Find how many more",
     "difficulty": "Greater Depth",
     "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "data-interpretation",
     "teacherNote": null,
     "text": "How many more apples than pears are there?",
     "illustration": {
@@ -8885,6 +9541,8 @@ const PTO_QUESTIONS = [
     "objective": "Find how many more",
     "difficulty": "Greater Depth",
     "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "data-interpretation",
     "teacherNote": null,
     "text": "How many more cats than dogs are there?",
     "illustration": {
@@ -8922,6 +9580,8 @@ const PTO_QUESTIONS = [
     "objective": "Find how many more",
     "difficulty": "Greater Depth",
     "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "data-interpretation",
     "teacherNote": null,
     "text": "How many more blue than red are there?",
     "illustration": {
@@ -8950,5 +9610,1367 @@ const PTO_QUESTIONS = [
     "correctIndex": 0,
     "explanation": "There are 2 more blue than red.",
     "misconception": "Adds the two rows instead of finding the difference."
+  },
+  {
+    "id": "MAT-KS1-NPV-0091",
+    "strand": "NPV",
+    "skillId": "MAT-KS1-NPV-IN3",
+    "subtopic": "Count in 3s",
+    "objective": "Continue a count in threes",
+    "difficulty": "Secure",
+    "type": "Recall",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "counting-in-steps",
+    "teacherNote": null,
+    "text": "What comes next? 3, 6, 9, __",
+    "illustration": null,
+    "options": [
+      12,
+      11,
+      15,
+      10
+    ],
+    "correctIndex": 0,
+    "explanation": "Counting in 3s, the next number is 12.",
+    "misconception": "Does not add three each time."
+  },
+  {
+    "id": "MAT-KS1-NPV-0092",
+    "strand": "NPV",
+    "skillId": "MAT-KS1-NPV-IN3",
+    "subtopic": "Count in 3s",
+    "objective": "Continue a count in threes",
+    "difficulty": "Secure",
+    "type": "Recall",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "counting-in-steps",
+    "teacherNote": null,
+    "text": "What comes next? 6, 9, 12, __",
+    "illustration": null,
+    "options": [
+      15,
+      14,
+      18,
+      13
+    ],
+    "correctIndex": 0,
+    "explanation": "Counting in 3s, the next number is 15.",
+    "misconception": "Does not add three each time."
+  },
+  {
+    "id": "MAT-KS1-NPV-0093",
+    "strand": "NPV",
+    "skillId": "MAT-KS1-NPV-IN3",
+    "subtopic": "Count in 3s",
+    "objective": "Continue a count in threes",
+    "difficulty": "Secure",
+    "type": "Recall",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "counting-in-steps",
+    "teacherNote": null,
+    "text": "What comes next? 12, 15, 18, __",
+    "illustration": null,
+    "options": [
+      21,
+      20,
+      24,
+      19
+    ],
+    "correctIndex": 0,
+    "explanation": "Counting in 3s, the next number is 21.",
+    "misconception": "Does not add three each time."
+  },
+  {
+    "id": "MAT-KS1-NPV-0094",
+    "strand": "NPV",
+    "skillId": "MAT-KS1-NPV-IN3",
+    "subtopic": "Count in 3s",
+    "objective": "Continue a count in threes",
+    "difficulty": "Secure",
+    "type": "Recall",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "counting-in-steps",
+    "teacherNote": null,
+    "text": "What comes next? 15, 18, 21, __",
+    "illustration": null,
+    "options": [
+      24,
+      23,
+      27,
+      22
+    ],
+    "correctIndex": 0,
+    "explanation": "Counting in 3s, the next number is 24.",
+    "misconception": "Does not add three each time."
+  },
+  {
+    "id": "MAT-KS1-NPV-0095",
+    "strand": "NPV",
+    "skillId": "MAT-KS1-NPV-IN3",
+    "subtopic": "Count in 3s",
+    "objective": "Continue a count in threes",
+    "difficulty": "Secure",
+    "type": "Recall",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "counting-in-steps",
+    "teacherNote": null,
+    "text": "What comes next? 21, 24, 27, __",
+    "illustration": null,
+    "options": [
+      30,
+      29,
+      33,
+      28
+    ],
+    "correctIndex": 0,
+    "explanation": "Counting in 3s, the next number is 30.",
+    "misconception": "Does not add three each time."
+  },
+  {
+    "id": "MAT-KS1-AS-0091",
+    "strand": "AS",
+    "skillId": "MAT-KS1-AS-ADD2D2D",
+    "subtopic": "Add two two-digit numbers",
+    "objective": "Add two two-digit numbers together",
+    "difficulty": "Greater Depth",
+    "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "addition-strategy",
+    "teacherNote": null,
+    "text": "What is 23 + 14?",
+    "illustration": null,
+    "options": [
+      37,
+      47,
+      27,
+      38
+    ],
+    "correctIndex": 0,
+    "explanation": "23 + 14 = 37. Try adding the tens first, then the ones.",
+    "misconception": "Adds the tens and ones correctly but forgets to carry, or misaligns place value."
+  },
+  {
+    "id": "MAT-KS1-AS-0092",
+    "strand": "AS",
+    "skillId": "MAT-KS1-AS-ADD2D2D",
+    "subtopic": "Add two two-digit numbers",
+    "objective": "Add two two-digit numbers together",
+    "difficulty": "Greater Depth",
+    "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "addition-strategy",
+    "teacherNote": null,
+    "text": "What is 35 + 22?",
+    "illustration": null,
+    "options": [
+      57,
+      67,
+      47,
+      58
+    ],
+    "correctIndex": 0,
+    "explanation": "35 + 22 = 57. Try adding the tens first, then the ones.",
+    "misconception": "Adds the tens and ones correctly but forgets to carry, or misaligns place value."
+  },
+  {
+    "id": "MAT-KS1-AS-0093",
+    "strand": "AS",
+    "skillId": "MAT-KS1-AS-ADD2D2D",
+    "subtopic": "Add two two-digit numbers",
+    "objective": "Add two two-digit numbers together",
+    "difficulty": "Greater Depth",
+    "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "addition-strategy",
+    "teacherNote": null,
+    "text": "What is 41 + 36?",
+    "illustration": null,
+    "options": [
+      77,
+      87,
+      67,
+      78
+    ],
+    "correctIndex": 0,
+    "explanation": "41 + 36 = 77. Try adding the tens first, then the ones.",
+    "misconception": "Adds the tens and ones correctly but forgets to carry, or misaligns place value."
+  },
+  {
+    "id": "MAT-KS1-AS-0094",
+    "strand": "AS",
+    "skillId": "MAT-KS1-AS-ADD2D2D",
+    "subtopic": "Add two two-digit numbers",
+    "objective": "Add two two-digit numbers together",
+    "difficulty": "Greater Depth",
+    "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "addition-strategy",
+    "teacherNote": null,
+    "text": "What is 27 + 31?",
+    "illustration": null,
+    "options": [
+      58,
+      68,
+      48,
+      59
+    ],
+    "correctIndex": 0,
+    "explanation": "27 + 31 = 58. Try adding the tens first, then the ones.",
+    "misconception": "Adds the tens and ones correctly but forgets to carry, or misaligns place value."
+  },
+  {
+    "id": "MAT-KS1-AS-0095",
+    "strand": "AS",
+    "skillId": "MAT-KS1-AS-ADD2D2D",
+    "subtopic": "Add two two-digit numbers",
+    "objective": "Add two two-digit numbers together",
+    "difficulty": "Greater Depth",
+    "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "addition-strategy",
+    "teacherNote": null,
+    "text": "What is 52 + 25?",
+    "illustration": null,
+    "options": [
+      77,
+      87,
+      67,
+      78
+    ],
+    "correctIndex": 0,
+    "explanation": "52 + 25 = 77. Try adding the tens first, then the ones.",
+    "misconception": "Adds the tens and ones correctly but forgets to carry, or misaligns place value."
+  },
+  {
+    "id": "MAT-KS1-MD-0044",
+    "strand": "MD",
+    "skillId": "MAT-KS1-MD-X2",
+    "subtopic": "Groups of two",
+    "objective": "Recall multiplication facts for the 2 times table",
+    "difficulty": "Secure",
+    "type": "Recall",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "times-tables",
+    "teacherNote": null,
+    "text": "What is 2 × 1?",
+    "illustration": null,
+    "options": [
+      2,
+      3,
+      1,
+      4
+    ],
+    "correctIndex": 0,
+    "explanation": "2 × 1 = 2.",
+    "misconception": "Confuses the 2 times table with adding 2 once, or counts the wrong number of groups."
+  },
+  {
+    "id": "MAT-KS1-MD-0045",
+    "strand": "MD",
+    "skillId": "MAT-KS1-MD-X2",
+    "subtopic": "Groups of two",
+    "objective": "Recall multiplication facts for the 2 times table",
+    "difficulty": "Secure",
+    "type": "Recall",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "times-tables",
+    "teacherNote": null,
+    "text": "What is 2 × 2?",
+    "illustration": null,
+    "options": [
+      4,
+      5,
+      3,
+      2
+    ],
+    "correctIndex": 0,
+    "explanation": "2 × 2 = 4.",
+    "misconception": "Confuses the 2 times table with adding 2 once, or counts the wrong number of groups."
+  },
+  {
+    "id": "MAT-KS1-MD-0046",
+    "strand": "MD",
+    "skillId": "MAT-KS1-MD-X2",
+    "subtopic": "Groups of two",
+    "objective": "Recall multiplication facts for the 2 times table",
+    "difficulty": "Secure",
+    "type": "Recall",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "times-tables",
+    "teacherNote": null,
+    "text": "What is 2 × 3?",
+    "illustration": null,
+    "options": [
+      6,
+      7,
+      5,
+      3
+    ],
+    "correctIndex": 0,
+    "explanation": "2 × 3 = 6.",
+    "misconception": "Confuses the 2 times table with adding 2 once, or counts the wrong number of groups."
+  },
+  {
+    "id": "MAT-KS1-MD-0047",
+    "strand": "MD",
+    "skillId": "MAT-KS1-MD-X2",
+    "subtopic": "Groups of two",
+    "objective": "Recall multiplication facts for the 2 times table",
+    "difficulty": "Secure",
+    "type": "Recall",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "times-tables",
+    "teacherNote": null,
+    "text": "What is 2 × 4?",
+    "illustration": null,
+    "options": [
+      8,
+      9,
+      7,
+      4
+    ],
+    "correctIndex": 0,
+    "explanation": "2 × 4 = 8.",
+    "misconception": "Confuses the 2 times table with adding 2 once, or counts the wrong number of groups."
+  },
+  {
+    "id": "MAT-KS1-MD-0048",
+    "strand": "MD",
+    "skillId": "MAT-KS1-MD-X2",
+    "subtopic": "Groups of two",
+    "objective": "Recall multiplication facts for the 2 times table",
+    "difficulty": "Secure",
+    "type": "Recall",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "times-tables",
+    "teacherNote": null,
+    "text": "What is 2 × 5?",
+    "illustration": null,
+    "options": [
+      10,
+      11,
+      9,
+      5
+    ],
+    "correctIndex": 0,
+    "explanation": "2 × 5 = 10.",
+    "misconception": "Confuses the 2 times table with adding 2 once, or counts the wrong number of groups."
+  },
+  {
+    "id": "MAT-KS1-MD-0049",
+    "strand": "MD",
+    "skillId": "MAT-KS1-MD-X2",
+    "subtopic": "Groups of two",
+    "objective": "Recall multiplication facts for the 2 times table",
+    "difficulty": "Secure",
+    "type": "Recall",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "times-tables",
+    "teacherNote": null,
+    "text": "What is 2 × 6?",
+    "illustration": null,
+    "options": [
+      12,
+      13,
+      11,
+      6
+    ],
+    "correctIndex": 0,
+    "explanation": "2 × 6 = 12.",
+    "misconception": "Confuses the 2 times table with adding 2 once, or counts the wrong number of groups."
+  },
+  {
+    "id": "MAT-KS1-MD-0050",
+    "strand": "MD",
+    "skillId": "MAT-KS1-MD-COMM",
+    "subtopic": "Commutativity",
+    "objective": "Understand that multiplication can be done in any order",
+    "difficulty": "Greater Depth",
+    "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "commutativity",
+    "teacherNote": null,
+    "text": "3 × 4 gives the same answer as which calculation?",
+    "illustration": null,
+    "options": [
+      "4 × 3",
+      "3 + 4",
+      "3 × 3",
+      "4 + 4"
+    ],
+    "correctIndex": 0,
+    "explanation": "Multiplication can be done in any order, so 3 × 4 = 4 × 3.",
+    "misconception": "Does not yet realise multiplication can be reordered without changing the answer."
+  },
+  {
+    "id": "MAT-KS1-MD-0051",
+    "strand": "MD",
+    "skillId": "MAT-KS1-MD-COMM",
+    "subtopic": "Commutativity",
+    "objective": "Understand that multiplication can be done in any order",
+    "difficulty": "Greater Depth",
+    "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "commutativity",
+    "teacherNote": null,
+    "text": "2 × 5 gives the same answer as which calculation?",
+    "illustration": null,
+    "options": [
+      "5 × 2",
+      "2 + 5",
+      "2 × 2",
+      "5 + 5"
+    ],
+    "correctIndex": 0,
+    "explanation": "Multiplication can be done in any order, so 2 × 5 = 5 × 2.",
+    "misconception": "Does not yet realise multiplication can be reordered without changing the answer."
+  },
+  {
+    "id": "MAT-KS1-MD-0052",
+    "strand": "MD",
+    "skillId": "MAT-KS1-MD-COMM",
+    "subtopic": "Commutativity",
+    "objective": "Understand that multiplication can be done in any order",
+    "difficulty": "Greater Depth",
+    "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "commutativity",
+    "teacherNote": null,
+    "text": "6 × 2 gives the same answer as which calculation?",
+    "illustration": null,
+    "options": [
+      "2 × 6",
+      "6 + 2",
+      "6 × 6",
+      "2 + 2"
+    ],
+    "correctIndex": 0,
+    "explanation": "Multiplication can be done in any order, so 6 × 2 = 2 × 6.",
+    "misconception": "Does not yet realise multiplication can be reordered without changing the answer."
+  },
+  {
+    "id": "MAT-KS1-MD-0053",
+    "strand": "MD",
+    "skillId": "MAT-KS1-MD-COMM",
+    "subtopic": "Commutativity",
+    "objective": "Understand that multiplication can be done in any order",
+    "difficulty": "Greater Depth",
+    "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "commutativity",
+    "teacherNote": null,
+    "text": "4 × 3 gives the same answer as which calculation?",
+    "illustration": null,
+    "options": [
+      "3 × 4",
+      "4 + 3",
+      "4 × 4",
+      "3 + 3"
+    ],
+    "correctIndex": 0,
+    "explanation": "Multiplication can be done in any order, so 4 × 3 = 3 × 4.",
+    "misconception": "Does not yet realise multiplication can be reordered without changing the answer."
+  },
+  {
+    "id": "MAT-KS1-MD-0054",
+    "strand": "MD",
+    "skillId": "MAT-KS1-MD-COMM",
+    "subtopic": "Commutativity",
+    "objective": "Understand that multiplication can be done in any order",
+    "difficulty": "Greater Depth",
+    "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "commutativity",
+    "teacherNote": null,
+    "text": "5 × 3 gives the same answer as which calculation?",
+    "illustration": null,
+    "options": [
+      "3 × 5",
+      "5 + 3",
+      "5 × 5",
+      "3 + 3"
+    ],
+    "correctIndex": 0,
+    "explanation": "Multiplication can be done in any order, so 5 × 3 = 3 × 5.",
+    "misconception": "Does not yet realise multiplication can be reordered without changing the answer."
+  },
+  {
+    "id": "MAT-KS1-FRA-0035",
+    "strand": "FRA",
+    "skillId": "MAT-KS1-FRA-THIRDQ",
+    "subtopic": "Third of a quantity",
+    "objective": "Find a third of a set of objects",
+    "difficulty": "Greater Depth",
+    "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "equal-parts",
+    "teacherNote": null,
+    "text": "What is a third of these 3 sweets?",
+    "illustration": {
+      "type": "dots",
+      "count": 3,
+      "emoji": "🍬"
+    },
+    "options": [
+      1,
+      2,
+      1.5,
+      0
+    ],
+    "correctIndex": 0,
+    "explanation": "A third of 3 is 1 — share them into three equal groups.",
+    "misconception": "Finds a half or a quarter instead of a third."
+  },
+  {
+    "id": "MAT-KS1-FRA-0036",
+    "strand": "FRA",
+    "skillId": "MAT-KS1-FRA-THIRDQ",
+    "subtopic": "Third of a quantity",
+    "objective": "Find a third of a set of objects",
+    "difficulty": "Greater Depth",
+    "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "equal-parts",
+    "teacherNote": null,
+    "text": "What is a third of these 6 sweets?",
+    "illustration": {
+      "type": "dots",
+      "count": 6,
+      "emoji": "🍬"
+    },
+    "options": [
+      2,
+      3,
+      1,
+      4
+    ],
+    "correctIndex": 0,
+    "explanation": "A third of 6 is 2 — share them into three equal groups.",
+    "misconception": "Finds a half or a quarter instead of a third."
+  },
+  {
+    "id": "MAT-KS1-FRA-0037",
+    "strand": "FRA",
+    "skillId": "MAT-KS1-FRA-THIRDQ",
+    "subtopic": "Third of a quantity",
+    "objective": "Find a third of a set of objects",
+    "difficulty": "Greater Depth",
+    "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "equal-parts",
+    "teacherNote": null,
+    "text": "What is a third of these 9 sweets?",
+    "illustration": {
+      "type": "dots",
+      "count": 9,
+      "emoji": "🍬"
+    },
+    "options": [
+      3,
+      4,
+      4.5,
+      2
+    ],
+    "correctIndex": 0,
+    "explanation": "A third of 9 is 3 — share them into three equal groups.",
+    "misconception": "Finds a half or a quarter instead of a third."
+  },
+  {
+    "id": "MAT-KS1-FRA-0038",
+    "strand": "FRA",
+    "skillId": "MAT-KS1-FRA-THIRDQ",
+    "subtopic": "Third of a quantity",
+    "objective": "Find a third of a set of objects",
+    "difficulty": "Greater Depth",
+    "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "equal-parts",
+    "teacherNote": null,
+    "text": "What is a third of these 12 sweets?",
+    "illustration": {
+      "type": "dots",
+      "count": 12,
+      "emoji": "🍬"
+    },
+    "options": [
+      4,
+      5,
+      6,
+      3
+    ],
+    "correctIndex": 0,
+    "explanation": "A third of 12 is 4 — share them into three equal groups.",
+    "misconception": "Finds a half or a quarter instead of a third."
+  },
+  {
+    "id": "MAT-KS1-FRA-0039",
+    "strand": "FRA",
+    "skillId": "MAT-KS1-FRA-THIRDQ",
+    "subtopic": "Third of a quantity",
+    "objective": "Find a third of a set of objects",
+    "difficulty": "Greater Depth",
+    "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "equal-parts",
+    "teacherNote": null,
+    "text": "What is a third of these 15 sweets?",
+    "illustration": {
+      "type": "dots",
+      "count": 15,
+      "emoji": "🍬"
+    },
+    "options": [
+      5,
+      6,
+      7.5,
+      4
+    ],
+    "correctIndex": 0,
+    "explanation": "A third of 15 is 5 — share them into three equal groups.",
+    "misconception": "Finds a half or a quarter instead of a third."
+  },
+  {
+    "id": "MAT-KS1-FRA-0040",
+    "strand": "FRA",
+    "skillId": "MAT-KS1-FRA-THIRDN",
+    "subtopic": "Third of a number",
+    "objective": "Find a third of a number",
+    "difficulty": "Greater Depth",
+    "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "equal-parts",
+    "teacherNote": null,
+    "text": "What is a third of 9?",
+    "illustration": {
+      "type": "dots",
+      "count": 9,
+      "color": "#43a047"
+    },
+    "options": [
+      3,
+      4,
+      4.5,
+      2
+    ],
+    "correctIndex": 0,
+    "explanation": "A third of 9 is 3.",
+    "misconception": "Finds a half or a quarter instead of a third."
+  },
+  {
+    "id": "MAT-KS1-FRA-0041",
+    "strand": "FRA",
+    "skillId": "MAT-KS1-FRA-THIRDN",
+    "subtopic": "Third of a number",
+    "objective": "Find a third of a number",
+    "difficulty": "Greater Depth",
+    "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "equal-parts",
+    "teacherNote": null,
+    "text": "What is a third of 12?",
+    "illustration": {
+      "type": "dots",
+      "count": 12,
+      "color": "#43a047"
+    },
+    "options": [
+      4,
+      5,
+      6,
+      3
+    ],
+    "correctIndex": 0,
+    "explanation": "A third of 12 is 4.",
+    "misconception": "Finds a half or a quarter instead of a third."
+  },
+  {
+    "id": "MAT-KS1-FRA-0042",
+    "strand": "FRA",
+    "skillId": "MAT-KS1-FRA-THIRDN",
+    "subtopic": "Third of a number",
+    "objective": "Find a third of a number",
+    "difficulty": "Greater Depth",
+    "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "equal-parts",
+    "teacherNote": null,
+    "text": "What is a third of 15?",
+    "illustration": {
+      "type": "dots",
+      "count": 15,
+      "color": "#43a047"
+    },
+    "options": [
+      5,
+      6,
+      7.5,
+      4
+    ],
+    "correctIndex": 0,
+    "explanation": "A third of 15 is 5.",
+    "misconception": "Finds a half or a quarter instead of a third."
+  },
+  {
+    "id": "MAT-KS1-FRA-0043",
+    "strand": "FRA",
+    "skillId": "MAT-KS1-FRA-THIRDN",
+    "subtopic": "Third of a number",
+    "objective": "Find a third of a number",
+    "difficulty": "Greater Depth",
+    "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "equal-parts",
+    "teacherNote": null,
+    "text": "What is a third of 18?",
+    "illustration": {
+      "type": "dots",
+      "count": 18,
+      "color": "#43a047"
+    },
+    "options": [
+      6,
+      7,
+      9,
+      5
+    ],
+    "correctIndex": 0,
+    "explanation": "A third of 18 is 6.",
+    "misconception": "Finds a half or a quarter instead of a third."
+  },
+  {
+    "id": "MAT-KS1-FRA-0044",
+    "strand": "FRA",
+    "skillId": "MAT-KS1-FRA-THIRDN",
+    "subtopic": "Third of a number",
+    "objective": "Find a third of a number",
+    "difficulty": "Greater Depth",
+    "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "equal-parts",
+    "teacherNote": null,
+    "text": "What is a third of 21?",
+    "illustration": {
+      "type": "dots",
+      "count": 21,
+      "color": "#43a047"
+    },
+    "options": [
+      7,
+      8,
+      10.5,
+      6
+    ],
+    "correctIndex": 0,
+    "explanation": "A third of 21 is 7.",
+    "misconception": "Finds a half or a quarter instead of a third."
+  },
+  {
+    "id": "MAT-KS1-FRA-0045",
+    "strand": "FRA",
+    "skillId": "MAT-KS1-FRA-THREEQ",
+    "subtopic": "Three-quarters of a quantity",
+    "objective": "Find three-quarters of a quantity",
+    "difficulty": "Greater Depth",
+    "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "equal-parts",
+    "teacherNote": null,
+    "text": "What is three-quarters of 4?",
+    "illustration": {
+      "type": "fraction",
+      "parts": 4,
+      "shaded": 3
+    },
+    "options": [
+      3,
+      1,
+      2,
+      4
+    ],
+    "correctIndex": 0,
+    "explanation": "A quarter of 4 is 1, so three-quarters is 3.",
+    "misconception": "Finds one quarter instead of three-quarters, or finds a half."
+  },
+  {
+    "id": "MAT-KS1-FRA-0046",
+    "strand": "FRA",
+    "skillId": "MAT-KS1-FRA-THREEQ",
+    "subtopic": "Three-quarters of a quantity",
+    "objective": "Find three-quarters of a quantity",
+    "difficulty": "Greater Depth",
+    "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "equal-parts",
+    "teacherNote": null,
+    "text": "What is three-quarters of 8?",
+    "illustration": {
+      "type": "fraction",
+      "parts": 4,
+      "shaded": 3
+    },
+    "options": [
+      6,
+      2,
+      4,
+      7
+    ],
+    "correctIndex": 0,
+    "explanation": "A quarter of 8 is 2, so three-quarters is 6.",
+    "misconception": "Finds one quarter instead of three-quarters, or finds a half."
+  },
+  {
+    "id": "MAT-KS1-FRA-0047",
+    "strand": "FRA",
+    "skillId": "MAT-KS1-FRA-THREEQ",
+    "subtopic": "Three-quarters of a quantity",
+    "objective": "Find three-quarters of a quantity",
+    "difficulty": "Greater Depth",
+    "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "equal-parts",
+    "teacherNote": null,
+    "text": "What is three-quarters of 12?",
+    "illustration": {
+      "type": "fraction",
+      "parts": 4,
+      "shaded": 3
+    },
+    "options": [
+      9,
+      3,
+      6,
+      10
+    ],
+    "correctIndex": 0,
+    "explanation": "A quarter of 12 is 3, so three-quarters is 9.",
+    "misconception": "Finds one quarter instead of three-quarters, or finds a half."
+  },
+  {
+    "id": "MAT-KS1-FRA-0048",
+    "strand": "FRA",
+    "skillId": "MAT-KS1-FRA-THREEQ",
+    "subtopic": "Three-quarters of a quantity",
+    "objective": "Find three-quarters of a quantity",
+    "difficulty": "Greater Depth",
+    "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "equal-parts",
+    "teacherNote": null,
+    "text": "What is three-quarters of 16?",
+    "illustration": {
+      "type": "fraction",
+      "parts": 4,
+      "shaded": 3
+    },
+    "options": [
+      12,
+      4,
+      8,
+      13
+    ],
+    "correctIndex": 0,
+    "explanation": "A quarter of 16 is 4, so three-quarters is 12.",
+    "misconception": "Finds one quarter instead of three-quarters, or finds a half."
+  },
+  {
+    "id": "MAT-KS1-FRA-0049",
+    "strand": "FRA",
+    "skillId": "MAT-KS1-FRA-THREEQ",
+    "subtopic": "Three-quarters of a quantity",
+    "objective": "Find three-quarters of a quantity",
+    "difficulty": "Greater Depth",
+    "type": "Application",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "equal-parts",
+    "teacherNote": null,
+    "text": "What is three-quarters of 20?",
+    "illustration": {
+      "type": "fraction",
+      "parts": 4,
+      "shaded": 3
+    },
+    "options": [
+      15,
+      5,
+      10,
+      16
+    ],
+    "correctIndex": 0,
+    "explanation": "A quarter of 20 is 5, so three-quarters is 15.",
+    "misconception": "Finds one quarter instead of three-quarters, or finds a half."
+  },
+  {
+    "id": "MAT-KS1-FRA-0050",
+    "strand": "FRA",
+    "skillId": "MAT-KS1-FRA-EQUIV",
+    "subtopic": "Fraction equivalence",
+    "objective": "Recognise the equivalence of two quarters and one half",
+    "difficulty": "Greater Depth",
+    "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "fraction-equivalence",
+    "teacherNote": null,
+    "text": "Which fraction is the same amount as one half?",
+    "illustration": {
+      "type": "fraction",
+      "parts": 4,
+      "shaded": 2
+    },
+    "options": [
+      "Two quarters",
+      "One quarter",
+      "Three quarters",
+      "One third"
+    ],
+    "correctIndex": 0,
+    "explanation": "Two quarters cover exactly the same amount as one half.",
+    "misconception": "Does not yet see that different fractions can describe the same amount."
+  },
+  {
+    "id": "MAT-KS1-FRA-0051",
+    "strand": "FRA",
+    "skillId": "MAT-KS1-FRA-EQUIV",
+    "subtopic": "Fraction equivalence",
+    "objective": "Recognise the equivalence of two quarters and one half",
+    "difficulty": "Greater Depth",
+    "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "fraction-equivalence",
+    "teacherNote": null,
+    "text": "Which fraction is the same amount as one half?",
+    "illustration": {
+      "type": "fraction",
+      "parts": 4,
+      "shaded": 2
+    },
+    "options": [
+      "Two quarters",
+      "One quarter",
+      "Three quarters",
+      "One third"
+    ],
+    "correctIndex": 0,
+    "explanation": "Two quarters cover exactly the same amount as one half.",
+    "misconception": "Does not yet see that different fractions can describe the same amount."
+  },
+  {
+    "id": "MAT-KS1-FRA-0052",
+    "strand": "FRA",
+    "skillId": "MAT-KS1-FRA-EQUIV",
+    "subtopic": "Fraction equivalence",
+    "objective": "Recognise the equivalence of two quarters and one half",
+    "difficulty": "Greater Depth",
+    "type": "Reasoning",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "fraction-equivalence",
+    "teacherNote": null,
+    "text": "Which fraction is the same amount as one half?",
+    "illustration": {
+      "type": "fraction",
+      "parts": 4,
+      "shaded": 2
+    },
+    "options": [
+      "Two quarters",
+      "One quarter",
+      "Three quarters",
+      "One third"
+    ],
+    "correctIndex": 0,
+    "explanation": "Two quarters cover exactly the same amount as one half.",
+    "misconception": "Does not yet see that different fractions can describe the same amount."
+  },
+  {
+    "id": "MAT-KS1-MEA-0049",
+    "strand": "MEA",
+    "skillId": "MAT-KS1-MEA-QPAST",
+    "subtopic": "Time (quarter past)",
+    "objective": "Read quarter past times",
+    "difficulty": "Greater Depth",
+    "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "time-reading",
+    "teacherNote": null,
+    "text": "What time does the clock show?",
+    "illustration": {
+      "type": "clock",
+      "hour": 1,
+      "minute": 15
+    },
+    "options": [
+      "quarter past 1",
+      "quarter to 2",
+      "half past 1",
+      "1 o’clock"
+    ],
+    "correctIndex": 0,
+    "explanation": "The long hand points to 3, so it is quarter past 1.",
+    "misconception": "Confuses quarter past with quarter to, or with half past."
+  },
+  {
+    "id": "MAT-KS1-MEA-0050",
+    "strand": "MEA",
+    "skillId": "MAT-KS1-MEA-QPAST",
+    "subtopic": "Time (quarter past)",
+    "objective": "Read quarter past times",
+    "difficulty": "Greater Depth",
+    "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "time-reading",
+    "teacherNote": null,
+    "text": "What time does the clock show?",
+    "illustration": {
+      "type": "clock",
+      "hour": 2,
+      "minute": 15
+    },
+    "options": [
+      "quarter past 2",
+      "quarter to 3",
+      "half past 2",
+      "2 o’clock"
+    ],
+    "correctIndex": 0,
+    "explanation": "The long hand points to 3, so it is quarter past 2.",
+    "misconception": "Confuses quarter past with quarter to, or with half past."
+  },
+  {
+    "id": "MAT-KS1-MEA-0051",
+    "strand": "MEA",
+    "skillId": "MAT-KS1-MEA-QPAST",
+    "subtopic": "Time (quarter past)",
+    "objective": "Read quarter past times",
+    "difficulty": "Greater Depth",
+    "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "time-reading",
+    "teacherNote": null,
+    "text": "What time does the clock show?",
+    "illustration": {
+      "type": "clock",
+      "hour": 4,
+      "minute": 15
+    },
+    "options": [
+      "quarter past 4",
+      "quarter to 5",
+      "half past 4",
+      "4 o’clock"
+    ],
+    "correctIndex": 0,
+    "explanation": "The long hand points to 3, so it is quarter past 4.",
+    "misconception": "Confuses quarter past with quarter to, or with half past."
+  },
+  {
+    "id": "MAT-KS1-MEA-0052",
+    "strand": "MEA",
+    "skillId": "MAT-KS1-MEA-QPAST",
+    "subtopic": "Time (quarter past)",
+    "objective": "Read quarter past times",
+    "difficulty": "Greater Depth",
+    "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "time-reading",
+    "teacherNote": null,
+    "text": "What time does the clock show?",
+    "illustration": {
+      "type": "clock",
+      "hour": 6,
+      "minute": 15
+    },
+    "options": [
+      "quarter past 6",
+      "quarter to 7",
+      "half past 6",
+      "6 o’clock"
+    ],
+    "correctIndex": 0,
+    "explanation": "The long hand points to 3, so it is quarter past 6.",
+    "misconception": "Confuses quarter past with quarter to, or with half past."
+  },
+  {
+    "id": "MAT-KS1-MEA-0053",
+    "strand": "MEA",
+    "skillId": "MAT-KS1-MEA-QPAST",
+    "subtopic": "Time (quarter past)",
+    "objective": "Read quarter past times",
+    "difficulty": "Greater Depth",
+    "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "time-reading",
+    "teacherNote": null,
+    "text": "What time does the clock show?",
+    "illustration": {
+      "type": "clock",
+      "hour": 8,
+      "minute": 15
+    },
+    "options": [
+      "quarter past 8",
+      "quarter to 9",
+      "half past 8",
+      "8 o’clock"
+    ],
+    "correctIndex": 0,
+    "explanation": "The long hand points to 3, so it is quarter past 8.",
+    "misconception": "Confuses quarter past with quarter to, or with half past."
+  },
+  {
+    "id": "MAT-KS1-MEA-0054",
+    "strand": "MEA",
+    "skillId": "MAT-KS1-MEA-QPAST",
+    "subtopic": "Time (quarter past)",
+    "objective": "Read quarter past times",
+    "difficulty": "Greater Depth",
+    "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "time-reading",
+    "teacherNote": null,
+    "text": "What time does the clock show?",
+    "illustration": {
+      "type": "clock",
+      "hour": 11,
+      "minute": 15
+    },
+    "options": [
+      "quarter past 11",
+      "quarter to 12",
+      "half past 11",
+      "11 o’clock"
+    ],
+    "correctIndex": 0,
+    "explanation": "The long hand points to 3, so it is quarter past 11.",
+    "misconception": "Confuses quarter past with quarter to, or with half past."
+  },
+  {
+    "id": "MAT-KS1-MEA-0055",
+    "strand": "MEA",
+    "skillId": "MAT-KS1-MEA-QTO",
+    "subtopic": "Time (quarter to)",
+    "objective": "Read quarter to times",
+    "difficulty": "Greater Depth",
+    "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "time-reading",
+    "teacherNote": null,
+    "text": "What time does the clock show?",
+    "illustration": {
+      "type": "clock",
+      "hour": 1,
+      "minute": 45
+    },
+    "options": [
+      "quarter to 2",
+      "quarter past 1",
+      "half past 1",
+      "2 o’clock"
+    ],
+    "correctIndex": 0,
+    "explanation": "The long hand points to 9, so it is quarter to 2.",
+    "misconception": "Confuses quarter to with quarter past, or names the wrong hour."
+  },
+  {
+    "id": "MAT-KS1-MEA-0056",
+    "strand": "MEA",
+    "skillId": "MAT-KS1-MEA-QTO",
+    "subtopic": "Time (quarter to)",
+    "objective": "Read quarter to times",
+    "difficulty": "Greater Depth",
+    "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "time-reading",
+    "teacherNote": null,
+    "text": "What time does the clock show?",
+    "illustration": {
+      "type": "clock",
+      "hour": 2,
+      "minute": 45
+    },
+    "options": [
+      "quarter to 3",
+      "quarter past 2",
+      "half past 2",
+      "3 o’clock"
+    ],
+    "correctIndex": 0,
+    "explanation": "The long hand points to 9, so it is quarter to 3.",
+    "misconception": "Confuses quarter to with quarter past, or names the wrong hour."
+  },
+  {
+    "id": "MAT-KS1-MEA-0057",
+    "strand": "MEA",
+    "skillId": "MAT-KS1-MEA-QTO",
+    "subtopic": "Time (quarter to)",
+    "objective": "Read quarter to times",
+    "difficulty": "Greater Depth",
+    "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "time-reading",
+    "teacherNote": null,
+    "text": "What time does the clock show?",
+    "illustration": {
+      "type": "clock",
+      "hour": 4,
+      "minute": 45
+    },
+    "options": [
+      "quarter to 5",
+      "quarter past 4",
+      "half past 4",
+      "5 o’clock"
+    ],
+    "correctIndex": 0,
+    "explanation": "The long hand points to 9, so it is quarter to 5.",
+    "misconception": "Confuses quarter to with quarter past, or names the wrong hour."
+  },
+  {
+    "id": "MAT-KS1-MEA-0058",
+    "strand": "MEA",
+    "skillId": "MAT-KS1-MEA-QTO",
+    "subtopic": "Time (quarter to)",
+    "objective": "Read quarter to times",
+    "difficulty": "Greater Depth",
+    "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "time-reading",
+    "teacherNote": null,
+    "text": "What time does the clock show?",
+    "illustration": {
+      "type": "clock",
+      "hour": 6,
+      "minute": 45
+    },
+    "options": [
+      "quarter to 7",
+      "quarter past 6",
+      "half past 6",
+      "7 o’clock"
+    ],
+    "correctIndex": 0,
+    "explanation": "The long hand points to 9, so it is quarter to 7.",
+    "misconception": "Confuses quarter to with quarter past, or names the wrong hour."
+  },
+  {
+    "id": "MAT-KS1-MEA-0059",
+    "strand": "MEA",
+    "skillId": "MAT-KS1-MEA-QTO",
+    "subtopic": "Time (quarter to)",
+    "objective": "Read quarter to times",
+    "difficulty": "Greater Depth",
+    "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "time-reading",
+    "teacherNote": null,
+    "text": "What time does the clock show?",
+    "illustration": {
+      "type": "clock",
+      "hour": 8,
+      "minute": 45
+    },
+    "options": [
+      "quarter to 9",
+      "quarter past 8",
+      "half past 8",
+      "9 o’clock"
+    ],
+    "correctIndex": 0,
+    "explanation": "The long hand points to 9, so it is quarter to 9.",
+    "misconception": "Confuses quarter to with quarter past, or names the wrong hour."
+  },
+  {
+    "id": "MAT-KS1-MEA-0060",
+    "strand": "MEA",
+    "skillId": "MAT-KS1-MEA-QTO",
+    "subtopic": "Time (quarter to)",
+    "objective": "Read quarter to times",
+    "difficulty": "Greater Depth",
+    "type": "Understanding",
+    "curriculumYear": "Year 2",
+    "misconceptionCategory": "time-reading",
+    "teacherNote": null,
+    "text": "What time does the clock show?",
+    "illustration": {
+      "type": "clock",
+      "hour": 11,
+      "minute": 45
+    },
+    "options": [
+      "quarter to 12",
+      "quarter past 11",
+      "half past 11",
+      "12 o’clock"
+    ],
+    "correctIndex": 0,
+    "explanation": "The long hand points to 9, so it is quarter to 12.",
+    "misconception": "Confuses quarter to with quarter past, or names the wrong hour."
+  },
+  {
+    "id": "MAT-KS1-MEA-0061",
+    "strand": "MEA",
+    "skillId": "MAT-KS1-MEA-CAPACITY",
+    "subtopic": "Capacity",
+    "objective": "Compare capacity and volume in everyday contexts",
+    "difficulty": "Foundation",
+    "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "measurement-comparison",
+    "teacherNote": null,
+    "text": "Which holds the most?",
+    "illustration": null,
+    "options": [
+      "a bucket",
+      "a cup",
+      "an egg cup",
+      "a teaspoon"
+    ],
+    "correctIndex": 0,
+    "explanation": "a bucket holds the most of these.",
+    "misconception": "Judges capacity by height alone rather than overall volume."
+  },
+  {
+    "id": "MAT-KS1-MEA-0062",
+    "strand": "MEA",
+    "skillId": "MAT-KS1-MEA-CAPACITY",
+    "subtopic": "Capacity",
+    "objective": "Compare capacity and volume in everyday contexts",
+    "difficulty": "Foundation",
+    "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "measurement-comparison",
+    "teacherNote": null,
+    "text": "Which holds the most?",
+    "illustration": null,
+    "options": [
+      "a bathtub",
+      "a sink",
+      "a bowl",
+      "a mug"
+    ],
+    "correctIndex": 0,
+    "explanation": "a bathtub holds the most of these.",
+    "misconception": "Judges capacity by height alone rather than overall volume."
+  },
+  {
+    "id": "MAT-KS1-MEA-0063",
+    "strand": "MEA",
+    "skillId": "MAT-KS1-MEA-CAPACITY",
+    "subtopic": "Capacity",
+    "objective": "Compare capacity and volume in everyday contexts",
+    "difficulty": "Foundation",
+    "type": "Understanding",
+    "curriculumYear": "Year 1",
+    "misconceptionCategory": "measurement-comparison",
+    "teacherNote": null,
+    "text": "Which holds the most?",
+    "illustration": null,
+    "options": [
+      "a jug",
+      "a glass",
+      "a bottle cap",
+      "a spoon"
+    ],
+    "correctIndex": 0,
+    "explanation": "a jug holds the most of these.",
+    "misconception": "Judges capacity by height alone rather than overall volume."
   }
 ];

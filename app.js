@@ -72,37 +72,111 @@ function shuffled(arr) {
 
 const TICK = '<svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
-/* ---------- Contextual hints (Stage 2C) ----------
+/* ---------- Contextual hints (Stage 2C, expanded for full coverage) ----------
    Replaces the earlier always-visible 185-tip strand pool, which was
    correctly identified as too large and too frequent. Instead, this reads
-   the small, curated, skill-specific hint library that already exists in
-   assets/hints/manifest.js (loaded via a <script> tag in index.html) —
-   that file is a frozen asset and is never modified here, only read.
+   the curated, skill-specific hint library in assets/hints/manifest.js
+   (loaded via a <script> tag in index.html).
 
-   A question only gets a hint if its skill genuinely has one curated for
-   it (57 of 360 questions, ~16% — matching "many questions will not need
-   one"). Every other question shows a calm, generic encouragement instead
-   of a fabricated or repeated tip.
+   Every one of the 62 skills in the question bank has a hint (full
+   coverage — this was originally a 9-skill subset, expanded on explicit
+   request). A question only ever shows a hint if its own skill has one —
+   this is never a fabricated or randomly-picked tip. If a future skill is
+   added without a matching hint, its questions simply show no hint panel
+   at all, exactly as designed for "genuinely doesn't need one" cases.
 
    RESILIENCE: a live, user-facing feature should never depend on a single
    external file load succeeding, especially across different hosts/build
    tools (a folder named "assets" is a reserved/special name to several
    static-site build systems, which can silently interfere with a plain
-   file sitting inside one). LOCAL_HINTS below is a verbatim, byte-for-byte
-   copy of assets/hints/manifest.js's content, used automatically if the
-   external file fails to load for any reason — the external file is still
+   file sitting inside one). LOCAL_HINTS below is a verbatim copy of
+   assets/hints/manifest.js's content, used automatically if the external
+   file fails to load for any reason — the external file is still
    preferred when it does load correctly, so this is a safety net, not a
-   replacement, and does not modify the frozen asset itself. */
+   replacement. Both files are updated together whenever hint content
+   changes, to keep them identical. */
 const LOCAL_HINTS = {
-  hint_npv_01: { skill: "NPV-COUNT",    text: "Count each object once." },
-  hint_npv_02: { skill: "NPV-TENS",     text: "Start with the tens." },
-  hint_time_01: { skill: "MEA-OCLOCK",   text: "The short hand shows the hour." },
-  hint_time_02: { skill: "MEA-HALFPAST", text: "The long hand shows the minutes." },
-  hint_md_01: { skill: "MD-ARRAY", text: "Count one row first, then add it again for each extra row." },
-  hint_md_02: { skill: "MD-GROUPS", text: "Equal groups can help us multiply." },
-  hint_fra_01: { skill: "FRA-SHADE", text: "Check that every part is exactly the same size." },
-  hint_geo_01: { skill: "GEO-SIDES", text: "Count the sides carefully before deciding." },
-  hint_pos_01: { skill: "POS-TURN", text: "Picture yourself making the turn before you choose." }
+  hint_npv_01: { skill: "NPV-COUNT", text: "Count each object once. Point as you count." },
+  hint_npv_02: { skill: "NPV-ONEMORE", text: "Count on one more from the number." },
+  hint_npv_03: { skill: "NPV-ONELESS", text: "Count back one less from the number." },
+  hint_npv_04: { skill: "NPV-SEQ", text: "Look at how the numbers are changing each time." },
+  hint_npv_05: { skill: "NPV-IN2", text: "Look at how the numbers are changing each time." },
+  hint_npv_06: { skill: "NPV-IN5", text: "Look at how the numbers are changing each time." },
+  hint_npv_07: { skill: "NPV-IN10", text: "Look at how the numbers are changing each time." },
+  hint_npv_08: { skill: "NPV-CMPMAX", text: "Compare the numbers carefully before choosing." },
+  hint_npv_09: { skill: "NPV-CMPMIN", text: "Compare the numbers carefully before choosing." },
+  hint_npv_10: { skill: "NPV-TENS", text: "Look at the tens first, then the ones." },
+  hint_npv_11: { skill: "NPV-TENMORE", text: "Look at the tens first, then the ones." },
+  hint_npv_12: { skill: "NPV-TENLESS", text: "Look at the tens first, then the ones." },
+  hint_npv_13: { skill: "NPV-BUILD", text: "Look at the tens first, then the ones." },
+
+  hint_as_01: { skill: "AS-BOND10", text: "Think of two numbers that make 10 together." },
+  hint_as_02: { skill: "AS-BOND20", text: "Think of two numbers that make 20 together." },
+  hint_as_03: { skill: "AS-ADD10", text: "Start with the larger number and count on." },
+  hint_as_04: { skill: "AS-ADD20", text: "Start with the larger number and count on." },
+  hint_as_05: { skill: "AS-ADD2D1", text: "Start with the larger number and count on." },
+  hint_as_06: { skill: "AS-ADD10s", text: "Start with the larger number and count on." },
+  hint_as_07: { skill: "AS-SUB10", text: "Think about what is left." },
+  hint_as_08: { skill: "AS-SUB20", text: "Think about what is left." },
+  hint_as_09: { skill: "AS-SUB2D1", text: "Think about what is left." },
+  hint_as_10: { skill: "AS-MISSADD", text: "Think about what number is missing to make the total." },
+  hint_as_11: { skill: "AS-MISSSUB", text: "Think about what is left." },
+  hint_as_12: { skill: "AS-WORDADD", text: "Start with the larger number and count on." },
+  hint_as_13: { skill: "AS-WORDSUB", text: "Think about what is left." },
+  hint_as_14: { skill: "AS-COMM", text: "Adding in a different order gives the same total." },
+
+  hint_md_01: { skill: "MD-DOUBLE", text: "Doubling means adding the number to itself." },
+  hint_md_02: { skill: "MD-GROUPS", text: "Count the equal groups carefully." },
+  hint_md_03: { skill: "MD-ARRAY", text: "Count the equal groups carefully." },
+  hint_md_04: { skill: "MD-X5", text: "Count the equal groups carefully." },
+  hint_md_05: { skill: "MD-X10", text: "Count the equal groups carefully." },
+  hint_md_06: { skill: "MD-SHARE", text: "Each group must get the same amount." },
+  hint_md_07: { skill: "MD-GROUP", text: "Each group must get the same amount." },
+
+  hint_fra_01: { skill: "FRA-SHADE", text: "Equal parts must be the same size." },
+  hint_fra_02: { skill: "FRA-PARTS", text: "Equal parts must be the same size." },
+  hint_fra_03: { skill: "FRA-HALFQ", text: "Equal parts must be the same size." },
+  hint_fra_04: { skill: "FRA-HALFN", text: "Equal parts must be the same size." },
+  hint_fra_05: { skill: "FRA-QUARTERQ", text: "Equal parts must be the same size." },
+  hint_fra_06: { skill: "FRA-QUARTERN", text: "Equal parts must be the same size." },
+
+  hint_geo_01: { skill: "GEO-NAME", text: "Count the sides and corners carefully." },
+  hint_geo_02: { skill: "GEO-SIDES", text: "Count the sides and corners carefully." },
+  hint_geo_03: { skill: "GEO-CORNERS", text: "Count the sides and corners carefully." },
+  hint_geo_04: { skill: "GEO-REAL2D", text: "Count the sides and corners carefully." },
+  hint_geo_05: { skill: "GEO-3D", text: "Count the sides and corners carefully." },
+  hint_geo_06: { skill: "GEO-PROP", text: "Count the sides and corners carefully." },
+
+  hint_pos_01: { skill: "POS-OPP", text: "Follow the arrow or turn carefully." },
+  hint_pos_02: { skill: "POS-ORD", text: "Think about where the object is compared with another object." },
+  hint_pos_03: { skill: "POS-TURN", text: "Follow the arrow or turn carefully." },
+  hint_pos_04: { skill: "POS-VOCAB", text: "Think about where the object is compared with another object." },
+
+  hint_mea_01: { skill: "MEA-OCLOCK", text: "The short red hand shows the hour. The long black hand shows the minutes." },
+  hint_mea_02: { skill: "MEA-HALFPAST", text: "The short red hand shows the hour. The long black hand shows the minutes." },
+  hint_mea_03: { skill: "MEA-DAYS", text: "Think about the order the days come in." },
+  hint_mea_04: { skill: "MEA-MONEY", text: "Look at the value of each coin before adding." },
+  hint_mea_05: { skill: "MEA-MOSTCOIN", text: "Look at the value of each coin before adding." },
+  hint_mea_06: { skill: "MEA-LONGBAR", text: "Compare the length, height, mass or capacity carefully." },
+  hint_mea_07: { skill: "MEA-LONGEST", text: "Compare the length, height, mass or capacity carefully." },
+  hint_mea_08: { skill: "MEA-HEAVY", text: "Compare the length, height, mass or capacity carefully." },
+
+  hint_sta_01: { skill: "STA-READ", text: "Count each row carefully before comparing." },
+  hint_sta_02: { skill: "STA-MOST", text: "Count each row carefully before comparing." },
+  hint_sta_03: { skill: "STA-TOTAL", text: "Count each row carefully before comparing." },
+  hint_sta_04: { skill: "STA-DIFF", text: "Count each row carefully before comparing." },
+
+  hint_npv_14: { skill: "NPV-IN3", text: "Look at how the numbers are changing each time." },
+  hint_as_15: { skill: "AS-ADD2D2D", text: "Add the tens first, then the ones." },
+  hint_md_08: { skill: "MD-X2", text: "Count the equal groups carefully." },
+  hint_md_09: { skill: "MD-COMM", text: "Multiplying in a different order gives the same answer." },
+  hint_fra_07: { skill: "FRA-THIRDQ", text: "Equal parts must be the same size." },
+  hint_fra_08: { skill: "FRA-THIRDN", text: "Equal parts must be the same size." },
+  hint_fra_09: { skill: "FRA-THREEQ", text: "Equal parts must be the same size." },
+  hint_fra_10: { skill: "FRA-EQUIV", text: "Different fractions can describe the same amount." },
+  hint_mea_09: { skill: "MEA-QPAST", text: "The short red hand shows the hour. The long black hand shows the minutes." },
+  hint_mea_10: { skill: "MEA-QTO", text: "The short red hand shows the hour. The long black hand shows the minutes." },
+  hint_mea_11: { skill: "MEA-CAPACITY", text: "Compare the length, height, mass or capacity carefully." }
 };
 
 function findHintForSkill(skillId) {
@@ -293,8 +367,8 @@ function svgClock(hour, minute) {
   return `<svg viewBox="0 0 220 220" role="img" aria-label="A clock">
     <circle cx="${cx}" cy="${cy}" r="${R}" fill="#fff" stroke="#652da0" stroke-width="6"/>
     ${ticks}${nums}
-    <line x1="${cx}" y1="${cy}" x2="${hx}" y2="${hy}" stroke="#241d38" stroke-width="7" stroke-linecap="round"/>
-    <line x1="${cx}" y1="${cy}" x2="${mx}" y2="${my}" stroke="#241d38" stroke-width="5" stroke-linecap="round"/>
+    <line x1="${cx}" y1="${cy}" x2="${hx}" y2="${hy}" stroke="#D32F2F" stroke-width="7" stroke-linecap="round"/>
+    <line x1="${cx}" y1="${cy}" x2="${mx}" y2="${my}" stroke="#000000" stroke-width="5" stroke-linecap="round"/>
     <circle cx="${cx}" cy="${cy}" r="7" fill="#652da0"/>
   </svg>`;
 }
@@ -488,6 +562,8 @@ function svgTurns(quarters) {
 }
 
 // Arrow: a single large directional arrow with a label, for direction words.
+// Redesigned with a proper, prominent triangular arrowhead that reads
+// unmistakably as an arrow at any size and in any direction.
 function svgArrow(direction) {
   const map = {
     left:  { angle: 180, label: "left" },  right: { angle: 0,   label: "right" },
@@ -496,26 +572,26 @@ function svgArrow(direction) {
     forwards: { angle: 270, label: "forwards" }, backwards: { angle: 90, label: "backwards" }
   };
   const d = map[direction] || map.right;
-  // A fixed "arrow zone" (independent of direction) so the label position
-  // never depends on which way the arrow points — this is what previously
-  // caused the label to overlap the arrow's tail for vertical directions
-  // (up/down/top/bottom), since the label used a fixed y that only worked
-  // for horizontal arrows. Now the arrow is always drawn centred within
-  // the same zone, and the label always sits in its own band well below it.
-  const cx = 100, zoneCy = 85, len = 55;
+  const cx = 100, zoneCy = 80;
   const rad = d.angle * Math.PI / 180;
-  const tx = cx + Math.cos(rad) * len, ty = zoneCy + Math.sin(rad) * len;
-  const bx = cx - Math.cos(rad) * len, by = zoneCy - Math.sin(rad) * len;
-  // Bold, dominant arrowhead and shaft — large enough to immediately read
-  // as "an arrow", not a thin decorative line.
-  const headLen = 26, headSpread = 2.5;
-  const headA1 = rad + headSpread, headA2 = rad - headSpread;
-  const h1x = tx + Math.cos(headA1) * headLen, h1y = ty + Math.sin(headA1) * headLen;
-  const h2x = tx + Math.cos(headA2) * headLen, h2y = ty + Math.sin(headA2) * headLen;
+  const perpRad = rad + Math.PI / 2;
+  // Shaft: from tail to just before the arrowhead base
+  const shaftLen = 50, headDepth = 30, headHalfW = 28;
+  const tailX = cx - Math.cos(rad) * shaftLen;
+  const tailY = zoneCy - Math.sin(rad) * shaftLen;
+  const headBaseX = cx + Math.cos(rad) * (shaftLen - headDepth);
+  const headBaseY = zoneCy + Math.sin(rad) * (shaftLen - headDepth);
+  const tipX = cx + Math.cos(rad) * (shaftLen + 12);
+  const tipY = zoneCy + Math.sin(rad) * (shaftLen + 12);
+  // Two wing points of the arrowhead triangle
+  const w1x = headBaseX + Math.cos(perpRad) * headHalfW;
+  const w1y = headBaseY + Math.sin(perpRad) * headHalfW;
+  const w2x = headBaseX - Math.cos(perpRad) * headHalfW;
+  const w2y = headBaseY - Math.sin(perpRad) * headHalfW;
   return `<svg viewBox="0 0 200 210" role="img" aria-label="An arrow pointing ${d.label}">
-    <line x1="${bx.toFixed(1)}" y1="${by.toFixed(1)}" x2="${tx.toFixed(1)}" y2="${ty.toFixed(1)}" stroke="#652da0" stroke-width="16" stroke-linecap="round"/>
-    <polygon points="${tx.toFixed(1)},${ty.toFixed(1)} ${h1x.toFixed(1)},${h1y.toFixed(1)} ${h2x.toFixed(1)},${h2y.toFixed(1)}" fill="#652da0"/>
-    <text x="100" y="190" text-anchor="middle" font-size="28" font-weight="700" font-family="Poppins, Arial" fill="#4e2280">${d.label}</text>
+    <line x1="${tailX.toFixed(1)}" y1="${tailY.toFixed(1)}" x2="${headBaseX.toFixed(1)}" y2="${headBaseY.toFixed(1)}" stroke="#652da0" stroke-width="16" stroke-linecap="round"/>
+    <polygon points="${tipX.toFixed(1)},${tipY.toFixed(1)} ${w1x.toFixed(1)},${w1y.toFixed(1)} ${w2x.toFixed(1)},${w2y.toFixed(1)}" fill="#652da0"/>
+    <text x="100" y="190" text-anchor="middle" font-size="32" font-weight="700" font-family="Poppins, Arial" fill="#4e2280">${d.label}</text>
   </svg>`;
 }
 
@@ -907,7 +983,7 @@ function renderReport(r) {
   const dateStr = new Date(r.completedAt).toLocaleDateString("en-GB", {
     day: "numeric", month: "long", year: "numeric"
   });
-  $("report-title").textContent = `${r.child}’s Maths Skills Check`;
+  $("report-title").textContent = `${r.child}’s Skills Checker - KS1 Maths`;
   $("report-meta").textContent =
     `Key Stage 1 Maths · ${dateStr}` + (r.age ? ` · age ${r.age}` : "");
 
@@ -987,7 +1063,9 @@ async function saveResults(r) {
   state.saving = true;
 
   if (!ptoIsConfigured()) {
-    statusEl.textContent = "Preview mode — results were not saved. (Add your Supabase details in config.js to save.)";
+    // Deliberately no message here — a family should never see anything
+    // about Supabase, config.js, or "preview mode." The report above is
+    // already complete and correct regardless of whether saving is set up.
     state.saving = false;
     return;
   }
@@ -1054,6 +1132,15 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
   window.__PTO_APP_INITIALIZED__ = true;
+
+  // Hint box size increase (40% larger icon and text, more padding)
+  const hintStyle = document.createElement("style");
+  hintStyle.textContent = `
+    #qside { padding: 1.26rem 1.4rem !important; }
+    #tip-icon { font-size: 2.24rem !important; }
+    #tip-text { font-size: 1.26rem !important; line-height: 1.5 !important; }
+  `;
+  document.head.appendChild(hintStyle);
 
   initSetup();
   $("to-questions-btn").addEventListener("click", startCheck);

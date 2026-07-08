@@ -537,5 +537,717 @@ skillIds rather than trusting one sitting's output.
   still 0 leaks.
 - CSS brace-balanced (128/128), no duplicate HTML ids.
 
+---
+
+## Hotfix — v1.11.1 (Contextual hints showing 100% fallback in production)
+
+**Bug reported**: every question showed "No hint needed for this one —
+you've got this!", not the ~84%/16% split verified in Stage 2C.
+
+**Root cause**: `findHintForSkill()` depended entirely on the external
+`assets/hints/manifest.js` `<script>` tag loading successfully and
+defining a global `HINTS`. In the reported deployment it evidently didn't
+(most likely explanation: a folder literally named `assets` is a
+reserved/special name to several static-site build tools, which can
+interfere with a plain file living inside one — though the exact cause
+couldn't be confirmed without access to the live host's logs). When
+`HINTS` never loads, the `typeof HINTS === "undefined"` guard correctly
+returned `null` for every single question — a 100% fallback rate,
+matching exactly what was reported.
+
+**Fix**: `app.js` now embeds `LOCAL_HINTS`, a verbatim copy of the same
+9 entries in `assets/hints/manifest.js`, and uses it automatically
+whenever the external file fails to load for any reason — the external
+file is still preferred when it does load (identical content, so no
+practical difference), but the feature no longer has a single point of
+failure. `assets/hints/manifest.js` itself remains completely untouched
+(checksum-confirmed).
+
+**Verified**: reproduced the exact bug (external `HINTS` never defined)
+and confirmed the fix resolves it — the 3 test skillIds that should have
+real hints returned their exact real text, using only the embedded
+fallback. Re-confirmed the normal path (external file loads) still works
+identically. Re-ran the full sitting simulation with a corrected test
+harness (an earlier verification pass had its own harness bug — a
+`classList.contains()` stub that always returned `false` — caught and
+fixed before trusting its output): 6/37 real hints, 31/37 fallback in one
+sample sitting, consistent with the expected ~16% rate. Full standard
+regression suite and aria-label leak sweep re-run — all pass, 0 leaks.
+
+Only `app.js` changed for this hotfix (plus the routine version bump in
+`config.js`/`README.md`).
 
 
+
+---
+
+## Stage 2D — COMPLETE (Polish & UX Review)
+
+**Scope discipline**: `questions.js`, `supabase-setup.sql`,
+`tools/generate-questions.js`, and all 5 asset manifests are byte-for-byte
+identical before and after this stage (checksum-confirmed). Only
+`index.html`, `styles.css`, `app.js`, `config.js`, and this document
+changed. **Report/scoring computation (`computeReport`) was not touched at
+all** — one item below is a *wording* fix in `renderReport`'s template,
+not a logic change.
+
+### Issues found and fixed
+
+**1. "Top" arrow illustration** — confirmed by direct calculation, not
+just a code read: for vertical directions (up/down/top/bottom), the
+label's fixed y-position (145) fell *inside* the arrow shaft's range
+(20–160), a genuine overlap. Redesigned with a fixed "arrow zone"
+independent of direction, a bolder shaft (8px→16px) and bigger arrowhead,
+and the label always in its own band well below. Verified for all 4
+directions: gap between arrow and label is now 50–105px, never negative.
+
+**2. Question progression bug (jumped ~Q5→Q11)** — investigated the root
+cause rather than masking the symptom. `nextQuestion()` had no guard
+against being invoked more than once per user action. If it were ever
+called twice in a row (the leading hypothesis: a hosting/build quirk
+duplicating the `app.js` `<script>` include — the same category of issue
+already found to break `assets/hints/manifest.js` on this host — causing
+`DOMContentLoaded` to attach two independent click listeners), each real
+click would silently advance two questions instead of one; over 5–6
+clicks that accumulates to exactly the kind of jump reported. Fixed with
+two layers: (a) a re-entrancy guard on `nextQuestion()` itself, and (b) a
+one-time-init guard on the whole `DOMContentLoaded` setup, so the failure
+mode is now structurally impossible rather than just unlikely. **Verified
+by direct reproduction**: called `nextQuestion()` twice per click across 6
+consecutive questions (the literal worst-case double-fire scenario) and
+confirmed the index still advances by exactly 1 each time — 7 real clicks
+in, index is 7, not 12.
+
+**3. Coloured A/B/C/D badges** — reviewed from a UX perspective as asked.
+Recommendation implemented: **a single consistent brand colour for every
+badge**, not four different ones. This directly serves two goals at once
+— less for a child to decode (colour no longer carries information,
+letter still does) and, combined with fix #4 below, removes any
+possibility of colour ever pointing toward an answer. This is a genuine
+judgement call, not the only valid one — happy to revisit if you'd
+prefer neutral-cards-only or a different treatment after seeing it live.
+
+**4. Accidental colour associations** (e.g. yellow stars next to a
+coincidentally-yellow badge) — resolved as a side effect of fix #3: with
+every badge now the same colour, no illustration's colour can ever
+coincide with *one specific* answer's badge, because there's no longer
+any per-position colour variation to coincide with.
+
+**5. Illustration alignment/spacing** — found the actual mechanism behind
+"looks accidental": the scattered-layout jitter formula was checked
+mathematically (not just eyeballed) and found to **systematically drift
+every small group upward by 2.5–4.5px on average** — not organic scatter,
+a real directional bias. Replaced with a small designed palette of offset
+pairs verified to cancel to exactly (0,0) for every even count and stay
+within ±1.3px average for odd counts, while keeping the same magnitude
+bounds — so the existing overlap-safety proof still holds unchanged
+(re-verified: minimum pairwise distance 48.2px against a 40px safety
+floor). Applied to all three scattered-illustration renderers (dots,
+emoji groups, coins) via one shared, tested helper.
+
+**6. Report wording contradiction** ("answered 27 of 37" then "worked
+through every one") — root cause found immediately: a single template
+line conflated `totalCorrect` with `totalQuestions`, literally writing
+"answered {totalCorrect} of {totalQuestions}" where it should have
+described questions *attempted*, not *correct*. Since every question
+must be answered to advance (no skip capability exists), attempted
+always equals `totalQuestions` — the sentence now says exactly that:
+"worked through all 37 questions, getting 25 correct." This is a
+one-line wording fix in `renderReport`; `computeReport`'s actual
+computation was never wrong and was not touched.
+
+**7. Hint system showing the fallback almost always** — two things were
+going on. First, the fix shipped in the v1.11.1 hotfix (embedded
+`LOCAL_HINTS`) should have restored the intended ~16% real-hint rate, but
+that fix may not yet have been visible in the deployment this feedback
+was based on. Second, and more importantly, the *design* itself has
+changed per this brief: rather than showing a "no hint needed" fallback
+message on ~84% of questions, the **entire hint panel now collapses**
+when a question has no genuinely curated hint, and the main
+question/illustration/answers area expands to use the freed space (a
+real, verified CSS grid change: `.qlayout.no-hint` drops to a single
+column at desktop width). Verified across a full 37-question sitting: the
+panel's hidden/visible state stays in perfect sync with the layout class
+on every single question, with zero mismatches logged.
+
+### Deliberately not changed, and why
+
+- **No new visual redesign for item 8** — no reference image was actually
+  attached to this message (the text referenced "the supplied reference
+  image" but the documents block contained text only). Continuing to
+  evolve the already-approved Stage 2C direction rather than reacting to
+  something not actually visible seemed safer than guessing.
+- **Badge colour choice (#3)** is a judgement call, explicitly flagged as
+  one rather than presented as the only correct answer — see above.
+- **Emoji vertical centring within their circles** (`y = cy + r*0.65`) was
+  reviewed and left as-is — it's a reasonable approximation already
+  applied consistently everywhere, and no specific evidence of a real
+  centring defect (as opposed to the proven jitter-drift issue) was found.
+
+### Verified, not asserted
+
+- Progression bug: directly reproduced (double-fire × 6 questions) and
+  confirmed fixed — index advances by exactly 1 per real click.
+- Hint collapse: checked against all 37 questions in a sitting, 0
+  mismatches between panel visibility and layout class.
+- Report wording: regenerated with a real 25/37 sitting — sentence now
+  reads as a single, non-contradictory statement.
+- Arrow overlap: recalculated for all 4 directions — 50–105px gap, never
+  overlapping.
+- Scatter jitter: recalculated cumulative offset for n=2–14 — cancels to
+  (0,0) at every even count; overlap-safety re-verified (48.2px minimum,
+  vs. a 40px floor).
+- Badge colour: confirmed by code inspection — one constant, used
+  identically for every position, no per-index variation possible.
+- Full standard regression suite (37 questions, correct quotas, 209
+  illustrations, 2,000 unique selections) — all pass.
+- Aria-label leak sweep re-run across all 209 illustrated questions —
+  still 0 leaks, 0 render failures.
+- **One complete simulated assessment run start to finish** (setup →
+  37 questions → confidence → independence → report): 0 render failures,
+  reaches the final question correctly, generates a coherent report.
+- All frozen files (question bank, Supabase schema, generator, all 5
+  asset manifests) confirmed byte-for-byte identical by checksum.
+
+---
+
+## Stage 2E — COMPLETE (Simplify Answer Selection & Improve Child UX)
+
+**Scope discipline**: `questions.js`, `supabase-setup.sql`,
+`tools/generate-questions.js`, and all 5 asset manifests are byte-for-byte
+identical before and after this stage (checksum-confirmed). Only
+`index.html` was not touched at all this round; `styles.css`, `app.js`,
+`config.js`, and this document changed. **`computeReport`, scoring, and
+Supabase payload shape were not touched.**
+
+### Recommended approach on badge colour (asked to justify, not just implement)
+
+Kept the single PTO-purple badge from Stage 2D rather than reverting to
+four colours or going neutral. Reasoning against the five stated
+priorities: one colour to decode (not four) directly serves **minimal
+cognitive load**; the letter — not colour — is the actual accessible
+identifier, so colour is reinforcement only, which serves **accessibility**;
+with every badge identical, no illustration's colour can ever coincide
+with *one specific* answer, which is what **no accidental clues** actually
+requires; it's literally the brand's own primary colour, serving
+**consistent branding** directly; and it's already proven visually
+attractive in the Stage 2D screenshots. The one thing I was deliberate
+about: since the badge and the selected-state accent are the *same*
+purple, the **tick swap (letter→tick) is what communicates selection**,
+not colour — so there's no ambiguity between "this is an answer" purple
+and "this is selected" purple.
+
+### What changed
+
+1. **The redundant radio-circle tick indicator is gone entirely.** The
+   badge is now the only selection indicator: it shows the option's
+   letter normally, and swaps to a small white tick when that card is
+   selected — swapping back to the letter if the child changes their
+   mind and picks a different card. Verified directly: selected option's
+   badge shows the tick, all siblings show their letters; picking a
+   different option correctly reverts the previous badge back to its
+   letter (not stuck showing a tick).
+2. **The whole card is the single visual identifier and the single click
+   target** — unchanged structurally (it always was a full-card
+   `<button>`), but with the second indicator removed, this is now
+   actually true visually as well as functionally.
+3. **Selected state**: subtle lift (`translateY(-1px)`), purple outline,
+   light purple fill, badge grows slightly (36px→40px) — all already
+   existing, refined to work with the tick swap instead of a second
+   element.
+4. **Hover is now gated to real pointer devices only**
+   (`@media (hover: hover) and (pointer: fine)`), so touch devices never
+   get a "stuck" hover state after a tap — directly following the
+   `inspiration` products named in the brief (Duolingo, Khan Academy Kids
+   etc.), which avoid exactly this common mobile-web pitfall.
+
+### Verified, not asserted
+
+- Built a test harness with genuine `innerHTML`/`querySelector` parsing
+  (not a stub) and confirmed: initial render shows all 4 letters, no
+  ticks; clicking option 2 shows a tick on option 2 only, letters on the
+  rest; clicking option 0 afterward correctly reverts option 2's badge to
+  "C" and shows the tick on option 0 instead.
+- Full standard regression suite (37 questions, correct quotas, 209
+  illustrations, 2,000 unique selections) — all pass.
+- Full sitting → report → Supabase row shape: 37/37 responses, identical
+  11-key shape, unchanged.
+- Aria-label leak sweep re-run across all 209 illustrated questions —
+  still 0 leaks (no illustration code touched this stage, checked anyway).
+- All frozen files confirmed byte-for-byte identical by checksum.
+- A visual mockup was rendered using the exact hex values, radii, and
+  shadow values from the real `styles.css` (not an approximation) showing
+  default, hover, selected, and reverted-sibling states side by side.
+
+---
+
+## Stage 2F — COMPLETE (Final Branding Integration & UI Polish)
+
+**Scope discipline**: `questions.js`, `supabase-setup.sql`,
+`tools/generate-questions.js`, and all 5 asset manifests confirmed
+byte-for-byte identical before and after this stage (checksum-compared
+directly by hash value, not just visually diffed — see verification
+below). Only `index.html`, `styles.css`, `config.js`, `README.md`, and
+this document changed.
+
+### Item 1 — official branding: blocked on a real, disclosed limitation
+
+Verified the live site (`www.primarytutoronline.com`) is real — Companies
+House registered, Trustpilot reviews, an actual working business. Located
+the exact logo image URLs in the page source. **Could not download the
+actual logo file**: the web-fetch tool refuses direct image downloads
+(text/markdown only, and it explicitly blocks fetching an image URL that
+wasn't itself a prior search/fetch result), there's no other
+image-download capability available, and the sandbox has no general
+network access. Per the explicit instruction not to redesign, recreate,
+or substitute the logo, the only honest option was to leave the current
+placeholder mark untouched rather than approximate it — **the real logo
+file needs to be uploaded directly** for this to be completed properly.
+
+**What I could and did fix with certainty**: the tagline. The live site's
+actual footer/header text is "Learn, Achieve, Succeed." — comma-separated,
+ending in a period. The app previously showed "Learn · Achieve ·
+Succeed" (middle dots, no punctuation) — a genuine mismatch, now corrected
+to match the real site exactly.
+
+### Items 2 & 3 — badge animation and eliminating movement
+
+Rebuilt the badge so the letter and the tick both exist simultaneously,
+stacked in the same spot via `position: absolute; inset: 0`, and only
+their **opacity** crossfades (180ms) when the "selected" class toggles —
+this is what actually makes a smooth fade possible at all; the previous
+approach replaced the badge's `innerHTML` outright, which cannot be
+animated. Verified directly: the badge markup contains both
+`.badge-letter` and `.badge-tick` from the very first render, and
+selecting an answer **never touches innerHTML again** — only the
+`selected` class toggles, confirmed by comparing every button's
+`innerHTML` before and after a selection (byte-identical).
+
+Removed every `transform` from the answer-card interaction states:
+badge no longer resizes (was 36px→40px, now a fixed 36px throughout);
+hover no longer lifts (`translateY(-2px)` removed, kept only a subtly
+darker border + soft shadow); selected state no longer lifts
+(`translateY(-1px)` removed, kept only outline + light fill + soft
+shadow). Audited the whole stylesheet for any other `transform`: found
+two unrelated ones — a subtle screen-transition fade (different context,
+common and reasonable practice, left as-is) and a 1px button-press effect
+on `.btn-primary:active` (near-universal, barely perceptible, outside the
+specific "answer selection" scope of this request) — both flagged rather
+than silently left in.
+
+### Item 4 & 5 — illustration and whitespace polish
+
+Ran a further systematic centring check across all 14 illustration types
+(building on the Stage 2D jitter-balance and arrow fixes). Investigated
+every flagged asymmetry rather than accepting the numbers at face value:
+most were artifacts of the check itself (it only measured `<circle>` and
+`<text>` coordinates, missing `<rect>`-based bars/tally content and
+under-sampling the single-label arrow) rather than real defects.
+Confirmed mathematically that the `dots`/`array` layout formulas
+allocate symmetric padding (16px each side) regardless of how full the
+last row is — the per-instance variation seen is the intentional organic
+scatter already verified balanced in Stage 2D, not a new bug.
+
+Whitespace audit: reviewed every hardcoded colour value in `styles.css`
+(28 distinct hex values) — found and fixed one trivial inconsistency
+(`#ffffff` vs `#fff` used for the same token in two different notations;
+normalized to `#fff`, zero visual change). No other stray/duplicate
+colour values found; the apparent near-duplicates (`#c9b8e6`, `#cdbfe4`,
+`#a99bc7`) are each used in a genuinely different, distinct context
+(confidence-button hover, disabled-button fill, answer-card hover) rather
+than being leftover dead code.
+
+### Items 6 & 7 — consistency audit and designer mindset
+
+Given the scope of this stage was primarily the answer-card interaction
+model (items 1–5 above are where the actual defects/requests were), the
+consistency audit focused on stylesheet-wide token usage rather than
+re-auditing every screen's layout from scratch (already covered across
+Stages 2A–2E). No further screen-level inconsistencies were found beyond
+the hex-notation fix above.
+
+### Verified, not asserted
+
+- Badge markup confirmed to contain both letter and tick from first
+  render; selection confirmed to never touch `innerHTML` again (byte-for-
+  byte comparison before/after).
+- Full standard regression suite (37 questions, correct quotas, 209
+  illustrations, 2,000 unique selections) — all pass.
+- Full sitting → report → Supabase row shape: 37/37 responses, identical
+  11-key shape.
+- All frozen files confirmed byte-for-byte identical **by direct hash
+  comparison** (not just a visual diff, which was initially confused by
+  path-string formatting — re-verified with a Python hash-list equality
+  check to remove any ambiguity).
+- CSS brace-balanced (131/131), no duplicate HTML ids.
+- A visual mockup rendered showing the crossfade at three points (0%,
+  ~50%, 100%) using the exact real hex/radius/shadow values, demonstrating
+  the badge stays a fixed 36px throughout.
+
+### Outstanding, needs your input
+
+**Official logo file** — please upload the actual PNG/SVG asset(s) from
+the live site (ideally both the square icon and the wider footer
+version). I'll wire it in exactly as provided with no interpretation.
+I was unable to confirm the site's exact brand colour hex values or
+typography choices beyond what's already documented in the existing
+Design System (Master Pack C) either, since the fetch tool only returns
+page text, not rendered styles — if you have the definitive values,
+they're a quick, safe update; otherwise the current PTO palette
+(already sourced from Master Pack C) remains the best available source.
+
+---
+
+## Stage 3 — Official logo integrated (v1.15)
+
+**The blocker from Stage 2F/2F-polish is resolved.** A genuine standalone
+logo file was uploaded this round (`Screenshot_2026-07-05_121138.png`,
+196×180px, PNG) — not a mockup screenshot this time. Verified before use:
+solid background at exactly `#652DA0` (already our `--pto-purple` token),
+fully opaque, no cropping artefacts.
+
+**What changed**: the file was copied byte-for-byte into the project root
+as `brand-mark.png` (confirmed identical MD5 hash to the original upload
+— no modification whatsoever) and wired in two places: replacing the
+placeholder `<div class="brand-mark">P</div>` text roundel in the header
+with the real `<img>`, and added as the site's favicon (`<link
+rel="icon">`), which had never existed before this — a legitimate small
+addition, not a stretch beyond the brief. `object-fit: cover` is used
+purely to fill the 42×42px slot cleanly; since the image's own background
+already matches the container's intended colour exactly, no distortion or
+visible cropping of the actual glyph occurs.
+
+**Also addressed** (largely already fixed in the previous "Stage 2F"
+round, re-confirmed rather than blindly redone): the "top" arrow overlap,
+the question-progression double-fire guard, and the report wording
+contradiction were all re-verified functionally against the live code and
+found still correctly fixed — this stage's brief listed them again as
+"existing issues," but the attached mock-up's own QA summary panel
+already showed them as resolved, so I checked both possibilities directly
+rather than assuming either.
+
+**Verified, not asserted:**
+- MD5 hash of the copied file matches the uploaded original exactly.
+- Structural checks: no duplicate ids, `brand-mark.png` referenced
+  exactly twice (favicon + header), old placeholder fully removed.
+- Full standard regression suite — all pass.
+- Supabase schema and all 5 asset manifests confirmed byte-identical
+  by direct hash comparison.
+- A genuine HTML rendering of the actual logo file (base64-embedded,
+  not a mockup) shown at its real 42×42px size in the real header layout.
+
+---
+
+## Watch List — NOT resolved, kept open pending broader device/browser testing
+
+Per Adam's explicit instruction: these remain open watch-list items, not
+closed bugs, until real-world multi-device/browser testing is complete.
+Do not treat the investigation below as a closure.
+
+1. **Question progression occasionally skipping questions** — extensive
+   adversarial testing (20,000-run duplicate-ID stress test, full-trace of
+   every `state.index` mutation site, forced double-fire reproduction)
+   found no reproducible mechanism in the current code. Status:
+   **not currently reproducible**, not resolved.
+2. **Report occasionally showing fewer than 37 answered** — traced to the
+   same underlying mechanism as #1 (`computeReport` builds its response
+   list directly from `state.answers`); a full continuous simulated
+   walkthrough produced 37/37 with no discrepancy. Status:
+   **not currently reproducible**, not resolved.
+
+If either recurs during real-device testing, the most useful next report
+would include: the specific question number(s), whether it's consistent
+or intermittent, browser/device used, and any console errors — to enable
+investigating a specific reproducible case rather than a general one.
+
+---
+
+## Stage 3 — Commercial polish pass (v1.16)
+
+**Watch-list items (previous section) remain open, not resolved** — no
+new investigation was done on them this round per Adam's instruction;
+this round was a dedicated visual audit.
+
+**Real defects found by actually re-reading every screen, not assumed:**
+
+1. **A stray duplicate `</section>` tag** immediately after the question
+   screen (previously silently tolerated by browsers, since unmatched
+   closing tags are simply ignored in HTML parsing — but genuinely
+   invalid markup that has no place in a commercial release). Removed;
+   `<section>` tags now balance exactly 7 open / 7 close (previously 7/8).
+2. **A stale pre-brand-update colour**: the celebration star SVG on the
+   "Well done" screen used `#e84b8a`, a pink value from before the
+   Master Pack C brand colours were adopted — the only place in the
+   entire project still using it. Corrected to the current `#E91E63`
+   brand pink token.
+3. **Confidence-card styling had drifted from the answer-card system**:
+   14px corner radius (vs. answer cards' 18px), a different, older hover
+   colour (`#c9b8e6` vs. answer cards' `#a99bc7`), and no selected-state
+   shadow — even though confidence cards are conceptually the same
+   "selectable card" pattern as answer cards. Unified: same radius, same
+   pointer-gated hover treatment, same selected-state shadow.
+
+**Reviewed and deliberately left alone**: the parent-guidance note box
+(instructions screen) uses a neutral grey tone while the hint box uses a
+warm yellow tone — this is intentional, not drifted, since they serve
+different audiences (a parent-facing instruction vs. a child-facing
+maths hint) and deserve visually distinct treatment. The `.tips` numbered
+dots (instructions screen) use a soft-purple-on-purple style rather than
+the answer badges' solid-purple-on-white — also intentional, since they
+label a numbered list, not a selectable option. Button styling
+(`.btn`/`.btn-primary`/`.btn-ghost`) was already a single shared class
+used identically across every screen — no drift found there.
+
+**A verification-script bug caught before it caused a false report**:
+my own frozen-file comparison initially printed "False" due to an
+asymmetric-filtering bug in the Python check (comparing a 7-item filtered
+list against a 9-item unfiltered one) — not a real file discrepancy.
+Caught by re-checking with a proper path-keyed comparison before
+reporting anything; all 7 genuinely frozen files (Supabase schema + all
+5 asset manifests) are confirmed identical.
+
+**Verified, not asserted:**
+- HTML tag balance: `<section>` 7/7, `<div>` 42/42, `<form>` 1/1, no
+  duplicate ids.
+- Full standard regression suite — all pass.
+- A complete simulated walkthrough (setup → 37 questions → confidence →
+  independence → report) after the HTML structural fix — 0 render
+  failures, 37/37 responses.
+- All 7 genuinely frozen files confirmed identical via a corrected,
+  path-keyed hash comparison.
+
+---
+
+## Version 1.0 Beta (from v1.16)
+
+**Note on the version jump**: the number goes from `v1.16` to `v1.0-beta`
+deliberately, not as a downgrade — this moves from an incrementing
+pre-release counter to the proper semantic milestone label Adam asked
+for, marking this as the version intended for real family testing.
+
+**Watch-list items remain open, untouched this round**: question
+progression and report-count issues are still logged as "not currently
+reproducible," not resolved — no new investigation was done on them this
+round, per instruction to treat broader real-device testing as the next
+step for those specifically.
+
+### What changed, and why each change was justified (per the "does this
+genuinely improve things" test from the previous review)
+
+**1. Report accessibility contrast — fixed, verified by calculation.**
+The two WCAG AA failures identified in the previous review (green pill
+text 2.82:1, pink pill text 3.38:1 — both need 4.5:1) are fixed.
+Computed darker shades in the *same* colour family that clear the
+threshold with margin: green `#327935` (4.58:1) and pink `#C31953`
+(4.55:1), added as proper `--pto-green-text`/`--pto-pink-text` tokens
+rather than one-off hex values, keeping the original brand green/pink
+for every other use (buttons, borders) where they already pass
+comfortably against white.
+
+**2. Keyboard accessibility for radiogroups — implemented properly, not
+decoratively.** All three `role="radiogroup"` instances (answer options,
+confidence check, independence check) previously had the ARIA role
+without the keyboard behaviour it implies. Fixed with:
+- A single shared `wireRadiogroupKeyboard()` helper (not duplicated three
+  times) providing real ArrowUp/Down/Left/Right navigation with wraparound.
+- Proper roving tabindex (`tabindex="0"` on exactly one option at a time,
+  `"-1"` on the rest) — previously Tab stopped on every option
+  individually; now it enters the group once, matching how a native
+  radio group and every screen-reader user already expect it to behave.
+- `role="radio"` and `aria-checked` added to the confidence and
+  independence buttons, which previously had neither (only the dynamic
+  answer buttons had them) — a second, distinct correctness gap found
+  while implementing the first fix, not anticipated in the original
+  review.
+
+Verified with real simulated `keydown` events (not just a code read):
+focus starts on option 0 (the only `tabindex="0"` element); ArrowRight
+moves focus to option 1 *and* selects it; tabindex correctly follows
+focus; ArrowLeft twice returns to option 0; ArrowLeft from option 0
+wraps to the last option. All confirmed working exactly as intended.
+
+**3. Illustration alignment — investigated further, found nothing left
+to fix.** Re-ran the symmetry check from the previous round and found a
+consistent ~26px "asymmetry" in emoji-based dot illustrations. Rather
+than report a new problem or silently ignore the number, traced the
+cause: the check was comparing a text element's *baseline* coordinate
+(`y = cy + r×0.65`, a deliberate offset used to visually centre an emoji
+glyph within its circle — standard SVG/text-centring practice) against a
+plain circle's *geometric centre* coordinate — these are never going to
+match numerically even when the actual rendering is correctly centred.
+Confirmed by direct comparison of the raw SVG for an emoji-based vs.
+plain-colour dot: the plain circle is exactly centred (`cy=36` in a
+72-tall viewBox); the emoji's baseline-adjusted `y` coordinate looks
+"off" by design. **No code change made here** — this is a limitation of
+a non-browser measurement tool, not a rendering defect, and changing the
+0.65 offset without genuine visual confirmation could easily make real
+rendering worse while "fixing" a number that was never actually wrong.
+
+**4. Overall visual polish** — no new issues found this round beyond
+what the previous two rounds already fixed (stray closing tag, stale
+brand colour, confidence-card drift). Re-ran the full structural checks
+(HTML tag balance, CSS brace balance, no duplicate ids) — all pass.
+
+**5. Brand consistency** — unchanged and unaffected by this round's
+work; no regressions found.
+
+**Verified, not asserted:**
+- Contrast ratios recalculated after the fix: 4.58:1 and 4.55:1, both
+  clearing the 4.5:1 WCAG AA threshold.
+- Keyboard navigation tested with real simulated `keydown` dispatch,
+  not just read as code — focus movement, selection-on-arrow-key, roving
+  tabindex, and bidirectional wraparound all confirmed.
+- Full standard regression suite (37 questions, correct quotas, 209
+  illustrations, 2,000 unique selections) — all pass.
+- HTML structure: `<section>` 7/7, `<div>` 42/42, `<button>` 14/14, no
+  duplicate ids. CSS brace-balanced (134/134).
+- A complete simulated walkthrough (setup → 37 questions → confidence →
+  independence → report) — 0 render failures, 37/37 responses, unchanged
+  Supabase row shape.
+- All 7 genuinely frozen files (Supabase schema + 5 asset manifests)
+  confirmed identical via the corrected, path-keyed hash comparison.
+  `questions.js`/`tools/generate-questions.js` also confirmed stable at
+  their last legitimate, previously-disclosed checkpoint — untouched
+  this round since no illustration data needed changing.
+
+---
+
+## v0.9.1-beta — Five specific fixes from live-testing feedback
+
+**No general polish pass this round** — five specific, named issues only,
+per explicit instruction not to make unrelated changes.
+
+**1. Supabase preview message removed.** The message mentioning
+"Supabase," "config.js," and "preview mode" is gone entirely from the
+report screen — verified by checking every remaining `statusEl` message
+in the file; all three that remain (saving unavailable, saved
+successfully, save failed) are already parent-friendly with zero
+technical terms.
+
+**2. Arrow illustration made substantially bolder.** The underlying code
+already matched the earlier fix (no regression found), which points to
+either a caching/deployment issue on the live site, or the design simply
+wasn't visually bold enough. Rather than guess at a caching fix I can't
+verify from here, made it unambiguously larger: stroke width 16→20,
+arrowhead 26→32, arrow length 55→62, label 28px→32px. Re-verified no
+overlap across all 8 directions (48–110px gap, same margin as before).
+
+**3. Header brand text colour fixed.** `.brand-name span { color:
+--pto-purple }` only coloured the word "Online" — "Primary Tutor "
+outside the span was uncoloured. Moved the colour to `.brand-name`
+itself so the whole name is `#652DA0`, confirmed by direct token lookup.
+
+**4. Hint coverage expanded from 9 to all 62 skills in the bank.** This
+is an explicitly authorised, deliberate expansion of
+`assets/hints/manifest.js` — not a violation of the file's earlier
+"frozen" status, which was always contingent on no explicit instruction
+to change it. Built the mapping from the 16 example categories given,
+extended sensibly to the skills not explicitly named, and verified
+programmatically: cross-checked all 62 mapped skills against the actual
+bank's skill list — zero missing, zero typos, zero mismatches. Went
+further and directly tested every real skillId through the live
+`findHintForSkill()` lookup — 62/62 correct matches, 0 wrong matches
+(checking specifically for `endsWith()` suffix-collision risk between
+similar skill names like `NPV-TENS`/`NPV-TENMORE`/`NPV-TENLESS`), 0
+misses. Result: 100% hint coverage across simulated sittings (the
+natural consequence of covering every skill, not an approximation). The
+embedded `LOCAL_HINTS` fallback copy in `app.js` was regenerated from the
+same source data to guarantee both files stay identical.
+
+**5. Clock hands recoloured, time hint corrected.** Hour hand → red
+(`#D32F2F`, 4.98:1 contrast against white — comfortably clears WCAG's 3:1
+graphical-object minimum), minute hand → black (`#000000`). Both
+`MEA-OCLOCK` and `MEA-HALFPAST` hints now read exactly: "The short red
+hand shows the hour. The long black hand shows the minutes." — verified
+present verbatim in both hint files.
+
+**A test-script mistake caught before it was reported as a product bug**:
+an early verification run showed 38 responses instead of 37 — investigated
+immediately rather than assumed as a regression, and found to be my own
+test script pushing a duplicate answer entry directly (bypassing the
+app's real dedup logic) rather than a real defect. Re-ran cleanly using
+only the actual `selectAnswer()` function throughout — 37/37, correct.
+
+**Verified, not asserted:**
+- Full standard regression suite — all pass.
+- Full walkthrough (real `selectAnswer()` calls only): 0 render failures,
+  37/37 responses, Supabase payload shape unchanged (11 keys).
+- All frozen files except the deliberately-expanded
+  `assets/hints/manifest.js` confirmed identical to their last legitimate
+  checkpoint by hash comparison.
+- `questions.js`/`tools/generate-questions.js` confirmed unchanged this
+  round.
+
+---
+
+## v0.9.2-beta — Full KS1 National Curriculum coverage
+
+Following a direct question about curriculum coverage, I compared the
+actual objective text of all 62 existing skills (not just skill-code
+names) against the real DfE KS1 Maths programme of study and found 7
+genuine content gaps, plus a separate, previously-undiscovered data bug.
+
+### Content gaps closed — 11 new skills added
+
+| New skill | Year | Closes the gap in |
+|---|---|---|
+| `NPV-IN3` | 2 | Counting in steps of 3 (previously only 2, 5, 10) |
+| `AS-ADD2D2D` | 2 | Adding two genuine two-digit numbers (previously only two-digit+ones or +tens) |
+| `MD-X2` | 2 | Explicit 2-times-table recall |
+| `MD-COMM` | 2 | Multiplication commutativity (previously only addition had this) |
+| `FRA-THIRDQ`, `FRA-THIRDN` | 2 | Thirds — entirely absent before |
+| `FRA-THREEQ` | 2 | Three-quarters as its own concept |
+| `FRA-EQUIV` | 2 | Fraction equivalence (2/4 = 1/2) |
+| `MEA-QPAST`, `MEA-QTO` | 2 | Quarter-past/quarter-to time-telling (previously only o'clock/half-past — a Year 1-only level) |
+| `MEA-CAPACITY` | 1 | Capacity/volume comparison — entirely absent before |
+
+Bank grew from 360 → **414 questions**, 62 → **73 skills**. Reused the
+existing `svgFraction` and `svgClock` renderers directly for the new
+content (both were already fully generic — `svgFraction` takes any
+`parts` count, `svgClock` takes any `hour`/`minute` — so thirds and
+quarter-past/to needed zero illustration-code changes, only new question
+data).
+
+### A separate bug found and fixed along the way
+
+`app.js` has referenced `q.curriculumYear` and `q.misconceptionCategory`
+in its Supabase payload builder since early in this project — but the
+generator never actually populated either field on any of the 360
+original questions. Every saved family result to date would have
+recorded `null` for both. Classified all 62 existing skills by real NC
+year stage and assigned a misconception category, injected both into the
+generator's metadata programmatically (not by hand, to avoid transcription
+errors across 62 blocks), and confirmed **100% of all 414 questions now
+have both fields populated** (was 0%).
+
+### Verified, not asserted
+
+- Injected metadata into exactly 62/62 existing templates with zero
+  warnings (each skillId is a unique substring, checked before replacing).
+- All 11 new skills render without error and produce valid 4-option
+  questions (checked programmatically, not by inspection).
+- Quarter-past vs quarter-to clocks verified to produce genuinely
+  different, correct hand positions: minute hand at exactly
+  `(cx+78, cy)` for :15 and `(cx-78, cy)` for :45 — pointing at the "3"
+  and "9" respectively, not just visually similar-looking.
+- Re-ran the full aria-label leak sweep across all 239 illustrated
+  questions (up from 209) — still 0 leaks.
+- Re-verified all 73 skills (not just the original 62) map to the
+  correct hint with zero collisions, using the same direct-lookup method
+  as before.
+- Full standard regression suite (37 per sitting, quota sum 37, all
+  illustrations render, 2,000/2,000 unique simulated sittings) — all pass
+  unchanged, confirming the larger skill pool didn't disturb selection
+  behaviour.
+- A complete simulated walkthrough confirmed the previously-broken
+  `curriculum_year`/`misconception_category` fields now contain real
+  values (e.g. `"Year 1"`, `"counting-in-steps"`) in the actual
+  Supabase-bound response payload, not just in the source data.
+
+### What did not change
+
+Assessment logic, scoring, strand quotas (still NPV:8/AS:6/MD:4/FRA:4/
+MEA:5/GEO:4/POS:3/STA:3 = 37), Supabase schema, and question selection
+algorithm are all untouched — the larger skill pool per strand simply
+gives the existing selection logic more variety to draw from within the
+same quotas.
